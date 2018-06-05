@@ -1,0 +1,50 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#969696",
+    "selectedColor": "#FF6600",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/nearby.png",
+        "selectedIconPath": "image/nearbyHL.png",
+        "text": "附近店"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/heart.png",
+        "selectedIconPath": "image/heartHL.png",
+        "text": "爱我家"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/add.png",
+        "selectedIconPath": "image/addHL.png",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/write.png",
+        "selectedIconPath": "image/writeHL.png",
+        "text": "创美文"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "iconPath": "image/myinfo.png",
+        "selectedIconPath": "image/myinfoHL.png",
+        "text": "我信息"
+      }
+    ]
+  }
+}
