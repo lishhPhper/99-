@@ -1,0 +1,28 @@
+.picture {
+  padding: 20rpx 20rpx;
+  /* background: white; */
+}
+.picture_top {
+  display: flex;
+  align-items: center;
+}
+.picture_left image {
+  width: 50rpx;
+  height: 50rpx;
+ 
+}
+.picture_left {
+  width: 100%;
+  height: 75rpx;
+  border: 2rpx solid #CECECE;
+  border-radius: 10rpx;
+  text-align: center;
+  background: white; 
+}
+.add_img{
+  width: 100%;
+  height: 50rpx;
+  display:inline-block;
+  vertical-align:middle;
+  text-align: center;
+}

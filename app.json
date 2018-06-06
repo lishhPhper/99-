@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/shops/index/index",
     "pages/info/info",
-    "pages/articles/articles"
+    "pages/articles/articles",
+    "pages/shops/editor/editor"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -25,7 +26,7 @@
         "text": "附近店"
       },
       {
-        "pagePath": "pages/shops/index/index",
+        "pagePath": "pages/shops/editor/editor",
         "iconPath": "image/heart.png",
         "selectedIconPath": "image/heartHL.png",
         "text": "爱我家"
