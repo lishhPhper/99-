@@ -9,7 +9,7 @@ Page({
     inputVal: "",
     toView: 'red',
     scrollTop: 100,
-    status:1,
+    status:2,
     arry: [
 
       { text: "沙发" },

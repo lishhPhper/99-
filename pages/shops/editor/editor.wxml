@@ -1,0 +1,13 @@
+<view class='picture'>
+  <view class='picture_top'>
+    <view class='picture_left' bindtap='addImg'>
+      <view>
+        <image src='../../../image/tianjia.png' style='float:left;margin:12rpx;'></image>
+        <text style='float:left;line-height:75rpx;letter-spacing:12rpx;'>点击添加分类名称</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='add_img'>
+  <image src='../../../image/tianjia.png' style='width:85rpx;height:50rpx;'></image>
+</view>
