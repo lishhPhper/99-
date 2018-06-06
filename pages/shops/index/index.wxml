@@ -1,11 +1,6 @@
-<!-- <view class="section section_gap">
-  <scroll-view class="scroll-view_H" scroll-x style="width: 100%;text-align: center;line-height:40px;">
-    <view id="green" class="scroll-view-item_H bc_white" style='color:#FF6600;font-size:12pt;font-weight:600'>陈立新（商家）家具实体店</view>
-  </scroll-view>
-</view> -->
 <view class="page">
-    <view class="page__bd">
-        <view class="weui-search-bar">
+    <view class="page__bd"> 
+        <view class="weui-search-bar" style="background-color:#F4F3E6;">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -45,37 +40,37 @@
         </view>
     </view>
 </view>
-<view class="navs" style="background-color:white;">
-  <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-    <image src="../../../image/add.png" class="nav-image" bindtap='entityStore'/>
+<view class="navs">
+  <view class="nav-item nav-item-left" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+    <image src="../../../image/jiaju01.jpg" class="nav-image" bindtap='entityStore'/>
     <text style='font-size:12pt'>我的实体门店</text>
   </view>
-  <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-    <image src="../../../image/add.png" class="nav-image"/>
+  <view class="nav-item nav-item-right" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+    <image src="../../../image/jiaju01.jpg" class="nav-image"/>
     <text style='font-size:12pt'>我的网上商城</text>
   </view>
 </view>
-<view style='background-color:#ddd;width:100%;height:2px;'></view>
-<view style="background-color:white;width: 100%;text-align: center;line-height:20px;height:30px;">
-  <view style='float:left;padding:5px 5px'>
-    <image src="../../../image/nearby.png" style='width:20px;height:20px;'></image>
+<view style='background-color:#ddd;width:100%;height:3rpx;'></view>
+<view style="width: 100%;text-align: center;line-height:60rpx;height:80rpx;">
+  <view style='float:left;padding:15rpx 15rpx'>
+    <image src="../../../image/nearby.png" style='width:50rpx;height:50rpx;'></image>
   </view>
-  <view style='float:left;padding:5px 5px'>
+  <view style='float:left;padding:15rpx 15rpx'>
     <text>潢川县戈阳路黄国粮业斜对面</text>
   </view>
-  <view style='float:left;padding:5px 5px'>
-    <image src="../../../image/weixin.png" style='width:20px;height:20px;'></image>
+  <view style='float:left;padding:15rpx 25rpx 15rpx 25rpx'>
+    <image src="../../../image/weixin.png" style='width:50rpx;height:50rpx;'></image>
   </view>
-  <view style='float:left;padding:5px 5px'>
-    <image src="../../../image/dianhua.png" style='width:20px;height:20px;'></image>
+  <view style='float:left;padding:15rpx 25rpx 15rpx 25rpx'>
+    <image src="../../../image/dianhua.png" style='width:50rpx;height:50rpx;'></image>
   </view>
 </view>
-<view style='background-color:#ddd;width:100%;height:2px;'></view>
+<view style='background-color:#ddd;width:100%;height:2rpx;'></view>
 <block wx:if="{{status == 1}}">
   <view class='picture'>
     <view class='picture_top'>
       <view class='picture_left' bindtap='addImg'>
-        <image src='../../../image/add.png' style='padding:25px 0 0'></image>
+        <image src='../../../image/add.png' style='padding:50rpx 0 0'></image>
         <view>
           <text>添加首页图片</text>
         </view>
@@ -84,13 +79,20 @@
   </view>
 </block>
 <block wx:if="{{status == 2}}">
-   <view>
-    <view class="menu2_view" wx:for="{{arry}}" wx:key="{{arry}}" wx:for-index="idx" bindtap="btnanniu"> 
-          <text>{{item.text}}</text>
+    <view  class="menu2_view" wx:for="{{arry}}" wx:key="{{arry}}" wx:for-index="idx" bindtap="btnanniu"> 
+        <text>{{item.text}}</text>
     </view>
-  </view> 
-  <image src='../../../image/add.png' style='width:90%;padding:10px 0 10px;margin:16px;'></image>
-  <image src='../../../image/weixin.png' style='width:20px;height:20px;position:relative;bottom:250px;left:50px'></image>
-  <image src='../../../image/weixin.png' style='width:20px;height:20px;position:relative;bottom:80px;left:220px'></image>
-  <image src='../../../image/weixin.png' style='width:20px;height:20px;position:relative;bottom:250px;left:200px'></image>
+    <view style="clear:both"></view>
+    <view style="height:380rpx;padding:30rpx 0 30rpx;">
+      <image src='../../../image/jiaju01.jpg' style='width:90%;height:380rpx;padding:20rpx 0 20rpx;margin:0 37rpx 0 37rpx'></image>
+      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:80rpx'></image>
+      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:160rpx;left:525rpx'></image>
+      <image src='../../../image/weixin.png' style=';position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:460rpx'></image>
+    </view>
+    <view>
+      <image src='../../../image/jiaju01.jpg' style='width:90%;height:380rpx;padding:20rpx 0 20rpx;margin:0 37rpx 0 37rpx'></image>
+      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:80rpx'></image>
+      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:160rpx;left:525rpx'></image>
+      <image src='../../../image/weixin.png' style=';position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:460rpx'></image>
+    </view>
 </block>
