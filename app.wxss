@@ -52,7 +52,9 @@ page{
 .bc_white{
     background-color: #FFFFFF;
 }
-
+.bc_defult{
+  background-color: #FF6600;
+}
 .section{
     margin-bottom: 0px;
 }
@@ -70,7 +72,4 @@ page{
 .section_gap .section__title{
     padding-left: 0;
     padding-right: 0;
-}
-.section__ctn{
-
 }

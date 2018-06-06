@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/shops/index/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -22,7 +23,7 @@
         "text": "附近店"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/shops/index/index",
         "iconPath": "image/heart.png",
         "selectedIconPath": "image/heartHL.png",
         "text": "爱我家"
