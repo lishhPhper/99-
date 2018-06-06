@@ -2,7 +2,9 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/shops/index/index"
+    "pages/shops/index/index",
+    "pages/info/info",
+    "pages/articles/articles"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -35,13 +37,13 @@
         "text": ""
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/articles/articles",
         "iconPath": "image/write.png",
         "selectedIconPath": "image/writeHL.png",
         "text": "创美文"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/info/info",
         "iconPath": "image/myinfo.png",
         "selectedIconPath": "image/myinfoHL.png",
         "text": "我信息"
