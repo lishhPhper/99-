@@ -22,7 +22,6 @@
   font-size: 25rpx;
 }
 .picture {
-  margin-top: 20rpx;
   padding: 30rpx 30rpx;
   background: #fff;
 }

@@ -8,7 +8,8 @@ Page({
     inputShowed: false,
     inputVal: "",
     toView: 'red',
-    scrollTop: 100
+    scrollTop: 100,
+    status:1
   },
   showInput: function () {
     this.setData({
@@ -53,6 +54,11 @@ Page({
   tapMove: function (e) {
     this.setData({
       scrollTop: this.data.scrollTop + 10
+    })
+  },
+  entityStore:function (e) {
+    this.setData({
+
     })
   }
 });
