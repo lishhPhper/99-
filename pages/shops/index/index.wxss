@@ -40,3 +40,14 @@
   border-radius: 10rpx;
   text-align: center;
 }
+.menu2{
+  width: 100%;
+}
+.menu2_view{
+   width: 33%;
+   float:left;
+   text-align: center;
+}
+.pic_index{
+  padding: 20px 0px;
+}
