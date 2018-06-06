@@ -3,12 +3,12 @@
     white-space: nowrap;
 }
 .scroll-view-item{
-    height: 200rpx;
+    height: 200px;
 }
 .scroll-view-item_H{
     display: inline-block;
     width: 25%;
-    height: 80rpx;
+    height: 40px;
     font-size: 12pt;
 }
 

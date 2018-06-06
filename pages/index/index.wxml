@@ -42,7 +42,7 @@
     </view>
 </view>
 <view class="section section_gap">
-  <scroll-view class="scroll-view_H" scroll-x style="width: 100%;text-align: center;line-height:40px">
+  <scroll-view class="scroll-view_H" scroll-x style="text-align: center;line-height:80rpx">
     <view id="green" class="scroll-view-item_H bc_white">热点</view>
     <view id="red"  class="scroll-view-item_H bc_white">美容瘦身</view>
     <view id="yellow" class="scroll-view-item_H bc_white">旅游健身</view>
@@ -75,7 +75,7 @@
         <image src='../../image/jiaju01.jpg' style='width:100%;height:380rpx;margin:20rpx 0rpx 10rpx 0rpx;'></image>
         <view style='height:80rpx;margin-bottom:5rpx;'>
              <view style='float:left;margin-right:15rpx;'>
-                <image src='../../image/head.jpg' style='border-radius:50%;width:70rpx;height:70rpx;'></image>
+                <image src='../../image/header.jpg' style='border-radius:50%;width:70rpx;height:70rpx;'></image>
              </view>   
              <view style='float:left;padding:0rpx 10rpx;height：70rpx;font-size:11pt;line-height:70rpx;'>
                 <text>清风明月</text>

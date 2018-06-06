@@ -1,0 +1,48 @@
+<!--info.wxml-->
+<view style='height:200rpx;line-height:200rpx;border-bottom:1px solid #ddd;'>
+    <image style='float:left;border-radius:50%;width:120rpx;height:120rpx;margin:40rpx 40rpx 40rpx 80rpx;' src='../../image/header.jpg'></image>
+    <view style='float:left;'>普通会员</view>
+</view>
+<view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
+    <view style='float:left;margin-left:50rpx;'>我的个人信息</view>
+    <view style='float:left;font-size:10pt;color:#FF6600'>（普通会员自己的信息）</view>
+    <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+</view>
+<view style='background-color:#ddd;height:8px;'></view>
+<view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
+    <view style='float:left;margin-left:50rpx;'>我的收藏</view>
+    <view style='float:left;font-size:10pt;color:#FF6600'>（收藏的页面）</view>
+    <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+</view>
+<view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
+    <view style='float:left;margin-left:50rpx;'>关于99家小程序</view>
+    <view style='float:left;font-size:10pt;color:#FF6600'>（99家商城经营模式）</view>
+    <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+</view>
+<view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
+    <view style='float:left;margin-left:50rpx;'>联系我们</view>
+    <view style='float:left;font-size:10pt;color:#FF6600'>（联系99家商城总部）</view>
+    <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+</view>
+<view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
+    <view style='float:left;margin-left:50rpx;'>客服咨询</view>
+    <view style='float:left;font-size:10pt;color:#FF6600'>（网上咨询99家客服）</view>
+    <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+</view>
+<view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
+    <view style='float:left;margin-left:50rpx;'>代理加盟</view>
+    <view style='float:left;font-size:10pt;color:#FF6600'>（代理商加盟条件）</view>
+    <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+</view>
+<view style='background-color:#ddd;height:8px;'></view>
+<view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
+    <view style='float:left;margin-left:50rpx;'>申请店铺帮助</view>
+    <view style='float:left;font-size:10pt;color:#FF6600'>（商家和厂家注册帮助）</view>
+    <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+</view>
+<view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
+    <view style='float:left;margin-left:50rpx;'>我的推广</view>
+    <view style='float:left;font-size:10pt;color:#FF6600'>（经我注册的小程序网店）</view>
+    <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+</view>
+    
