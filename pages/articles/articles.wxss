@@ -3,12 +3,12 @@
     white-space: nowrap;
 }
 .scroll-view-item{
-    height: 200rpx;
+    height: 200px;
 }
 .scroll-view-item_H{
     display: inline-block;
     width: 25%;
-    height: 80rpx;
+    height: 40px;
     font-size: 12pt;
 }
 
@@ -33,4 +33,24 @@
 .nav-item text {
   padding-top: 20rpx;
   font-size: 25rpx;
+}
+
+.picture {
+  padding: 30rpx 30rpx;
+  background: #fff;
+}
+.picture_top {
+  display: flex;
+  align-items: center;
+}
+.picture_left image {
+  width: 70rpx;
+  height: 70rpx;
+}
+.picture_left {
+  width: 100%;
+  height: 200rpx;
+  border: 2px solid #CECECE;
+  border-radius: 10rpx;
+  text-align: center;
 }
