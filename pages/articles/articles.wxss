@@ -37,7 +37,6 @@
 
 .picture {
   padding: 30rpx 30rpx;
-  background: #fff;
 }
 .picture_top {
   display: flex;
