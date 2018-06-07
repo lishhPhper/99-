@@ -1,0 +1,86 @@
+<view class="section">
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item ">
+      <image src="../../../image/nearby.png" style='width:50rpx;height:50rpx;'></image>
+    </view>
+    <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+      <text>河南省郑州市潢川县戈阳路黄国das粮业斜对面</text>
+    </view>
+  </view>
+</view>
+<view class="page">
+    <view class="page__bd"> 
+        <view class="weui-search-bar" style="background-color:#F4F3E6;">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">搜索</view>
+                </label>
+            </view>
+            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+        <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>
+<view class="section">
+  <view class="flex-wrp-1" style="flex-direction:row;">
+    <view class="" >
+      <image src="../../../image/jiaju01.jpg" style='width:250rpx;height:200rpx;'></image>
+    </view>
+    <view class="page-section" style='width:480rpx;'>
+      <view style='width:440rpx;margin:4rpx 0 0 20rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold;color:#ff6600;'>河南省郑州市公关金湖批发商城</view>
+      <view style="width:440rpx;height:80rpx;margin:4rpx 0 0 20rpx;">
+        <text style='width:440rpx;height:80rpx;font-size:10pt;display:-webkit-box;word-break:break-all;overflow:hidden;text-overflow:ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;font-size:10pt;'>地址：奥术大师大所大所大所多啊是大叔大叔大叔大很难打死到哪啊啊实打实大师</text>
+      </view>
+      <view class="" style="display:flex;flex-direction:row;margin:16rpx 0 0 20rpx;width:440rpx;height:40rpx;">
+        <view style='width:250rpx;height:46rpx;font-size:11pt;'>人气：<text style='color:#FF6600;font-weight:bold;'>3123</text></view>
+        <view style='width:250rpx;height:46rpx;text-align:right;font-size:11pt;'>2.2 Km</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="section">
+  <view class="flex-wrp-1" style="flex-direction:row;">
+    <view class="" >
+      <image src="../../../image/jiaju01.jpg" style='width:250rpx;height:200rpx;'></image>
+    </view>
+    <view class="page-section" style='width:480rpx;'>
+      <view style='width:440rpx;margin:4rpx 0 0 20rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold;color:#ff6600;'>河南省郑州市公关金湖批发商城</view>
+      <view style="width:440rpx;height:80rpx;margin:4rpx 0 0 20rpx;">
+        <text style='width:440rpx;height:80rpx;font-size:10pt;display:-webkit-box;word-break:break-all;overflow:hidden;text-overflow:ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;font-size:10pt;'>地址：奥术大师大所大所大所多啊是大叔大叔大叔大很难打死到哪啊啊实打实大师</text>
+      </view>
+      <view class="" style="display:flex;flex-direction:row;margin:16rpx 0 0 20rpx;width:440rpx;height:40rpx;">
+        <view style='width:250rpx;height:46rpx;font-size:11pt;'>人气：<text style='color:#FF6600;font-weight:bold;'>3123</text></view>
+        <view style='width:250rpx;height:46rpx;text-align:right;font-size:11pt;'>2.2 Km</view>
+      </view>
+    </view>
+  </view>
+</view>
