@@ -58,3 +58,13 @@
 .pic_index{
   padding: 20rpx 0rpx;
 }
+.page-section{
+  margin-bottom: 20rpx;
+}
+.flex-wrp {
+  display: flex;
+  height:80rpx;  
+}
+.flex-item{
+  margin: 15rpx;
+}
