@@ -1,47 +1,28 @@
-<!--index.wxml-->
-<view style='height:230rpx;width:100%;background:url(../../image/bd001.jpg) no-repeat;background-size:100%;'>
-    <image style='float:left;border-radius:50%;width:130rpx;height:130rpx;margin:50rpx 40rpx 50rpx 80rpx;' src='../../image/header.jpg'></image>
-    <view style='float:left;width:60%;height:50rpx;margin-top:50rpx;'>爱家家居店（99家具）</view>
-     <view style='float:left;height:130rpx;padding:10rpx 20rpx;'>
-        <view style='height:55rpx;text-align:center;font-size:10pt'>26</view>
-        <view style='height:55rpx;text-align:center;font-size:10pt'>我的关注</view>
-    </view> 
-    <view style='float:left;height:130rpx;padding:10rpx 20rpx;'>
-        <view style='height:55rpx;text-align:center;font-size:10pt'>32</view>
-        <view style='height:55rpx;text-align:center;font-size:10pt'>我的粉丝</view>
+<view style='height:100rpx;line-height:100rpx;'>
+    <view style='float:left;height:70rpx;'>
+        <image src='../../image/header.jpg' style='border-radius:50%;width:70rpx;height:70rpx;margin:15rpx 20rpx 15rpx 50rpx;'></image>
     </view>
-  </view>
-<view class='picture'>
-    <view class='picture_top'>
-      <view class='picture_left' bindtap='addImg'>
-        <view style='height:65rpx;line-height:65rpx;'>
-          <text>继续创作美文</text>
-        </view>
-        <view style='line-height:70rpx;height:70rpx;'>
-        <image src='../../image/addHL.png'></image>
-        </view>
-        <view style='height:65rpx;line-height:65rpx;'>
-          <text>添加文章图片</text>
-        </view>
-      </view>
+    <view style='float:left;width:300rpx;'>
+        <text>某某会员</text>
     </view>
-  </view>
-<view style='background-color:#ddd;height:8px;'></view>
-<view style='padding: 20rpx 40rpx 10rpx 40rpx;'>
-    <view style='font-size:11pt;'>某某家具商场9月25号盛大开业某某家具商场9月25号盛大开业</view>
-    <image src='../../image/jiaju01.jpg' style='width:100%;height:390rpx;margin:20rpx 0rpx 10rpx 0rpx;'></image>
-    <view style='height:40rpx;line-height:40rpx;'>
-        <view style='float:left;margin-right:15rpx;'>
-            <text>公开</text><text style='font-size:10pt;'>（等待审核）</text>
-        </view>   
-        <view style='float:right;font-size:11pt;'>
-            <text>2017-09-28</text>
-        </view>   
-        <view style='float:right;padding:0rpx 10rpx;font-size:11pt;'>
-            <text style='font-size:11pt;'>阅读：</text>
-            <text>896</text>
-        </view>   
+    <view style='float:right;width:150rpx;height:60rpx;background-color:#FF6600;margin:20rpx 30rpx;;line-height:60rpx;border-radius:5%;'>
+        <text style='float:left;padding-left:20rpx;color:#FFF'>关注</text>
+        <image src='../../image/people.png' style='float:right;width:40rpx;height:40rpx;margin:10rpx 10rpx;'></image>
     </view>
-</view>     
-    
-    
+</view>
+<view style='height:5rpx;background-color:#ddd;float:clear;'></view>
+<view style='padding:15rpx 30rpx;'>
+    <view>
+        <view style='text-align:left;'>
+            <text style='font-size:14pt;'>某某某文章</text>    
+        </view>
+        <view style='padding:10rpx 0rpx;'>
+            <text style='float:left;'>2017.10.27</text>
+            <text style='float:left;margin-left:100rpx;'>阅读：896</text>
+        </view>
+        <view>
+            <image src='../../image/jiaju01.jpg' style='width:100%;'></image>
+            <image src='../../image/jiaju01.jpg' style='width:100%;'></image>
+        </view>
+    </view>
+</view>

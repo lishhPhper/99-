@@ -42,54 +42,53 @@
     </view>
 </view>
 <view class="section section_gap">
-  <scroll-view class="scroll-view_H" scroll-x style="text-align: center;line-height:80rpx">
-    <view id="green" class="scroll-view-item_H bc_white">热点</view>
-    <view id="red"  class="scroll-view-item_H bc_white">美容瘦身</view>
-    <view id="yellow" class="scroll-view-item_H bc_white">旅游健身</view>
-    <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
-    <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
-    <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
-  </scroll-view>
+    <scroll-view class="scroll-view_H" scroll-x style="text-align: center;line-height:80rpx">
+        <view id="green" class="scroll-view-item_H bc_white">热点</view>
+        <view id="red" class="scroll-view-item_H bc_white">美容瘦身</view>
+        <view id="yellow" class="scroll-view-item_H bc_white">旅游健身</view>
+        <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
+        <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
+        <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
+    </scroll-view>
 </view>
-    <view class="navs">
-        <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-          <image src="../../image/home.png" class="nav-image"/>
-          <text>秀家</text>
+<view class="navs">
+    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+        <image src="../../image/home.png" class="nav-image" />
+        <text>秀家</text>
+    </view>
+    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+        <image src="../../image/follow.png" class="nav-image" />
+        <text>关注</text>
+    </view>
+    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+        <image src="../../image/friend.png" class="nav-image" />
+        <text>身边</text>
+    </view>
+    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+        <image src="../../image/collect.png" class="nav-image" />
+        <text>收藏</text>
+    </view>
+</view>
+<view style='background-color:#ddd;height:8px;'></view>
+<view style='padding: 26rpx 40rpx 26rpx 40rpx;'>
+    <view style='font-size:11pt;'>某某家具商场9月25号盛大开业某某家具商场9月25号盛大开业</view>
+    <image src='../../image/jiaju01.jpg' style='width:100%;height:380rpx;margin:20rpx 0rpx 10rpx 0rpx;'></image>
+    <view style='height:80rpx;margin-bottom:5rpx;'>
+        <view style='float:left;margin-right:15rpx;'>
+            <image src='../../image/header.jpg' style='border-radius:50%;width:70rpx;height:70rpx;'></image>
         </view>
-        <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-          <image src="../../image/follow.png" class="nav-image"/>
-          <text>关注</text>
+        <view style='float:left;padding:0rpx 10rpx;height：70rpx;font-size:11pt;line-height:70rpx;'>
+            <text>清风明月</text>
         </view>
-        <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-          <image src="../../image/friend.png" class="nav-image"/>
-          <text>身边</text>
+        <view style='float:right;padding:0rpx 10rpx;height：70rpx;font-size:11pt;line-height:70rpx;'>
+            <text>2017-09-28</text>
         </view>
-        <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-          <image src="../../image/collect.png" class="nav-image"/>
-          <text>收藏</text>
+        <view style='float:right;padding:0rpx 10rpx;height：70rpx;font-size:11pt;line-height:70rpx;'>
+            <text style='font-size:11pt;'>阅读：</text>
+            <text>896</text>
         </view>
     </view>
-    <view style='background-color:#ddd;height:8px;'></view>
-    <view style='padding: 26rpx 40rpx 26rpx 40rpx;'>
-        <view style='font-size:11pt;'>某某家具商场9月25号盛大开业某某家具商场9月25号盛大开业</view>
-        <image src='../../image/jiaju01.jpg' style='width:100%;height:380rpx;margin:20rpx 0rpx 10rpx 0rpx;'></image>
-        <view style='height:80rpx;margin-bottom:5rpx;'>
-             <view style='float:left;margin-right:15rpx;'>
-                <image src='../../image/header.jpg' style='border-radius:50%;width:70rpx;height:70rpx;'></image>
-             </view>   
-             <view style='float:left;padding:0rpx 10rpx;height：70rpx;font-size:11pt;line-height:70rpx;'>
-                <text>清风明月</text>
-             </view>
-             <view style='float:right;padding:0rpx 10rpx;height：70rpx;font-size:11pt;line-height:70rpx;'>
-                <text>2017-09-28</text>
-             </view>   
-             <view style='float:right;padding:0rpx 10rpx;height：70rpx;font-size:11pt;line-height:70rpx;'>
-                <text style='font-size:11pt;'>阅读：</text>
-                <text>896</text>
-             </view>   
-        </view>
-        <view style='font-size:11pt;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>
-            <text >家具商场9月25号盛大开业家具商场家具商场家具家具</text>
-        </view>
-    </view> 
-    
+    <view style='font-size:11pt;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>
+        <text>家具商场9月25号盛大开业家具商场家具商场家具家具</text>
+    </view>
+</view>
