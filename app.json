@@ -5,8 +5,9 @@
     "pages/shops/index/index",
     "pages/info/info",
     "pages/articles/articles",
-    "pages/shops/editor/editor",
-    "pages/shops/nearby/nearby"
+    "pages/shops/nearby/nearby",
+    "pages/articleInfo/articleInfo",
+    "pages/shops/editor/editor"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -21,7 +22,7 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/articleInfo/articleInfo",
         "iconPath": "image/nearby.png",
         "selectedIconPath": "image/nearbyHL.png",
         "text": "附近店"
