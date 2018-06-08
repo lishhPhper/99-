@@ -1,0 +1,33 @@
+.navs {
+  display: flex;
+  height: 350rpx;
+}
+
+.nav-item {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* padding: 10rpx 15rpx;  */
+}
+.nav-item-left{
+  padding: 0 0 0 20rpx; 
+}
+.nav-item-right{
+  padding: 0 20rpx 0 0; 
+}
+.nav-item .nav-image {
+  width: 95%;
+  height: 300rpx;
+  /* padding: 0rpx 20rpx; */
+}
+
+.nav-item text {
+  padding-top: 20rpx;
+  font-size: 25rpx;
+}
+.menu2_view{
+   width: 33%;
+   float:left;
+   text-align: center;
+}

@@ -57,8 +57,8 @@
     </view>
     <view class="page-section" style='width:480rpx;'>
       <view style='width:440rpx;margin:4rpx 0 0 20rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold;color:#ff6600;'>河南省郑州市公关金湖批发商城</view>
-      <view style="width:440rpx;height:80rpx;margin:4rpx 0 0 20rpx;">
-        <text style='width:440rpx;height:80rpx;font-size:10pt;display:-webkit-box;word-break:break-all;overflow:hidden;text-overflow:ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;font-size:10pt;'>地址：奥术大师大所大所大所多啊是大叔大叔大叔大很难打死到哪啊啊实打实大师</text>
+      <view style="width:440rpx;height:92rpx;margin:4rpx 0 0 20rpx;">
+        <text style='width:440rpx;height:92rpx;font-size:10pt;display:-webkit-box;word-break:break-all;overflow:hidden;text-overflow:ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;font-size:10pt;'>地址：奥术大师大所大所大所多啊是大叔大叔大叔大很难打死到哪啊啊实打实大师</text>
       </view>
       <view class="" style="display:flex;flex-direction:row;margin:16rpx 0 0 20rpx;width:440rpx;height:40rpx;">
         <view style='width:250rpx;height:46rpx;font-size:11pt;'>人气：<text style='color:#FF6600;font-weight:bold;'>3123</text></view>
@@ -74,8 +74,8 @@
     </view>
     <view class="page-section" style='width:480rpx;'>
       <view style='width:440rpx;margin:4rpx 0 0 20rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold;color:#ff6600;'>河南省郑州市公关金湖批发商城</view>
-      <view style="width:440rpx;height:80rpx;margin:4rpx 0 0 20rpx;">
-        <text style='width:440rpx;height:80rpx;font-size:10pt;display:-webkit-box;word-break:break-all;overflow:hidden;text-overflow:ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;font-size:10pt;'>地址：奥术大师大所大所大所多啊是大叔大叔大叔大很难打死到哪啊啊实打实大师</text>
+      <view style="width:440rpx;height:92rpx;margin:4rpx 0 0 20rpx;">
+        <text style='width:440rpx;height:92rpx;font-size:10pt;display:-webkit-box;word-break:break-all;overflow:hidden;text-overflow:ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp:2;font-size:10pt;'>地址：奥术大师大所大所大所多啊是大叔大叔大叔大很难打死到哪啊啊实打实大师</text>
       </view>
       <view class="" style="display:flex;flex-direction:row;margin:16rpx 0 0 20rpx;width:440rpx;height:40rpx;">
         <view style='width:250rpx;height:46rpx;font-size:11pt;'>人气：<text style='color:#FF6600;font-weight:bold;'>3123</text></view>

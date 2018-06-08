@@ -7,7 +7,9 @@
     "pages/articles/articles",
     "pages/shops/nearby/nearby",
     "pages/articleInfo/articleInfo",
-    "pages/shops/editor/editor"
+    "pages/shops/editor/editor",
+    "pages/shops/classify/classify",
+    "pages/shops/createStore/createStore"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -28,7 +30,7 @@
         "text": "附近店"
       },
       {
-        "pagePath": "pages/shops/nearby/nearby",
+        "pagePath": "pages/shops/createStore/createStore",
         "iconPath": "image/heart.png",
         "selectedIconPath": "image/heartHL.png",
         "text": "爱我家"
