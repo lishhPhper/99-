@@ -42,7 +42,7 @@
     </view>
     <view style='height:8rpx;background-color:#DDD'></view>
     <view style='margin: 20rpx 20rpx 10rpx 20rpx;' wx:for="{{array}}">
-        <view style='margin:10rpx;width:47%;height:460rpx;float:left;background-color:#FFF;'>
+        <view style='box-sizing:border-box;margin:10rpx;width:47%;height:460rpx;float:left;background-color:#FFF;border:1px solid #ccc;'>
             <image src='../../../image/jiaju01.jpg' style='width:100%;height:300rpx;'></image>
             <view>水曲柳餐桌</view>
             <view>
