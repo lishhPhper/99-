@@ -9,6 +9,7 @@
     "pages/articleInfo/articleInfo",
     "pages/shops/editor/editor",
     "pages/shops/classify/classify",
+    "pages/shops/settings/settings",
     "pages/shops/createStore/createStore"
   ],
   "window":{
