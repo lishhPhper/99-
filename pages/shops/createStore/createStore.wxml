@@ -8,38 +8,182 @@
     <image src='../../../image/checked.png' style='width:40rpx;height:40rpx;'></image>
   </view>
 </view>
-<view class="" style='display:flex;flex-direction:column;'>
+<!-- <view class="" style='display:flex;flex-direction:column;'>
     <view class="" style='display:flex;flex-direction:row;height:80rpx;border-bottom:2rpx solid #ddd;'>
-      <view class="" style='width:8%;height:80rpx;'>
+      <view class="" style='width:6%;height:80rpx;'>
           <view class="" style='color:#FF6600;line-height:80rpx;margin-left:30rpx;'>*</view>
       </view>
       <view class="" style='width:25%;height:80rpx;'>
-          <view class="" style='text-align:left;line-height:80rpx;'>门店名称:</view>
+          <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店名称:</view>
       </view>
-      <view class="" style='width:83%;height:80rpx;'>
+      <view class="" style='width:69%;height:80rpx;'>
           <input class="" style='text-align:left;line-height:80rpx;padding:12rpx 20rpx;' placeholder="最多12个字"/>
       </view>
     </view>
     <view class="" style='display:flex;flex-direction:row;height:80rpx;border-bottom:2rpx solid #ddd;'>
-      <view class="" style='width:8%;height:80rpx;'>
+      <view class="" style='width:6%;height:80rpx;'>
           <view class="" style='color:#FF6600;line-height:80rpx;margin-left:30rpx;'>*</view>
       </view>
       <view class="" style='width:25%;height:80rpx;'>
-          <view class="" style='text-align:left;line-height:80rpx;'>门店名称:</view>
+          <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店联系人:</view>
       </view>
-      <view class="" style='width:83%;height:80rpx;'>
-          <input class="" style='text-align:left;line-height:80rpx;padding:12rpx 20rpx;' placeholder="最多12个字"/>
+      <view class="" style='width:69%;height:80rpx;'>
+          <input class="" style='text-align:left;line-height:80rpx;padding:12rpx 20rpx;' placeholder=""/>
       </view>
     </view>
     <view class="" style='display:flex;flex-direction:row;height:80rpx;border-bottom:2rpx solid #ddd;'>
-      <view class="" style='width:8%;height:80rpx;'>
+      <view class="" style='width:6%;height:80rpx;'>
           <view class="" style='color:#FF6600;line-height:80rpx;margin-left:30rpx;'>*</view>
       </view>
       <view class="" style='width:25%;height:80rpx;'>
-          <view class="" style='text-align:left;line-height:80rpx;'>门店名称:</view>
+          <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店电话:</view>
       </view>
-      <view class="" style='width:83%;height:80rpx;'>
-          <input class="" style='text-align:left;line-height:80rpx;padding:12rpx 20rpx;' placeholder="最多12个字"/>
+      <view class="" style='width:55%;height:80rpx;'>
+          <input class="" style='text-align:left;line-height:80rpx;padding:12rpx 20rpx;' placeholder="手机号码"/>
+      </view>
+      <view class="" style='width:15%;height:80rpx;'>
+          <view class="" style='text-align:left;line-height:80rpx;padding:12rpx 20rpx;'>获取验证码</view>
       </view>
     </view>
+    <view class="" style='display:flex;flex-direction:row;height:80rpx;border-bottom:2rpx solid #ddd;'>
+      <view class="" style='width:6%;height:80rpx;'>
+          <view class="" style='color:#FF6600;line-height:80rpx;margin-left:30rpx;'>*</view>
+      </view>
+      <view class="" style='width:25%;height:80rpx;'>
+          <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店微信:</view>
+      </view>
+      <view class="" style='width:69%;height:80rpx;'>
+          <input class="" style='text-align:left;line-height:80rpx;padding:12rpx 20rpx;' placeholder="微信号"/>
+      </view>
+    </view>
+</view> -->
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">门店名称：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="最多12个字"/>
+        </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input weui-cell_warn">
+        <view class="weui-cell__hd">
+            <view class="weui-label">门店名称：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入门店名称"/>
+        </view>
+        <view class="weui-cell__ft">
+            <icon type="warn" size="23" color="#E64340"></icon>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">门店联系人：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder=""/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+            <view class="weui-label">门店电话</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入手机号" />
+        </view>
+        <view class="weui-cell__ft">
+            <view class="weui-vcode-btn">获取验证码</view>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">门店微信：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="微信号"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">门店地址：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder=""/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">门头照片：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder=""/>
+        </view>
+    </view>
+</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">经营类别：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="最多12个字"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">营业执照：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="无执照可填身份证"/>
+        </view>
+    </view>
+   <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">法人或负责人姓名：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder=""/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">法人或负责人电话：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder=""/>
+        </view>
+    </view>
+   <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">法人或负责人微信：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="微信号"/>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">门头照片：</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder=""/>
+        </view>
+    </view>
+</view>
+<checkbox-group bindchange="bindAgreeChange">
+  <label class="weui-agree" for="weuiAgree">
+    <view class="weui-agree__text">
+      <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+      <view class="weui-agree__checkbox-icon">
+          <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+      </view>
+      阅读并同意<navigator url="" class="weui-agree__link">《99家具网服务协议》</navigator>
+    </view>
+  </label>
+</checkbox-group>
+<view class="weui-btn-area" >
+  <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
 </view>
