@@ -1,13 +1,13 @@
 <view style='height:100rpx;line-height:100rpx;'>
     <view style='float:left;height:70rpx;'>
-        <image src='../../image/header.jpg' style='border-radius:50%;width:70rpx;height:70rpx;margin:15rpx 20rpx 15rpx 50rpx;'></image>
+        <image src='../../../image/header.jpg' style='border-radius:50%;width:70rpx;height:70rpx;margin:15rpx 20rpx 15rpx 50rpx;'></image>
     </view>
     <view style='float:left;width:300rpx;'>
         <text>某某会员</text>
     </view>
     <view style='float:right;width:150rpx;height:60rpx;background-color:#FF6600;margin:20rpx 30rpx;;line-height:60rpx;border-radius:5%;'>
         <text style='float:left;padding-left:20rpx;color:#FFF'>关注</text>
-        <image src='../../image/people.png' style='float:right;width:40rpx;height:40rpx;margin:10rpx 10rpx;'></image>
+        <image src='../../../image/people.png' style='float:right;width:40rpx;height:40rpx;margin:10rpx 10rpx;'></image>
     </view>
 </view>
 <view style='height:5rpx;background-color:#ddd;float:clear;'></view>
@@ -21,8 +21,8 @@
             <text style='float:left;margin-left:100rpx;'>阅读：896</text>
         </view>
         <view>
-            <image src='../../image/jiaju01.jpg' style='width:100%;'></image>
-            <image src='../../image/jiaju01.jpg' style='width:100%;'></image>
+            <image src='../../../image/jiaju01.jpg' style='width:100%;'></image>
+            <image src='../../../image/jiaju01.jpg' style='width:100%;'></image>
         </view>
     </view>
 </view>

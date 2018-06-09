@@ -1,11 +1,12 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/shops/index/index",
     "pages/info/info",
-    "pages/articles/articles",
-    "pages/articleInfo/articleInfo",
+    "pages/logs/logs",
+    "pages/community/index/index",
+    "pages/community/articles/articles",
+    "pages/community/articleInfo/articleInfo",
+    "pages/manufactor/index/index",
+    "pages/shops/index/index",
     "pages/shops/editor/editor"
   ],
   "window":{
@@ -21,7 +22,7 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/articleInfo/articleInfo",
+        "pagePath": "pages/manufactor/index/index",
         "iconPath": "image/nearby.png",
         "selectedIconPath": "image/nearbyHL.png",
         "text": "附近店"
@@ -33,13 +34,13 @@
         "text": "爱我家"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/community/index/index",
         "iconPath": "image/add.png",
         "selectedIconPath": "image/addHL.png",
         "text": ""
       },
       {
-        "pagePath": "pages/articles/articles",
+        "pagePath": "pages/community/articles/articles",
         "iconPath": "image/write.png",
         "selectedIconPath": "image/writeHL.png",
         "text": "创美文"

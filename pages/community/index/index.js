@@ -8,8 +8,7 @@ Page({
     inputShowed: false,
     inputVal: "",
     toView: 'red',
-    scrollTop: 100,
-    userType: 2
+    scrollTop: 100
   },
   showInput: function () {
     this.setData({

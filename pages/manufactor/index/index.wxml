@@ -1,0 +1,113 @@
+<view style='height:80rpx;'>
+    <text style='float:left;height:80rpx;margin:0rpx 30rpx;line-height:80rpx;'>产品质保1年</text>
+    <view style='float:left;height:80rpx;'>
+        <image style='width:30rpx;height:30rpx;margin:25rpx 5rpx;' src='../../../image/diamond01.png'></image>
+        <image style='width:30rpx;height:30rpx;margin:25rpx 5rpx;' src='../../../image/diamond02.png'></image>
+        <image style='width:30rpx;height:30rpx;margin:25rpx 5rpx;' src='../../../image/diamond03.png'></image>
+        <image style='width:30rpx;height:30rpx;margin:25rpx 5rpx;' src='../../../image/diamond04.png'></image>
+    </view>
+    <view style='height:80rpx;'>
+        <text style='float:right;height:80rpx;line-height:80rpx;margin:0rpx 30rpx 0rpx 5rpx;'>12000</text>
+        <text style='float:right;height:80rpx;line-height:80rpx;color:#FF6600'>¥</text>
+        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx 20rpx;' src='../../../image/bao.png'></image>
+    </view>
+</view>
+<view style='clear:both;'></view>
+<view style='height:80rpx;background-color:#FF6600;'>
+    <view style='float:left;width:33%;text-align:center;color:#FFF;height:50rpx;margin:15rpx 0rpx;'>首页画册</view>
+    <view style='float:left;width:33%;text-align:center;color:#FFF;height:50rpx;margin:15rpx 0rpx;'>产品分类</view>
+    <view style='float:left;width:33%;text-align:center;color:#FFF;height:50rpx;margin:15rpx 0rpx;'>关于我们</view>
+</view>
+<!--  首页相册  start  -->
+<block wx:if="{{type == 1}}">
+    <view style='padding:15rpx 30rpx;'>
+        <view style='position:relative;'>
+            <image src='../../../image/music.png' style='position: absolute;width:60rpx;height:60rpx;top:40rpx;right:40rpx;'></image>
+            <image src='../../../image/jiaju01.jpg' style='width:100%;margin-bottom:10rpx;'></image>
+        </view>
+        <view style='position:relative;'>
+            <image src='../../../image/music.png' style='position: absolute;width:60rpx;height:60rpx;top:40rpx;left:40rpx;'></image>
+            <image src='../../../image/jiaju01.jpg' style='width:100%;margin-bottom:10rpx;'></image>
+            <image src='../../../image/music.png' style='position: absolute;width:60rpx;height:60rpx;right:40rpx;bottom:50rpx;'></image>
+        </view>
+    </view>
+</block>
+<!--  首页相册  end  -->
+<!--  产品分类  start  -->
+<block wx:if="{{type == 2}}">
+    <view style='height:60rpx;margin:15rpx 0rpx;'>
+        <view style='float:left;width:33%;text-align:center;color:#000;height:60rpx;line-height:60rpx;'>转角沙发</view>
+        <view style='float:left;width:33%;text-align:center;color:#000;height:60rpx;line-height:60rpx;'>分体沙发</view>
+        <view style='float:left;width:33%;text-align:center;color:#000;height:60rpx;line-height:60rpx;'>精品皮床</view>
+    </view>
+    <view style='height:8rpx;background-color:#DDD'></view>
+    <view style='margin: 20rpx 20rpx 10rpx 20rpx;' wx:for="{{array}}">
+        <view style='margin:10rpx;width:47%;height:460rpx;float:left;background-color:#FFF;'>
+            <image src='../../../image/jiaju01.jpg' style='width:100%;height:300rpx;'></image>
+            <view>水曲柳餐桌</view>
+            <view>
+                <text style='width:50%;margin-right:40rpx;'>编号:5833</text>
+                <text style='width:50%;'>¥ 3800</text>
+            </view>
+             <view>
+              <text style='width:50%;margin-right:40rpx;'>人气:1756</text>
+                <text style='width:50%;'>销量:1756</text>
+             </view>
+        </view>
+    </view>
+</block>
+<!--  产品分类  end  -->
+<!--  关于我们  start  -->
+<block wx:if="{{type == 3}}">
+    <view style='height:60rpx;margin:15rpx 0rpx;'>
+        <view style='float:left;width:33%;text-align:center;color:#000;height:60rpx;line-height:60rpx;'>店铺简介</view>
+        <view style='float:left;width:33%;text-align:center;color:#000;height:60rpx;line-height:60rpx;'>招商加盟</view>
+        <view style='float:left;width:33%;text-align:center;color:#000;height:60rpx;line-height:60rpx;'>联系我们</view>
+    </view>
+    <view style='height:8rpx;background-color:#DDD'></view>
+    <block wx:if="{{nodeType == 2}}">
+        <view style='padding:20rpx 40rpx;'>
+            <view style='height:130rpx;line-height:130rpx;font-size:14pt;font-weight:600;text-align:center;'>诚招全国代理商</view>
+            <view style='text-indent: 60rpx;font-size:12pt;'>注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本</view>
+        </view>
+        <button style='width:250rpx;height:80rpx;line-height:80rpx;color:#FFF;font-weight:800;background-color:#FF6600'>立即注册</button>
+        <navigator url="pages/community/articleInfo/articleInfo" hover-class="navigator-hover" style='text-align:center;color:#FF6600;padding:30rpx;'>注册帮助</navigator>
+    </block>
+    <block wx:if="{{nodeType == 3}}">
+        <view style='height:80rpx;line-height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;'>门市联系人：王先森</view>
+        <view style='height:80rpx;line-height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;'>门市电话：18700000000</view>
+        <view style='height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
+            <view style='float:left;height:80rpx;line-height:80rpx;'>门市微信：18700000000</view>
+            <view style='float:right;height:80rpx;'>
+                <view style='float:left;height:80rpx;line-height:80rpx;'>二维码：</view>
+                <image src='../../../image/music.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+            </view>
+        </view>
+        <view style='height:160rpx;border-bottom:2px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
+            <view style='float:left;height:80rpx;line-height:80rpx;'>门店地址：江西省赣州市南康区国际家居城中心市场</view>
+            <view style='float:right;height:80rpx;'>
+                <image src='../../../image/music.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+            </view>
+        </view>
+        <view style='height:8rpx;background-color:#DDD'></view>
+        <view style='height:80rpx;line-height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;'>厂家负责人姓名：王先森</view>
+        <view style='height:80rpx;line-height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;'>厂家负责人电话：13800000000</view>
+        <view style='height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
+            <view style='float:left;height:80rpx;line-height:80rpx;'>厂家负责人微信：18700000000</view>
+            <view style='float:right;height:80rpx;'>
+                <view style='float:left;height:80rpx;line-height:80rpx;'>二维码：</view>
+                <image src='../../../image/music.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+            </view>
+        </view>
+        <view style='height:160rpx;padding-left:50rpx;padding-right:50rpx;'>
+            <view style='float:left;height:80rpx;line-height:80rpx;'>门店地址：江西省赣州市南康区国际家居城中心市场</view>
+            <view style='float:right;height:80rpx;'>
+                <image src='../../../image/music.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+            </view>
+        </view>
+    </block>
+</block>
+<!--  关于我们  end  -->
+
+
+<!-- <web-view src="https://medit.js.org/demo.html"></web-view> -->
