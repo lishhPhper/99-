@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/info/info",
-    "pages/productDetails/productDetails",
+    "pages/product/detail/detail",
+    "pages/product/edit/edit",
     "pages/logs/logs",
     "pages/community/index/index",
     "pages/community/articles/articles",
