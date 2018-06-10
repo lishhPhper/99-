@@ -1,40 +1,31 @@
 /**index.wxss**/
-.scroll-view_H{
-    white-space: nowrap;
-}
-.scroll-view-item{
-    height: 200px;
-}
-.scroll-view-item_H{
-    display: inline-block;
-    width: 25%;
-    height: 40px;
-    font-size: 12pt;
+
+.tarbar navigator {
+    width: 20%;
 }
 
-.navs {
-  display: flex;
+.info-top {
+    height: 200rpx;
+    line-height: 200rpx;
+    border-bottom: 1px solid #ccc;
 }
 
-.nav-item {
-  width: 25%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 20rpx;
+.info-top image {
+    float: left;
+    border-radius: 50%;
+    width: 120rpx;
+    height: 120rpx;
+    margin: 40rpx 40rpx 40rpx 80rpx;
 }
 
-.nav-item .nav-image {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
+.float-left {
+    float: left;
 }
 
-.nav-item text {
-  padding-top: 20rpx;
-  font-size: 25rpx;
+.float-right {
+    float: right;
 }
 
-.tarbar navigator{
-    width:20%;
+.item image{
+    margin:25rpx;
 }

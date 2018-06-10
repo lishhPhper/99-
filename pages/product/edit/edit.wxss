@@ -1,0 +1,11 @@
+.tarbar {
+    background-color: #CCC;
+}
+.tarbar button {
+    background-color: #f60;
+    width: 220rpx;
+    height: 70rpx;
+    margin-top: 15rpx;
+    color: #fff;
+    line-height: 70rpx;
+}

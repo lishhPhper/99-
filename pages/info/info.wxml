@@ -1,93 +1,93 @@
 <!--info.wxml-->
-<view style='height:200rpx;line-height:200rpx;border-bottom:1px solid #ddd;'>
-    <image style='float:left;border-radius:50%;width:120rpx;height:120rpx;margin:40rpx 40rpx 40rpx 80rpx;' src='../../image/header.jpg'></image>
-    <view style='float:left;' wx:if="{{userType == 1}}">普通会员</view>
+<view class='info-top'>
+    <image src='../../image/header.jpg'></image>
+    <view class='float-left' wx:if="{{userType == 1}}">普通会员</view>
     <view wx:elif="{{userType == 2}}">生产厂家会员（木牛家具厂）</view>
 </view>
 <block wx:if="{{userType == 1}}">
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>我的个人信息</view>
-        <view style='float:left;font-size:13pt;color:#FF6600'>（普通会员自己的信息）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>我的个人信息</view>
+        <view class='float-left tip-font'>（普通会员自己的信息）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='background-color:#ddd;height:8px;'></view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>我的收藏</view>
-        <view style='float:left;font-size:13pt;color:#FF6600'>（收藏的页面）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item-hr'></view>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>我的收藏</view>
+        <view class='float-left tip-font'>（收藏的页面）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>关于99家小程序</view>
-        <view style='float:left;font-size:13pt;color:#FF6600'>（99家商城经营模式）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>关于99家小程序</view>
+        <view class='float-left tip-font'>（99家商城经营模式）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>联系我们</view>
-        <view style='float:left;font-size:13pt;color:#FF6600'>（联系99家商城总部）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>联系我们</view>
+        <view class='float-left tip-font'>（联系99家商城总部）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>客服咨询</view>
-        <view style='float:left;font-size:13pt;color:#FF6600'>（网上咨询99家客服）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>客服咨询</view>
+        <view class='float-left tip-font'>（网上咨询99家客服）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>代理加盟</view>
-        <view style='float:left;font-size:13pt;color:#FF6600'>（代理商加盟条件）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>代理加盟</view>
+        <view class='float-left tip-font'>（代理商加盟条件）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='background-color:#ddd;height:8px;'></view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>申请店铺帮助</view>
-        <view style='float:left;font-size:11pt;color:#FF6600'>（商家和厂家注册帮助）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item-hr'></view>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>申请店铺帮助</view>
+        <view class='float-left tip-font'>（商家和厂家注册帮助）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>我的推广</view>
-        <view style='float:left;font-size:13pt;color:#FF6600'>（经我注册的小程序网店）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>我的推广</view>
+        <view class='float-left tip-font'>（经我注册的小程序网店）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
 </block>
 <block wx:if="{{userType == 2}}">
-    <view style='height:90rpx;line-height:90rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:30rpx;'>厂家简介</view>
-        <view style='float:left;font-size:10pt;color:#FF6600'>（厂家自己的信息）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>厂家简介</view>
+        <view class='float-left tip-font'>（厂家自己的信息）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>招商联盟</view>
-        <view style='float:left;font-size:10pt;color:#FF6600'>（厂家自己的简介）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>招商联盟</view>
+        <view class='float-left tip-font'>（厂家自己的简介）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>我注册的信息</view>
-        <view style='float:left;font-size:10pt;color:#FF6600'>（厂家联系信息等）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>我注册的信息</view>
+        <view class='float-left tip-font'>（厂家联系信息等）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>发布关于我们厂家信息</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>发布关于我们厂家信息</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='background-color:#ddd;height:8px;'></view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>厂家帮助</view>
-        <view style='float:left;font-size:10pt;color:#FF6600'>（厂家后台操作管理帮助）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item-hr'></view>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>厂家帮助</view>
+        <view class='float-left tip-font'>（厂家后台操作管理帮助）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:12pt'>
-        <view style='float:left;margin-left:50rpx;'>权限设置</view>
-        <view style='float:left;font-size:13pt;color:#FF6600'>（管理产品的权限）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>权限设置</view>
+        <view class='float-left tip-font'>（管理产品的权限）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>关于99家网络有限公司</view>
-        <view style='float:left;font-size:10pt;color:#FF6600'>（进入下一级菜单）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>关于99家网络有限公司</view>
+        <view class='float-left tip-font'>（进入下一级菜单）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
-    <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ddd;font-size:11pt'>
-        <view style='float:left;margin-left:50rpx;'>我的推广</view>
-        <view style='float:left;font-size:10pt;color:#FF6600'>（经我店注册的小程序）</view>
-        <image style='float:right;width:40rpx;height:40rpx;margin:20rpx; 10rpx;' src='../../image/arrowright.png'></image>
+    <view class='item item-height'>
+        <view class='float-left left-margin'>我的推广</view>
+        <view class='float-left tip-font'>（经我店注册的小程序）</view>
+        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
 </block>
 
