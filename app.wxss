@@ -21,7 +21,7 @@ page {
 
 .item {
     line-height: 80rpx;
-    border-bottom: 1px solid #888;
+    border-bottom: 1px solid #CCC;
 }
 
 .tip-font {
@@ -32,6 +32,11 @@ page {
 .icon {
     width: 40rpx;
     height: 40rpx;
+}
+
+.icon-sm {
+    width: 30rpx;
+    height: 30rpx;
 }
 
 .item-product {
@@ -74,6 +79,11 @@ page {
     height:45rpx;
     width:45rpx;
     margin-top:15rpx;
+}
+
+.item-hr{
+    background-color:#ddd;
+    height:8rpx;
 }
 
 .page__bd {
