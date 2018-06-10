@@ -12,7 +12,9 @@
     "pages/shops/editor/editor",
     "pages/shops/classify/classify",
     "pages/shops/settings/settings",
-    "pages/shops/createStore/createStore"
+    "pages/shops/createStore/createStore",
+    "pages/manufactor/productControl/index",
+    "pages/manufactor/productClassify/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

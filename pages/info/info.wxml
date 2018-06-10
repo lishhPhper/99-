@@ -97,7 +97,7 @@
             <image src='../../image/add.png' ></image>
             <view >附近门店</view>    
     </navigator>
-    <navigator class='item-tarbar' url="/pages/community/index/index">
+    <navigator class='item-tarbar' url="/pages/manufactor/productControl/index">
             <image src='../../image/add.png' ></image>
             <view >附近门店</view>    
     </navigator>
