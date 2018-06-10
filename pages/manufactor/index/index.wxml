@@ -42,12 +42,12 @@
     </view>
     <view style='height:8rpx;background-color:#DDD'></view>
     <view style='margin: 20rpx 20rpx 10rpx 20rpx;' wx:for="{{array}}">
-        <view style='box-sizing:border-box;margin:10rpx;width:47%;height:460rpx;float:left;background-color:#FFF;border:1px solid #ccc;'>
-            <image src='../../../image/jiaju01.jpg' style='width:100%;height:300rpx;'></image>
+        <view style='box-sizing:border-box;padding:10rpx;width:50%;height:420rpx;float:left;background-color:#FFF;border:1px solid #ccc;'>
+            <image src='../../../image/jiaju01.jpg' style='width:100%;height:250rpx;'></image>
             <view>水曲柳餐桌</view>
             <view>
                 <text style='width:50%;margin-right:40rpx;'>编号:5833</text>
-                <text style='width:50%;'>¥ 3800</text>
+                <text style='width:50%;font-weight:700;font-size:13pt;color:#FF6600'>¥ 3800</text>
             </view>
              <view>
               <text style='width:50%;margin-right:40rpx;'>人气:1756</text>

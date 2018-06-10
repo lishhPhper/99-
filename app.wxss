@@ -1,24 +1,82 @@
 @import 'style/weui.wxss';
 
-page{
-    background-color: #F4F3E6;
-    font-size: 16px;
-    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
-}
-.page__hd {
-    padding: 40px;
-}
-.page__bd {
-    padding-bottom: 5px;
-}
-.page__bd_spacing {
-    padding-left: 15px;
-    padding-right: 15px;
+page {
+    background-color: #f4f3e6;
+    font-size: 11pt;
+    font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
-.page__ft{
-    padding-bottom: 10px;
+.clear {
+    clear: both;
+}
+
+.left-margin {
+    margin-left: 30rpx;
+}
+
+.item-height {
+    height: 80rpx;
+}
+
+.item {
+    line-height: 80rpx;
+    border-bottom: 1px solid #888;
+}
+
+.tip-font {
+    font-size: 10pt;
+    color: #f60;
+}
+
+.icon {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.item-product {
+    width: 50%;
+    height: 420rpx;
+}
+
+.item-price {
+    font-weight: 700;
+    font-size: 13pt;
+    color: #f60;
+}
+
+.item-introduce {
+    height: 50rpx;
+}
+
+.tarbar {
+    width: 100%;
+    height: 100rpx;
     text-align: center;
+    position: fixed;
+    bottom: 0rpx;
+    left: 0rpx;
+    z-index: 999;
+    background-color: #f60;
+}
+
+.item-tarbar{
+    float:left;
+}
+
+.item-tarbar view{
+    font-size:8pt;
+    height:30rpx;
+    line-height:30rpx;
+}
+
+.item-tarbar image{
+    height:45rpx;
+    width:45rpx;
+    margin-top:15rpx;
+}
+
+.page__bd {
+    padding-bottom: 5px;
 }
 
 .page__title {
@@ -27,49 +85,24 @@ page{
     font-weight: 400;
 }
 
-.page__desc {
-    margin-top: 5px;
-    color: #888888;
-    text-align: left;
-    font-size: 14px;
-}
-
-.bc_green{
-    background-color: #09BB07;
-}
-.bc_red{
-    background-color: #F76260;
-}
-.bc_blue{
-    background-color: #10AEFF;
-}
-.bc_yellow{
-    background-color: #FFBE00;
-}
-.bc_gray{
-    background-color: #C9C9C9;
-}
-.bc_white{
-    background-color: #FFFFFF;
-}
-.bc_defult{
-  background-color: #FF6600;
-}
-.section{
+.section {
     margin-bottom: 0px;
 }
-.section_gap{
+
+.section_gap {
     padding: 0 0px;
-    border: 1px solid #DDDDDD;
+    border: 1px solid #ddd;
     border-left: none;
     border-right: none;
 }
-.section__title{
+
+.section__title {
     margin-bottom: 8px;
     padding-left: 15px;
     padding-right: 15px;
 }
-.section_gap .section__title{
+
+.section_gap .section__title {
     padding-left: 0;
     padding-right: 0;
 }
