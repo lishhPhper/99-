@@ -1,0 +1,13 @@
+@import "/pages/tabbar/tabbar.wxss";
+.tarbar{
+    border-top:1rpx solid #CCC;
+    background-color: #FFF;
+}
+
+.tarbar navigator {
+    width: 20%;
+}
+
+.myinfo-hover{
+
+}
