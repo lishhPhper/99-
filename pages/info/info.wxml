@@ -91,25 +91,9 @@
     </view>
 </block>
 
-
-<view class='tarbar'>
-    <navigator class='item-tarbar' url="/pages/community/index/index">
-            <image src='../../image/add.png' ></image>
-            <view >附近门店</view>    
-    </navigator>
-    <navigator class='item-tarbar' url="/pages/manufactor/productControl/index">
-            <image src='../../image/add.png' ></image>
-            <view >附近门店</view>    
-    </navigator>
-    <navigator class='item-tarbar' url="/pages/community/index/index">
-            <image src='../../image/add.png' style='height:70rpx;width:70rpx;'></image>
-    </navigator>
-    <navigator class='item-tarbar' url="/pages/community/index/index">
-            <image src='../../image/add.png'></image>
-            <view >附近门店</view>    
-    </navigator>
-    <navigator class='item-tarbar' url="/pages/community/index/index">
-            <image src='../../image/add.png' ></image>
-            <view >附近门店</view>    
-    </navigator>
-</view>
+<!-- tabbar start -->
+<import src="/pages/tabbar/tabbar.wxml" />
+<template is="tabbar" data="{{tabbar}}" />
+<scroll-view style="height: 100rpx;">
+</scroll-view> 
+<!-- tabbar end -->

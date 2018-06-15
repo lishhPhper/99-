@@ -8,7 +8,46 @@ Page({
     inputShowed: false,
     inputVal: "",
     toView: 'red',
-    scrollTop: 100
+    scrollTop: 100,
+    tabbar: {
+        color: "#000000",
+        selectedColor: "#ff6600",
+        backgroundColor: "#ffffff",
+        borderStyle: "black",
+        list: [
+            {
+                pagePath: "/pages/aaa",
+                text: "评论",
+                iconPath: "../../../image/comment.png",
+                selectedIconPath: "../../../image/comment.png",
+                selected: false
+            },
+            {
+                pagePath: "/pages/aaa",
+                text: "点赞",
+                iconPath: "../../../image/thumbs-up.png",
+                selectedIconPath: "../../../image/thumbs-up.png",
+                selected: false
+            }
+            ,
+            {
+                pagePath: "/pages/aaa",
+                text: "收藏",
+                iconPath: "../../../image/collect02.png",
+                selectedIconPath: "../../../image/collect02.png",
+                selected: false
+            }
+            ,
+            {
+                pagePath: "/pages/aaa",
+                text: "分享",
+                iconPath: "../../../image/share.png",
+                selectedIconPath: "../../../image/share.png",
+                selected: false
+            }
+        ],
+        position: "bottom"
+    },
   },
   showInput: function () {
     this.setData({

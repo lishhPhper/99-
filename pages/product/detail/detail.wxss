@@ -1,36 +1,19 @@
-/**index.wxss**/
-.scroll-view_H{
-    white-space: nowrap;
-}
-.scroll-view-item{
-    height: 200rpx;
-}
-.scroll-view-item_H{
-    display: inline-block;
-    width: 25%;
-    height: 80rpx;
-    font-size: 12pt;
+@import "/pages/tabbar/tabbar.wxss";
+
+.detail-node {
+    float: left;
+    width: 33%;
+    border: 1px solid #ccc;
+    border-right: none;
+    text-align: center;
 }
 
-.navs {
-  display: flex;
-}
 
-.nav-item {
-  width: 25%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 20rpx;
-}
-
-.nav-item .nav-image {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-}
-
-.nav-item text {
-  padding-top: 20rpx;
-  font-size: 25rpx;
+.detail-node-first {
+    float: left;
+    width: 33%;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    text-align: center;
 }

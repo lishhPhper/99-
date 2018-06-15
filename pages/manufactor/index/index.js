@@ -9,9 +9,10 @@ Page({
         inputVal: "",
         toView: 'red',
         scrollTop: 100,
-        type: 2,
-        nodeType: 3,
-        imageHL: 4,
+        type: 1,
+        nodeType: 1,
+        productNodeType:1,
+        aboutNodeType: 1,
         tabbar: {
             color: "#000000",
             selectedColor: "#ff6600",
@@ -19,17 +20,19 @@ Page({
             borderStyle: "black",
             list: [
                 {
-                    pagePath: "/pages/tabbar/tabbar",
-                    text: "加微信",
+                    pagePath: "/pages/manufactor/index/index",
+                    text: "首页",
+                    // text: "加微信",
                     iconPath: "../../../image/wx_tarbar.png",
                     selectedIconPath: "../../../image/wx_tarbarHL.png",
                     selected: true
                 },
                 {
-                    pagePath: "/pages/address/address",
-                    text: "请拨号",
-                    iconPath: "../../../image/phone.png",
-                    selectedIconPath: "../../../image/phoneHL.png",
+                    pagePath: "/pages/community/index/index",
+                    text: "爱我家",
+                    // text: "请拨号",
+                    iconPath: "../../../image/heart.png",
+                    selectedIconPath: "../../../image/heartHL.png",
                     selected: false
                 },
                 {
@@ -49,7 +52,7 @@ Page({
                 }
                 ,
                 {
-                    pagePath: "/pages/personal/personal",
+                    pagePath: "/pages/info/info",
                     text: "我信息",
                     iconPath: "../../../image/myinfo.png",
                     selectedIconPath: "../../../image/myinfoHL.png",
@@ -116,9 +119,20 @@ Page({
             scrollTop: this.data.scrollTop + 10
         })
     },
-    tapName: function (event) {
+    titleChange: function (event) {
         this.setData({
-            imageHL: 5
+            type: event.currentTarget.dataset.type
+        });
+    },
+    productNodeChange: function (event) {
+        this.setData({
+            productNodeType: event.currentTarget.dataset.productNodeType
+        });
+    },
+    aboutNodeChange: function (event) {
+        console.log(event.currentTarget.dataset.aboutNodeType);
+        this.setData({
+            aboutNodeType: event.currentTarget.dataset.aboutNodeType
         });
     }
 });

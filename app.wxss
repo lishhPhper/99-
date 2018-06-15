@@ -4,7 +4,6 @@ page {
     background-color: #f4f3e6;
     font-size: 11pt;
     font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-    margin-bottom: 100rpx;
 }
 
 .clear {
