@@ -12,52 +12,6 @@ Page({
         type: 2,
         nodeType: 3,
         imageHL: 4,
-        tabbar: {
-            color: "#000000",
-            selectedColor: "#ff6600",
-            backgroundColor: "#ffffff",
-            borderStyle: "black",
-            list: [
-                {
-                    pagePath: "/pages/tabbar/tabbar",
-                    text: "加微信",
-                    iconPath: "../../../image/wx_tarbar.png",
-                    selectedIconPath: "../../../image/wx_tarbarHL.png",
-                    selected: true
-                },
-                {
-                    pagePath: "/pages/address/address",
-                    text: "请拨号",
-                    iconPath: "../../../image/phone.png",
-                    selectedIconPath: "../../../image/phoneHL.png",
-                    selected: false
-                },
-                {
-                    pagePath: "/pages/personal/personal",
-                    text: "",
-                    iconPath: "../../../image/add.png",
-                    selectedIconPath: "../../../image/addHL.png",
-                    selected: false
-                }
-                ,
-                {
-                    pagePath: "/pages/personal/personal",
-                    text: "到我店",
-                    iconPath: "../../../image/map.png",
-                    selectedIconPath: "../../../image/mapHL.png",
-                    selected: false
-                }
-                ,
-                {
-                    pagePath: "/pages/personal/personal",
-                    text: "我信息",
-                    iconPath: "../../../image/myinfo.png",
-                    selectedIconPath: "../../../image/myinfoHL.png",
-                    selected: false
-                }
-            ],
-            position: "bottom"
-        },
         array: [
             {},
             {},

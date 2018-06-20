@@ -108,30 +108,3 @@
     </block>
 </block>
 <!--  关于我们  end  -->
-
-<!-- tarbar start -->
-<import src="/pages/tabbar/tabbar.wxml"/>
-<template is="tabbar" data="{{tabbar}}"/>
-<!-- <view class='tarbar'>
-    <navigator class='item-tarbar' url="/pages/community/index/index">
-            <image src='../../../image/wx_tarbar.png' ></image>
-            <view >加微信</view>    
-    </navigator>
-    <navigator class='item-tarbar' url="/pages/manufactor/productControl/index">
-            <image src='../../../image/phone.png' ></image>
-            <view >请拨号</view>    
-    </navigator>
-    <navigator class='item-tarbar' url="/pages/community/index/index">
-            <image src='../../../image/add.png' style='height:70rpx;width:70rpx;'></image>
-    </navigator>
-    <navigator class='item-tarbar' url="/pages/community/index/index">
-            <image src='../../../image/map.png'></image>
-            <view >到我店</view>    
-    </navigator>
-    <navigator open-type="switchTab" class='item-tarbar' url="/pages/info/info" id="tapTest" data-hi="WeChat" bindtap="tapName">
-            <image wx:if="{{imageHL != 5}}" src='../../../image/myinfo.png'></image>
-            <image wx:if="{{imageHL == 5}}" src='../../../image/myinfoHL.png'></image> 
-            <view wx:if="{{imageHL != 5}}" style='color:#DDD'>我信息</view>    
-            <view wx:if="{{imageHL == 5}}" style='color:#F60'>我信息</view>    
-    </navigator>
-</view> -->
