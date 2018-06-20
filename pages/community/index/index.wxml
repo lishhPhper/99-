@@ -92,10 +92,3 @@
         <text>家具商场9月25号盛大开业家具商场家具商场家具家具</text>
     </view>
 </navigator>
-
-<!-- tabbar start -->
-<import src="/pages/tabbar/tabbar.wxml" />
-<template is="tabbar" data="{{tabbar}}" />
-<scroll-view style="height: 100rpx;">
-</scroll-view> 
-<!-- tabbar end -->

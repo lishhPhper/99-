@@ -165,13 +165,3 @@
     </view>
 </block>
 <!--  关于我们  end  -->
-<<<<<<< HEAD
-=======
-
-<!-- tabbar start -->
-<import src="/pages/tabbar/tabbar.wxml" />
-<template is="tabbar" data="{{tabbar}}" />
-<scroll-view style="height: 100rpx;">
-</scroll-view> 
-<!-- tabbar end -->
->>>>>>> 03d9118928292db179c788e3e67006f78d66618b

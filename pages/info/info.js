@@ -9,55 +9,7 @@ Page({
     inputVal: "",
     toView: 'red',
     scrollTop: 100,
-    userType: 2,
-    tabbar: {
-        color: "#000000",
-        selectedColor: "#ff6600",
-        backgroundColor: "#ffffff",
-        borderStyle: "black",
-        list: [
-            {
-                pagePath: "/pages/manufactor/index/index",
-                text: "首页",
-                // text: "加微信",
-                iconPath: "../../image/wx_tarbar.png",
-                selectedIconPath: "../../image/wx_tarbarHL.png",
-                selected: true
-            },
-            {
-                pagePath: "/pages/community/index/index",
-                text: "爱我家",
-                // text: "请拨号",
-                iconPath: "../../image/heart.png",
-                selectedIconPath: "../../image/heartHL.png",
-                selected: false
-            },
-            {
-                pagePath: "/pages/personal/personal",
-                text: "",
-                iconPath: "../../image/add.png",
-                selectedIconPath: "../../image/addHL.png",
-                selected: false
-            }
-            ,
-            {
-                pagePath: "/pages/personal/personal",
-                text: "到我店",
-                iconPath: "../../image/map.png",
-                selectedIconPath: "../../image/mapHL.png",
-                selected: false
-            }
-            ,
-            {
-                pagePath: "/pages/info/info",
-                text: "我信息",
-                iconPath: "../../image/myinfo.png",
-                selectedIconPath: "../../image/myinfoHL.png",
-                selected: true
-            }
-        ],
-        position: "bottom"
-    },
+    userType: 2
   },
   showInput: function () {
     this.setData({

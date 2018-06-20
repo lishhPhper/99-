@@ -26,10 +26,3 @@
         </view>
     </view>
 </view>
-
-<!-- tabbar start -->
-<import src="/pages/tabbar/tabbar.wxml" />
-<template is="tabbar" data="{{tabbar}}" />
-<scroll-view style="height: 100rpx;">
-</scroll-view> 
-<!-- tabbar end -->

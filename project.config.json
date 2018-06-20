@@ -13,11 +13,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.9",
 	"appid": "wx195a5e8ed1a55ead",
-<<<<<<< HEAD
 	"projectname": "99%E5%AE%B6%E5%85%B7%E7%BD%91%EF%BC%88%E6%96%B0%EF%BC%89",
-=======
-	"projectname": "99%E5%AE%B6%E5%85%B7%E7%BD%91002",
->>>>>>> 03d9118928292db179c788e3e67006f78d66618b
 	"isGameTourist": false,
 	"condition": {
 		"search": {
