@@ -1,3 +1,9 @@
 .weui-cells{
   background-color: #F4F3E6
 }
+.item-margin{
+  margin-left:30rpx;
+}
+.item-min-width{
+  min-width:150rpx;
+}

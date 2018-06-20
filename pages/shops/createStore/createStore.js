@@ -4,7 +4,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    type:1,
+    agent:true,
+    manufacturers:false
   },
 
   /**
@@ -61,5 +63,18 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  checkAgent: function () {
+    this.setData({
+      agent:true,
+      manufacturers: false
+    });
+  },
+  checkManufacturers: function () {
+    this.setData({
+      agent: false,
+      manufacturers: true
+    });
   }
 })

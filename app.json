@@ -25,7 +25,7 @@
     "tabBar": {
         "list": [
             {
-                "pagePath": "pages/info/info",
+                "pagePath": "pages/shops/nearby/nearby",
                 "text": "附近店",
                 "iconPath": "image/nearby.png",
                 "selectedIconPath": "image/nearbyHL.png"
@@ -37,7 +37,7 @@
                 "selectedIconPath": "image/yuanHL.png"
             },
             {
-                "pagePath": "pages/info/info",
+                "pagePath": "pages/shops/createStore/createStore",
                 "text": "",
                 "iconPath": "image/add.png",
                 "selectedIconPath": "image/addHL.png"
