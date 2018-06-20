@@ -1,93 +1,93 @@
 <!--info.wxml-->
 <view class='info-top'>
-    <image src='../../image/header.jpg'></image>
+    <image src='/image/header.jpg'></image>
     <view class='float-left' wx:if="{{userType == 1}}">普通会员</view>
     <view wx:elif="{{userType == 2}}">生产厂家会员（木牛家具厂）</view>
 </view>
 <block wx:if="{{userType == 1}}">
-    <view class='item item-height'>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>我的个人信息</view>
         <view class='float-left tip-font'>（普通会员自己的信息）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
     <view class='item-hr'></view>
-    <view class='item item-height'>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>我的收藏</view>
         <view class='float-left tip-font'>（收藏的页面）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>关于99家小程序</view>
         <view class='float-left tip-font'>（99家商城经营模式）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>联系我们</view>
         <view class='float-left tip-font'>（联系99家商城总部）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>客服咨询</view>
         <view class='float-left tip-font'>（网上咨询99家客服）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>代理加盟</view>
         <view class='float-left tip-font'>（代理商加盟条件）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
     <view class='item-hr'></view>
-    <view class='item item-height'>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>申请店铺帮助</view>
         <view class='float-left tip-font'>（商家和厂家注册帮助）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>我的推广</view>
         <view class='float-left tip-font'>（经我注册的小程序网店）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
 </block>
 <block wx:if="{{userType == 2}}">
-    <view class='item item-height'>
+    <navigator url='/pages/manufactor/index/index?type=3&aboutNodeType=1' class='item item-height'>
         <view class='float-left left-margin'>厂家简介</view>
         <view class='float-left tip-font'>（厂家自己的信息）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator url='/pages/manufactor/index/index?type=3&aboutNodeType=2' class='item item-height'>
         <view class='float-left left-margin'>招商联盟</view>
         <view class='float-left tip-font'>（厂家自己的简介）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator url='/pages/manufactor/index/index?type=3&aboutNodeType=3' class='item item-height'>
         <view class='float-left left-margin'>我注册的信息</view>
         <view class='float-left tip-font'>（厂家联系信息等）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator url='/pages/manufactor/index/index?type=3&aboutNodeType=3' class='item item-height'>
         <view class='float-left left-margin'>发布关于我们厂家信息</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
     <view class='item-hr'></view>
-    <view class='item item-height'>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>厂家帮助</view>
         <view class='float-left tip-font'>（厂家后台操作管理帮助）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>权限设置</view>
         <view class='float-left tip-font'>（管理产品的权限）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>关于99家网络有限公司</view>
         <view class='float-left tip-font'>（进入下一级菜单）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
-    <view class='item item-height'>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
+    <navigator class='item item-height'>
         <view class='float-left left-margin'>我的推广</view>
         <view class='float-left tip-font'>（经我店注册的小程序）</view>
-        <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
-    </view>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator>
 </block>
 
