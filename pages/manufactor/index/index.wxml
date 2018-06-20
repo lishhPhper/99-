@@ -1,15 +1,15 @@
 <view class='header-item'>
     <text class='warranty'>产品质保1年</text>
     <view class='warranty-image-view'>
-        <image class='warranty-image-item' src='../../../image/diamond01.png'></image>
-        <image class='warranty-image-item' src='../../../image/diamond02.png'></image>
-        <image class='warranty-image-item' src='../../../image/diamond03.png'></image>
-        <image class='warranty-image-item' src='../../../image/diamond04.png'></image>
+        <image class='warranty-image-item' src='/image/diamond01.png'></image>
+        <image class='warranty-image-item' src='/image/diamond02.png'></image>
+        <image class='warranty-image-item' src='/image/diamond03.png'></image>
+        <image class='warranty-image-item' src='/image/diamond04.png'></image>
     </view>
     <view id='cash-deposit'>
         <text class='text1'>12000</text>
         <text class='text2'>¥</text>
-        <image src='../../../image/bao.png'></image>
+        <image src='/image/bao.png'></image>
     </view>
 </view>
 <view class='clear'></view>
@@ -22,24 +22,24 @@
 <block wx:if="{{type == 1}}">
     <view style='padding:15rpx 30rpx;'>
         <view style='position:relative;'>
-            <image src='../../../image/music.png' class='top-right-icon'></image>
-            <image src='../../../image/jiaju01.jpg' class='image-list'></image>
+            <image src='/image/music.png' class='top-right-icon'></image>
+            <image src='/image/jiaju01.jpg' class='image-list'></image>
             <navigator url='/pages/product/edit/edit' open-type='navigate'>
-                <image src='../../../image/edit.png' class='bottom-right-icon'></image>
+                <image src='/image/edit.png' class='bottom-right-icon'></image>
             </navigator>
         </view>
         <view style='position:relative;'>
-            <image src='../../../image/voice.png' class='top-left-icon'></image>
-            <image src='../../../image/jiaju01.jpg' class='image-list'></image>
+            <image src='/image/voice.png' class='top-left-icon'></image>
+            <image src='/image/jiaju01.jpg' class='image-list'></image>
             <navigator url='/pages/product/edit/edit' open-type='navigate'>
-                <image src='../../../image/edit.png' class='bottom-right-icon'></image>
+                <image src='/image/edit.png' class='bottom-right-icon'></image>
             </navigator>
         </view>
         <view style='position:relative;'>
-            <image src='../../../image/voice.png' class='top-left-icon'></image>
-            <image src='../../../image/jiaju01.jpg' class='image-list'></image>
+            <image src='/image/voice.png' class='top-left-icon'></image>
+            <image src='/image/jiaju01.jpg' class='image-list'></image>
             <navigator url='/pages/product/edit/edit' open-type='navigate'>
-                <image src='../../../image/edit.png' class='bottom-right-icon'></image>
+                <image src='/image/edit.png' class='bottom-right-icon'></image>
             </navigator>
         </view>
     </view>
@@ -58,7 +58,7 @@
         <block wx:if="{{productNodeType == 1}}">
             <view class='product-box' wx:for="{{array}}">
                 <navigator url="/pages/product/detail/detail" style='box-sizing:border-box;padding:10rpx;width:50%;height:420rpx;float:left;background-color:#FFF;border:1px solid #ccc;'>
-                    <image src='../../../image/jiaju01.jpg' style='width:100%;height:250rpx;'></image>
+                    <image src='/image/jiaju01.jpg' style='width:100%;height:250rpx;'></image>
                     <view>水曲柳餐桌</view>
                     <view>
                         <text style='width:50%;margin-right:40rpx;'>编号:5833</text>
@@ -74,7 +74,7 @@
         <block wx:if="{{productNodeType == 2}}">
             <view class='product-box' wx:for="{{array}}">
                 <navigator url="/pages/product/detail/detail" style='box-sizing:border-box;padding:10rpx;width:50%;height:420rpx;float:left;background-color:#FFF;border:1px solid #ccc;'>
-                    <image src='../../../image/jiaju02.jpg' style='width:100%;height:250rpx;'></image>
+                    <image src='/image/jiaju02.jpg' style='width:100%;height:250rpx;'></image>
                     <view>水曲柳餐桌</view>
                     <view>
                         <text style='width:50%;margin-right:40rpx;'>编号:5833</text>
@@ -90,7 +90,7 @@
         <block wx:if="{{productNodeType == 3}}">
             <view class='product-box' wx:for="{{array}}">
                 <navigator url="/pages/product/detail/detail" style='box-sizing:border-box;padding:10rpx;width:50%;height:420rpx;float:left;background-color:#FFF;border:1px solid #ccc;'>
-                    <image src='../../../image/jiaju03.jpg' style='width:100%;height:250rpx;'></image>
+                    <image src='/image/jiaju03.jpg' style='width:100%;height:250rpx;'></image>
                     <view>水曲柳餐桌</view>
                     <view>
                         <text style='width:50%;margin-right:40rpx;'>编号:5833</text>
@@ -136,13 +136,13 @@
                 <view style='float:left;height:80rpx;line-height:80rpx;'>门市微信：18700000000</view>
                 <view style='float:right;height:80rpx;'>
                     <view style='float:left;height:80rpx;line-height:80rpx;'>二维码：</view>
-                    <image src='../../../image/QRcode.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+                    <image src='/image/QRcode.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
                 </view>
             </view>
             <view style='height:160rpx;border-bottom:2px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
                 <view style='float:left;height:80rpx;line-height:80rpx;'>门店地址：江西省赣州市南康区国际家居城中心市场</view>
                 <view style='float:right;height:80rpx;'>
-                    <image src='../../../image/map.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+                    <image src='/image/mapHL.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
                 </view>
             </view>
             <view class='item-hr'></view>
@@ -152,13 +152,13 @@
                 <view style='float:left;height:80rpx;line-height:80rpx;'>厂家负责人微信：18700000000</view>
                 <view style='float:right;height:80rpx;'>
                     <view style='float:left;height:80rpx;line-height:80rpx;'>二维码：</view>
-                    <image src='../../../image/QRcode.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+                    <image src='/image/QRcode.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
                 </view>
             </view>
             <view style='height:160rpx;padding-left:50rpx;padding-right:50rpx;'>
                 <view style='float:left;height:80rpx;line-height:80rpx;'>门店地址：江西省赣州市南康区国际家居城中心市场</view>
                 <view style='float:right;height:80rpx;'>
-                    <image src='../../../image/map.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+                    <image src='/image/mapHL.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
                 </view>
             </view>
         </block>
