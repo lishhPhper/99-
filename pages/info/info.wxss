@@ -1,4 +1,4 @@
-/**index.wxss**/
+@import "/pages/tabbar/tabbar.wxss";
 
 .tarbar navigator {
     width: 20%;

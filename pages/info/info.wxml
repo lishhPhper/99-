@@ -89,4 +89,15 @@
         <view class='float-left tip-font'>（经我店注册的小程序）</view>
         <image class='icon-sm float-right' src='../../image/arrowright.png'></image>
     </view>
+<<<<<<< HEAD
 </block>
+=======
+</block>
+
+<!-- tabbar start -->
+<import src="/pages/tabbar/tabbar.wxml" />
+<template is="tabbar" data="{{tabbar}}" />
+<scroll-view style="height: 100rpx;">
+</scroll-view> 
+<!-- tabbar end -->
+>>>>>>> 03d9118928292db179c788e3e67006f78d66618b

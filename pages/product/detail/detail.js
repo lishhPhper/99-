@@ -8,7 +8,54 @@ Page({
     inputShowed: false,
     inputVal: "",
     toView: 'red',
-    scrollTop: 100
+    scrollTop: 100,
+    detailNodeType: 1,
+    tabbar: {
+        color: "#000000",
+        selectedColor: "#ff6600",
+        backgroundColor: "#ffffff",
+        borderStyle: "black",
+        list: [
+            {
+                pagePath: "/pages/manufactor/index/index",
+                text: "加微信",
+                iconPath: "../../../image/wx_tarbar.png",
+                selectedIconPath: "../../../image/wx_tarbarHL.png",
+                selected: true
+            },
+            {
+                pagePath: "/pages/personal/personal",
+                text: "请拨号",
+                iconPath: "../../../image/phone.png",
+                selectedIconPath: "../../../image/phoneHL.png",
+                selected: false
+            },
+            {
+                pagePath: "/pages/personal/personal",
+                text: "",
+                iconPath: "../../../image/add.png",
+                selectedIconPath: "../../../image/addHL.png",
+                selected: false
+            }
+            ,
+            {
+                pagePath: "/pages/personal/personal",
+                text: "到我店",
+                iconPath: "../../../image/map.png",
+                selectedIconPath: "../../../image/mapHL.png",
+                selected: false
+            }
+            ,
+            {
+                pagePath: "/pages/info/info",
+                text: "我信息",
+                iconPath: "../../../image/myinfo.png",
+                selectedIconPath: "../../../image/myinfoHL.png",
+                selected: false
+            }
+        ],
+        position: "bottom"
+    },
   },
   showInput: function () {
     this.setData({
@@ -54,6 +101,12 @@ Page({
     this.setData({
       scrollTop: this.data.scrollTop + 10
     })
+  },
+  detailNodeChange: function (event) {
+      console.log(event.currentTarget.dataset.detailNodeType);
+      this.setData({
+          detailNodeType: event.currentTarget.dataset.detailNodeType
+      });
   }
 });
 

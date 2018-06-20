@@ -1,4 +1,5 @@
-/**index.wxss**/
+@import "/pages/tabbar/tabbar.wxss";
+
 .scroll-view_H{
     white-space: nowrap;
 }
