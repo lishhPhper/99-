@@ -14,7 +14,8 @@
         "pages/shops/editor/editor",
         "pages/shops/classify/classify",
         "pages/shops/settings/settings",
-        "pages/shops/createStore/createStore"
+        "pages/shops/createStore/createStore",
+        "pages/popularize/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -31,7 +32,7 @@
                 "selectedIconPath": "image/nearbyHL.png"
             },
             {
-                "pagePath": "pages/info/info",
+                "pagePath": "pages/popularize/index",
                 "text": "同城圈",
                 "iconPath": "image/yuan.png",
                 "selectedIconPath": "image/yuanHL.png"

@@ -1,0 +1,17 @@
+<view style='height:200rpx;line-height:200rpx;border-bottom:1px solid #ddd;display:flex;flex-direction:row;'>
+    <image style='border-radius:50%;width:120rpx;height:120rpx;margin:40rpx 40rpx 40rpx 80rpx;' src='../../../image/header.jpg'></image>
+    <view style=''>经本店注册的网店</view>
+</view>
+
+<view class='item-height' style='line-height:80rpx;border-bottom:10rpx solid #eee;font-size:11pt;display:flex;flex-direction:row;'>
+  <view class='item-tr' style=''>用户名</view>
+  <view class='item-tr' style=''>网点类别</view>
+  <view class='item-tr' style=''>注册日期</view>
+  <view class='item-tr' style=''>提成</view>
+</view>
+<view  class="item-list item-height" wx:for="{{arry}}" wx:key="{{arry}}" wx:for-index="idx"> 
+    <view class='item-tr'>{{item.user}}</view>
+    <view class='item-tr'>{{item.category}}</view>
+    <view class='item-tr'>{{item.date}}</view>
+    <view class='item-tr'>{{item.put}}</view>
+</view>

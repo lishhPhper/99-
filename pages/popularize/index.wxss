@@ -1,0 +1,11 @@
+.item-list{
+  display: flex;
+  flex-direction:row;
+  line-height:80rpx;
+  border-bottom:2rpx solid #C8C9C9;
+  font-size:11pt; 
+}
+.item-tr{
+  width:25%;
+  text-align:center;
+}
