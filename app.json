@@ -34,11 +34,7 @@
                 "selectedIconPath": "image/nearbyHL.png"
             },
             {
-<<<<<<< HEAD
                 "pagePath": "pages/community/index/index",
-=======
-                "pagePath": "pages/popularize/index",
->>>>>>> 068352cec668798c507adb2d2c44be7937f5b541
                 "text": "同城圈",
                 "iconPath": "image/yuan.png",
                 "selectedIconPath": "image/yuanHL.png"
