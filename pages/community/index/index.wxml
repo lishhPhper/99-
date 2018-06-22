@@ -41,7 +41,7 @@
         </view>
     </view>
 </view>
-<view class="section section_gap">
+<!-- <view class="section section_gap">
     <scroll-view class="scroll-view_H" scroll-x style="text-align: center;line-height:80rpx">
         <view id="green" class="scroll-view-item_H bc_white">热点</view>
         <view id="red" class="scroll-view-item_H bc_white">美容瘦身</view>
@@ -50,27 +50,88 @@
         <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
         <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
     </scroll-view>
-</view>
+</view> -->
 <view class="navs">
     <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="../../../image/home.png" class="nav-image" />
+        <image src="/image/home.png" class="nav-image" />
         <text>秀家</text>
     </view>
     <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="../../../image/follow.png" class="nav-image" />
-        <text>关注</text>
+        <image src="/image/home.png" class="nav-image" />
+        <text>美文</text>
     </view>
     <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="../../../image/friend.png" class="nav-image" />
+        <image src="/image/home.png" class="nav-image" />
         <text>身边</text>
     </view>
     <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="../../../image/collect.png" class="nav-image" />
+        <image src="/image/home.png" class="nav-image" />
         <text>收藏</text>
     </view>
 </view>
+<view class="navs">
+    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+        <image src="/image/home.png" class="nav-image" />
+        <text>需求</text>
+    </view>
+    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+        <image src="/image/home.png" class="nav-image" />
+        <text>服务</text>
+    </view>
+    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+        <image src="/image/home.png" class="nav-image" />
+        <text>活动</text>
+    </view>
+    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+        <image src="/image/home.png" class="nav-image" />
+        <text>其他</text>
+    </view>
+</view>
 <view class='item-hr'></view>
-<navigator style='padding: 26rpx 40rpx 26rpx 40rpx;' url='/pages/community/articles/articles'>
+<view class='clear'></view>
+<view class='title-view'>
+    <view class='title' style='color:{{type == 1 ? "#F60" : "black"}};' data-type="1" bindtap="titleChange">人气</view>
+    <view class='title' style='color:{{type == 2 ? "#F60" : "black"}};' data-type="2" bindtap="titleChange">最新</view>
+    <view class='title' style='color:{{type == 3 ? "#F60" : "black"}};' data-type="3" bindtap="titleChange">最近</view>
+    <view class='title' style='color:{{type == 4 ? "#F60" : "black"}};' data-type="3" bindtap="titleChange">回复</view>
+</view>
+<view class='clear'></view>
+<view style='margin:20rpx;border-bottom:1rpx solid #ccc;' wx:for="{{array}}">
+    <view style='height:100rpx;'>
+        <image src='/image/header.jpg' style='width:100rpx;height:100rpx;float:left;border-radius:50%;'></image>
+        <view style='float:left;margin-left:20rpx;'>
+            <view style='height:70rpx;line-height:70rpx;'>99家具网陈少峰</view>
+            <view style='height:30rpx;line-height:30rpx;font-size:8pt;'>昨天 17:36</view>
+        </view>
+        <button style='width:150rpx;height:60rpx;line-height:60rpx;margin:20rpx;float:right;border:1rpx solid #F60;color:#F60;font-size:11pt;'>联系ta</button>
+    </view>
+    <view style='margin-top:20rpx;'>
+        <view>家具店招聘管理一名</view>
+        <view>
+            <image style="width:210rpx;height:200rpx;margin:10rpx;" src='/image/jiaju01.jpg'></image>
+            <image style="width:210rpx;height:200rpx;margin:10rpx;" src='/image/jiaju01.jpg'></image>
+            <image style="width:210rpx;height:200rpx;margin:10rpx;" src='/image/jiaju01.jpg'></image>
+        </view>
+    </view>
+    <view class='clear'></view>
+    <view style='height:50rpx;'>
+        <view style='float:left;'>需求</view>
+        <view style='float:right;margin-left:10rpx;'>
+            <image src='/image/share.png' style='width:40rpx;height:40rpx;margin:5rpx;float:left;'></image>
+            <text style='height:50rpx;line-height:50rpx;float:left;'>分享</text>
+        </view>
+        <view style='float:right;margin-left:10rpx;'>
+            <image src='/image/comment.png' style='width:40rpx;height:40rpx;margin:5rpx;float:left;'></image>
+            <text style='height:50rpx;line-height:50rpx;float:left;'>896</text>
+        </view>
+        <view style='float:right;margin-left:10rpx;'>
+            <image src='/image/thumbs-up.png' style='width:40rpx;height:40rpx;margin:5rpx;float:left;'></image>
+            <text style='height:50rpx;line-height:50rpx;float:left;'>896</text>
+        </view>
+        <view style='float:right;height:50rpx;line-height:50rpx;margin-left:10rpx;'>浏览：896</view>
+    </view>
+</view>
+<!-- <navigator style='padding: 26rpx 40rpx 26rpx 40rpx;' url='/pages/community/articles/articles'>
     <view style='font-size:11pt;'>某某家具商场9月25号盛大开业某某家具商场9月25号盛大开业</view>
     <image src='../../../image/jiaju01.jpg' style='width:100%;height:380rpx;margin:20rpx 0rpx 10rpx 0rpx;'></image>
     <view style='height:80rpx;margin-bottom:5rpx;'>
@@ -91,4 +152,4 @@
     <view style='font-size:11pt;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>
         <text>家具商场9月25号盛大开业家具商场家具商场家具家具</text>
     </view>
-</navigator>
+</navigator> -->

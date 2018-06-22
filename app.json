@@ -1,12 +1,12 @@
 {
     "pages": [
+        "pages/community/index/index",
         "pages/info/info",
         "pages/manufactor/index/index",
         "pages/manufactor/productControl/index",
         "pages/manufactor/productClassify/index",
         "pages/product/detail/detail",
         "pages/product/edit/edit",
-        "pages/community/index/index",
         "pages/community/articles/articles",
         "pages/community/articleInfo/articleInfo",
         "pages/shops/index/index",
@@ -24,6 +24,8 @@
         "navigationBarTextStyle": "black"
     },
     "tabBar": {
+        "color": "#DDD",
+        "selectedColor":"#F60",
         "list": [
             {
                 "pagePath": "pages/shops/nearby/nearby",
@@ -32,7 +34,7 @@
                 "selectedIconPath": "image/nearbyHL.png"
             },
             {
-                "pagePath": "pages/popularize/index",
+                "pagePath": "pages/community/index/index",
                 "text": "同城圈",
                 "iconPath": "image/yuan.png",
                 "selectedIconPath": "image/yuanHL.png"
