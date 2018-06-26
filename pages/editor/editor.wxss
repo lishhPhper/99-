@@ -1,0 +1,29 @@
+.tarbar navigator {
+    width: 20%;
+}
+
+.info-top {
+    height: 200rpx;
+    line-height: 200rpx;
+    border-bottom: 1px solid #ccc;
+}
+
+.info-top image {
+    float: left;
+    border-radius: 50%;
+    width: 120rpx;
+    height: 120rpx;
+    margin: 40rpx 40rpx 40rpx 80rpx;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.item image{
+    margin:25rpx;
+}
