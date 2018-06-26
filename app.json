@@ -1,5 +1,12 @@
 {
     "pages": [
+        "pages/index/index",
+        "pages/shops/nearby/nearby",
+        "pages/shops/index/index",
+        "pages/shops/editor/editor",
+        "pages/shops/classify/classify",
+        "pages/shops/settings/settings",
+        "pages/shops/createStore/createStore",
         "pages/info/info",
         "pages/manufactor/index/index",
         "pages/manufactor/productControl/index",
@@ -9,12 +16,7 @@
         "pages/community/index/index",
         "pages/community/articles/articles",
         "pages/community/articleInfo/articleInfo",
-        "pages/shops/index/index",
-        "pages/shops/nearby/nearby",
-        "pages/shops/editor/editor",
-        "pages/shops/classify/classify",
-        "pages/shops/settings/settings",
-        "pages/shops/createStore/createStore"
+        "pages/editor/editor"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -23,6 +25,8 @@
         "navigationBarTextStyle": "black"
     },
     "tabBar": {
+        "color":"#000",
+        "selectedColor":"#F60",
         "list": [
             {
                 "pagePath": "pages/shops/nearby/nearby",
@@ -43,7 +47,7 @@
                 "selectedIconPath": "image/addHL.png"
             },
             {
-                "pagePath": "pages/info/info",
+                "pagePath": "pages/editor/editor",
                 "text": "发图文",
                 "iconPath": "image/write.png",
                 "selectedIconPath": "image/writeHL.png"
