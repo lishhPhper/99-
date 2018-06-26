@@ -12,3 +12,12 @@
   padding: 20rpx 20rpx;   
   border: 2rpx solid #CECECE;
 }
+.item-text{
+  font-size:11pt;
+  display:-webkit-box;
+  word-break:break-all;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  -webkit-line-clamp:2;
+  -webkit-box-orient: vertical;
+}

@@ -7,13 +7,13 @@
         "pages/shops/classify/classify",
         "pages/shops/settings/settings",
         "pages/shops/createStore/createStore",
+        "pages/community/index/index",
         "pages/info/info",
         "pages/manufactor/index/index",
         "pages/manufactor/productControl/index",
         "pages/manufactor/productClassify/index",
         "pages/product/detail/detail",
         "pages/product/edit/edit",
-        "pages/community/index/index",
         "pages/community/articles/articles",
         "pages/community/articleInfo/articleInfo",
         "pages/editor/editor"
@@ -25,7 +25,7 @@
         "navigationBarTextStyle": "black"
     },
     "tabBar": {
-        "color":"#000",
+        "color": "#DDD",
         "selectedColor":"#F60",
         "list": [
             {
@@ -35,7 +35,7 @@
                 "selectedIconPath": "image/nearbyHL.png"
             },
             {
-                "pagePath": "pages/info/info",
+                "pagePath": "pages/community/index/index",
                 "text": "同城圈",
                 "iconPath": "image/yuan.png",
                 "selectedIconPath": "image/yuanHL.png"

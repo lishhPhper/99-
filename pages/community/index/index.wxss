@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20rpx;
+  padding: 15rpx;
 }
 
 .nav-item .nav-image {
@@ -30,6 +30,23 @@
 }
 
 .nav-item text {
-  padding-top: 20rpx;
-  font-size: 25rpx;
+  padding-top: 10rpx;
+  font-size: 30rpx;
+}
+
+.title {
+    float: left;
+    width: 25%;
+    text-align: center;
+    font-size: 13pt;
+    height: 50rpx;
+    line-height: 50rpx;
+    margin: 15rpx 0rpx;
+    color: black;
+}
+
+.title-view {
+    height: 80rpx;
+    background-color: #fff;
+    border-bottom: 1rpx solid #ccc; 
 }
