@@ -16,15 +16,6 @@
     <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
-        <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店名称:</view>
-      </view>
-      <view class="item-height" style=''>
-          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="store-name" placeholder="最多12个字"/>
-      </view>
-    </view>
-    <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'>
-      <view class="item-height" style='display:flex;flex-direction:row;'>
-        <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
         <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店联系人:</view>
       </view>
       <view class="item-height" style=''>
@@ -56,30 +47,32 @@
           <image src='../../../image/QRcode.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
       </view>
     </view>
+
     <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
         <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店地址:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="store-address" placeholder=""/>
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+          <view class="item-height" style='text-align:left;line-height:80rpx;'>{{region[0]}}{{region[1]}}{{region[2]}}</view>
+        </picker>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
-        <view class="" style='line-height:80rpx;min-width:140rpx;'></view>
-          <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
+        <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
       </view>
     </view>
+
     <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:20rpx solid #ddd;'  bindtap='gotoShow'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
         <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门头照片:</view>
       </view>
       <view class="item-height" style=''>
-          <input type="hidden" class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input type="hidden" class="item-height " style='text-align:left;line-height:80rpx;' placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
-        <view class="" style='line-height:80rpx;min-width:140rpx;'></view>
-          <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
+        <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
       </view>
     </view>
   </view>
@@ -149,7 +142,7 @@
         <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>厂家地址:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <view class="" style='line-height:80rpx;min-width:140rpx;'></view>
@@ -161,28 +154,27 @@
 <view class="" style='display:flex;flex-direction:column;'>
   <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
     <view class="item-height" style='display:flex;flex-direction:row;'>
-      <view style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></view>
-      <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>经营类别:</view>
-    </view>
+        <view style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></view>
+        <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;'>经营类别:</view>
+      </view>
     <view class="item-height" style=''>
-        <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder=""/>
+        <input class="item-height " style='text-align:left;line-height:80rpx;' placeholder=""/>
     </view>
     <view class="item-height" style='display:flex;flex-direction:row;'>
-      <view class="" style='line-height:80rpx;min-width:140rpx;'></view>
-        <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
+      <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
     </view>
   </view>
+
   <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
     <view class="item-height" style='display:flex;flex-direction:row;'>
       <view style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></view>
       <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>营业执照:</view>
     </view>
     <view class="item-height" style=''>
-        <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder=""/>
+        <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
     </view>
     <view class="item-height" style='display:flex;flex-direction:row;'>
-      <view class="" style='line-height:80rpx;min-width:140rpx;'></view>
-        <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
+      <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
     </view>
   </view>
   <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
@@ -191,11 +183,10 @@
       <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;min-width:360rpx;'>法人或厂家负责人姓名:</view>
     </view>
     <view class="item-height" style=''>
-        <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder=""/>
+        <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
     </view>
     <view class="item-height" style='display:flex;flex-direction:row;'>
-      <view class="" style='line-height:80rpx;min-width:140rpx;'></view>
-        <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
+      <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
     </view>
   </view>
   <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
@@ -204,10 +195,9 @@
       <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;min-width:300rpx;'>法人或负责人电话:</view>
     </view>
     <view class="item-height" style=''>
-        <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder=""/>
+        <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
     </view>
     <view class="item-height" style='display:flex;flex-direction:row;'>
-      <view class="" style='line-height:80rpx;min-width:140rpx;'></view>
         <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
     </view>
   </view>
@@ -217,7 +207,7 @@
       <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;min-width:300rpx;'>法人或负责人微信:</view>
     </view>
     <view class="item-height" style=''>
-        <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder=""/>
+        <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
     </view>
     <view class="item-height" style='display:flex;flex-direction:row;'>
         <view class="" style='line-height:80rpx;min-width:140rpx;'>二维码：</view>

@@ -7,7 +7,9 @@ Page({
     type:1,
     agent:true,
     manufacturers:false,
-    isAgree:true
+    isAgree:true,
+    region: ['广东省', '广州市', '海珠区'],
+    customItem: '全部'
   },
 
   /**
@@ -111,5 +113,11 @@ Page({
         // complete
       }
     })
-  }
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value
+    })
+  },
 })
