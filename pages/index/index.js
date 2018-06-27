@@ -6,20 +6,7 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
     onLoad: function () {
-        
-        // // 查看是否授权
-        // wx.getSetting({
-        //     success: function (res) {
-        //         if (res.authSetting['scope.userInfo']) {
-        //             // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-        //             wx.getUserInfo({
-        //                 success: function (res) {
-        //                     console.log(res.userInfo)
-        //                 }
-        //             })
-        //         }
-        //     }
-        // })
+
     },
     bindGetUserInfo: function (e) {
         if (e.detail.userInfo === undefined) {
@@ -34,7 +21,6 @@ Page({
 
             wx.showModal(alertParam)
         } else {
-            console.log(e.detail.userInfo);
             wx.checkSession({
                 success: function () {
                     //session_key 未过期，并且在本生命周期一直有效
@@ -56,10 +42,12 @@ Page({
                                     success:function(loginRes){
                                         if(loginRes.data.state == 1){
                                             var _getUserInfoParam = {
-                                                
+                                                openid: loginRes.data.data.openid,
+                                                avatarUrl: e.detail.userInfo.avatarUrl,
+                                                nickName: e.detail.userInfo.nickName,
                                             };
-                                            _getUserInfo(_getUserInfoParam,function(){
-
+                                            _getUserInfo(_getUserInfoParam, function (_getUserInfoRes){
+                                                console.log(_getUserInfoRes);
                                             });
                                         }
                                     },
@@ -68,32 +56,27 @@ Page({
                                     }
                                 })
                             } else {
-                                console.log('登录失败！' + res.errMsg)
+                                console.log('登录失败！' + res.errMsg);
                             }
                         }
                     });
                 }
             })
-            
         }
-        // e.detail.userInfo
     }
 });
 
 function _getUserInfo(param,_callback){
     wx.request({
         url: app.globalData.apiUrl + '/api/v1/user',
-        responseType: 'POST',
+        method: 'POST',
         data: {
             wx_openid: param.openid,
             avatar: param.avatarUrl,
-            // city: param.city,
-            // country: param.country,
-            // gender: param.gender,
             user_name: param.nickName,
-            // province: param.province,
         },
         success: function (res) {
+            console.log(res);
             if(res.data.code == 1){
                 _callback(res.data.data);
             }else{
