@@ -93,7 +93,8 @@ Page({
     var list = e.detail.value;
     if (agent){
       // 代理商
-    }else{
+    }
+    if (manufacturers) {
       // 厂家
     }
   },
@@ -231,4 +232,21 @@ Page({
       region: e.detail.value
     })
   },
+  getSanCode: function (event) {
+    // 区别 门店和法人
+    console.log(event.currentTarget.dataset.type);
+    let type = event.currentTarget.dataset.type;
+    wx.scanCode({
+      success: (res) => {
+        console.log(res)
+        if (type === '1') {
+
+        }
+        if (type === '2') {
+
+        }
+      }
+    })
+  }
+  
 })
