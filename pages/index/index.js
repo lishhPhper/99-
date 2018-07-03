@@ -10,65 +10,58 @@ Page({
     },
     bindGetUserInfo: function (e) {
         if (e.detail.userInfo === undefined) {
-            var alertParam = {
-                'title': '授权提醒',
-                'content': '未授权无法进入小程序',
-                'showCancel': false,
-                'canelColor': '#666',
-                'confirmText': '确认',
-                'confirmColor': '#666',
-            }
-
-            wx.showModal(alertParam)
+            _alert({ title: '授权提醒', content: '未授权无法进入小程序'});
         } else {
-            wx.checkSession({
-                success: function () {
-                    //session_key 未过期，并且在本生命周期一直有效
-                    console.log('session_key未过期');
-                    // 获取服务器用户信息
-                    
-                },
-                fail: function () {
-                    // session_key 已经失效，需要重新执行登录流程
-                    wx.login({
-                        success: function (res) {
-                            if (res.code) {
-                                //发起网络请求
-                                wx.request({
-                                    url: app.globalData.apiUrl + '/api/v1/getOpenid',
-                                    data: {
-                                        code: res.code
-                                    },
-                                    success:function(loginRes){
-                                        if(loginRes.data.state == 1){
-                                            var _getUserInfoParam = {
-                                                openid: loginRes.data.data.openid,
-                                                avatarUrl: e.detail.userInfo.avatarUrl,
-                                                nickName: e.detail.userInfo.nickName,
-                                            };
-                                            _getUserInfo(_getUserInfoParam, function (_getUserInfoRes){
-                                                console.log(_getUserInfoRes);
-                                            });
+            wx.login({
+                success: function (res) {
+                    if (res.code) {
+                        //发起网络请求
+                        wx.request({
+                            url: app.globalData.apiUrl + 'api/v1/getOpenid',
+                            data: {
+                                code: res.code
+                            },
+                            success: function (loginRes) {
+                                if (loginRes.data.state == 1) {
+                                    var _getUserInfoParam = {
+                                        openid: loginRes.data.data.openid,
+                                        avatarUrl: e.detail.userInfo.avatarUrl,
+                                        nickName: e.detail.userInfo.nickName,
+                                    };
+                                    _getUserInfo(_getUserInfoParam, function (_getUserInfoRes) {
+                                        console.log(_getUserInfoRes);
+                                        if (_getUserInfoRes.error_code == 0) {
+                                            var obj = _getUserInfoRes.data;
+                                            console.log(obj);
+                                            wx.setStorage({
+                                                key: 'userInfo',
+                                                data: JSON.stringify(obj)
+                                            })
+                                            wx.reLaunch({
+                                                url: "/pages/shops/nearby/nearby",
+                                            })
+                                        } else {
+                                            _alert({ title: '登录失败', content: '服务器异常，请稍后再试' });
                                         }
-                                    },
-                                    fail:function(){
-                                        console.log('登录失败，请重新登录');
-                                    }
-                                })
-                            } else {
-                                console.log('登录失败！' + res.errMsg);
+                                    });
+                                }
+                            },
+                            fail: function () {
+                                _alert({ title: '登录失败', content: '服务器异常，请稍后再试' });
                             }
-                        }
-                    });
+                        })
+                    } else {
+                        _alert({ title: '登录失败', content: '服务器异常，请稍后再试' });
+                    }
                 }
-            })
+            });
         }
     }
 });
 
 function _getUserInfo(param,_callback){
     wx.request({
-        url: app.globalData.apiUrl + '/api/v1/user',
+        url: app.globalData.apiUrl + 'api/v1/user',
         method: 'POST',
         data: {
             wx_openid: param.openid,
@@ -77,14 +70,27 @@ function _getUserInfo(param,_callback){
         },
         success: function (res) {
             console.log(res);
-            if(res.data.code == 1){
-                _callback(res.data.data);
+            if(res.data.state == 1){
+                app.globalData.successReturn.data = res.data.data;
+                _callback(app.globalData.successReturn);
             }else{
-                console.log('获取用户信息失败');
-                // _callback({code: 1});
+                _callback(app.globalData.failReturn);
             }
         }
     })
+}
+
+function _alert(param) {
+    var alertParam = {
+        'title': param.title,
+        'content': param.content,
+        'showCancel': false,
+        'canelColor': '#666',
+        'confirmText': '确认',
+        'confirmColor': '#666',
+    }
+
+    wx.showModal(alertParam)
 }
 
 
