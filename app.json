@@ -16,6 +16,7 @@
         "pages/product/edit/edit",
         "pages/community/articles/articles",
         "pages/community/articleInfo/articleInfo",
+        "pages/popularize/index",
         "pages/editor/editor"
     ],
     "window": {

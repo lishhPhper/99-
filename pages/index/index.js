@@ -3,9 +3,22 @@ const app = getApp()
 
 Page({
     data: {
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        isShowBtn: 1,
     },
     onLoad: function () {
+        var obj = this;
+        wx.getStorage({
+            key: 'userInfo',
+            success: function (res) {
+                obj.setData({
+                    isShowBtn: 0,
+                });
+                wx.reLaunch({
+                    url: "/pages/shops/nearby/nearby",
+                })
+            },
+        })
 
     },
     bindGetUserInfo: function (e) {
@@ -29,13 +42,11 @@ Page({
                                         nickName: e.detail.userInfo.nickName,
                                     };
                                     _getUserInfo(_getUserInfoParam, function (_getUserInfoRes) {
-                                        console.log(_getUserInfoRes);
                                         if (_getUserInfoRes.error_code == 0) {
                                             var obj = _getUserInfoRes.data;
-                                            console.log(obj);
                                             wx.setStorage({
                                                 key: 'userInfo',
-                                                data: JSON.stringify(obj)
+                                                data: obj
                                             })
                                             wx.reLaunch({
                                                 url: "/pages/shops/nearby/nearby",
@@ -69,7 +80,6 @@ function _getUserInfo(param,_callback){
             user_name: param.nickName,
         },
         success: function (res) {
-            console.log(res);
             if(res.data.state == 1){
                 app.globalData.successReturn.data = res.data.data;
                 _callback(app.globalData.successReturn);

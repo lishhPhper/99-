@@ -7,12 +7,12 @@ Page({
     userInfo:{}
   },
   onLoad:function(){
+      var obj = this;
       wx.getStorage({
           key: 'userInfo',
           success: function(res) {
-              var jsObject = JSON.parse(res); //转换为json对象
-              this.setData({
-                  userInfo: jsObject,
+              obj.setData({
+                  userInfo: res.data,
               })
           },
       })
