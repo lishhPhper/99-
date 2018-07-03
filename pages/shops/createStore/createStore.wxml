@@ -15,11 +15,20 @@
     <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
+        <view wx:if="{{agent}}" class="" style='min-width:150rpx;text-align:left;line-height:80rpx;font-size:11pt;'>门店名称:</view>
+      </view>
+      <view class="item-height" style=''>
+          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="shop_name" placeholder=""/>
+      </view>
+    </view>
+    <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'>
+      <view class="item-height" style='display:flex;flex-direction:row;'>
+        <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
         <view wx:if="{{agent}}" class="" style='min-width:150rpx;text-align:left;line-height:80rpx;font-size:11pt;'>门店联系人:</view>
         <view wx:if="{{manufacturers}}" class="" style='min-width:150rpx;text-align:left;line-height:80rpx;font-size:11pt;'>门市联系人:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="store-contact" placeholder=""/>
+          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="contact" placeholder=""/>
       </view>
     </view>
     <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
@@ -29,7 +38,7 @@
         <view wx:if="{{manufacturers}}" class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门市电话:</view>
       </view>
       <view class="item-height" style='' >
-          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="store-phone" placeholder="手机号码" bindinput='inputPhoneNum'/>
+          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="store_phone" placeholder="手机号码" bindinput='inputPhoneNum'/>
       </view>
       <view class="item-height" style=''bindtap='getSendMsg'>
         <view wx:if="{{send}}" class="item-min-width" style='text-align:center;border:2rpx solid #f60;margin:15rpx 60rpx 0 0;'>发送验证</view>
@@ -43,7 +52,7 @@
         <view wx:if="{{manufacturers}}" class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门市微信:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="store-wx" placeholder=""/>
+          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="store_wx" placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;' data-type="1" bindtap='getSanCode'>
           <view class="" style='line-height:80rpx;min-width:140rpx;'>二维码：</view>
@@ -60,7 +69,12 @@
       <view class="item-height" style=''>
         <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
           <view class="item-height" style='text-align:left;line-height:80rpx;'>{{region[0]}}{{region[1]}}{{region[2]}}</view>
-        </picker>
+        </picker>  
+        <!-- <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <view class="picker">
+            {{multiArray[0][multiIndex[0]]}}{{multiArray[1][multiIndex[1]]}}{{multiArray[2][multiIndex[2]]}}{{multiArray[3][multiIndex[3]]}}
+          </view>
+        </picker> -->
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
@@ -73,7 +87,7 @@
         <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>详细地址:</view>
       </view>
       <view class="item-height item-margin" style=''>
-          <input type="hidden" class="item-height " style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input type="hidden" class="item-height " style='text-align:left;line-height:80rpx;' name="address" placeholder=""/>
       </view>
     </view>
 
@@ -124,7 +138,7 @@
           <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>经营类别:</view>
         </view>
       <view class="item-height" style=''>
-          <input class="item-height " style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input class="item-height " style='text-align:left;line-height:80rpx;' name="category" placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
@@ -137,7 +151,7 @@
         <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>营业执照:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input class="item-height" style='text-align:left;line-height:80rpx;' name="license" placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
@@ -149,7 +163,7 @@
         <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;min-width:360rpx;'>法人或厂家负责人姓名:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input class="item-height" style='text-align:left;line-height:80rpx;' name="user_name" placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
@@ -161,7 +175,7 @@
         <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;min-width:300rpx;'>法人或负责人电话:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input class="item-height" style='text-align:left;line-height:80rpx;' name="phone" placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
           <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
@@ -173,7 +187,7 @@
         <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;min-width:300rpx;'>法人或负责人微信:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input class="item-height" style='text-align:left;line-height:80rpx;' name="wx_account" placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;' data-type="2" bindtap='getSanCode'>
           <view class="" style='line-height:80rpx;min-width:140rpx;'>二维码：</view>
