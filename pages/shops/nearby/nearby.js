@@ -4,11 +4,17 @@ const app = getApp();
 
 Page({
     data: {
-        inputShowed: false,
-        inputVal: "",
-        toView: 'red',
-        scrollTop: 100,
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+      address:'',
+      inputShowed: false,
+      inputVal: "",
+      toView: 'red',
+      scrollTop: 100,
+      canIUse: wx.canIUse('button.open-type.getUserInfo')
+    },
+    onLoad: function (options) {
+      this.setData({
+        address: app.globalData.address,
+      })
     },
     showInput: function () {
         this.setData({

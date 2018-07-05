@@ -4,7 +4,7 @@
       <image src="../../../image/nearby.png" style='width:50rpx;height:50rpx;'></image>
     </view>
     <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-      <text>河南省郑州市潢川县戈阳路黄国das粮业斜对面</text>
+      <text>{{address}}</text>
     </view>
   </view>
 </view>

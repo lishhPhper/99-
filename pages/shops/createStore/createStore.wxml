@@ -70,14 +70,19 @@
         <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
           <view class="item-height" style='text-align:left;line-height:80rpx;'>{{region[0]}}{{region[1]}}{{region[2]}}</view>
         </picker>  
-        <!-- <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-          <view class="picker">
-            {{multiArray[0][multiIndex[0]]}}{{multiArray[1][multiIndex[1]]}}{{multiArray[2][multiIndex[2]]}}{{multiArray[3][multiIndex[3]]}}
-          </view>
-        </picker> -->
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
+      </view>
+    </view>
+
+    <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'  >
+      <view class="item-height" style='display:flex;flex-direction:row;'>
+        <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
+        <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>乡/镇:</view>
+      </view>
+      <view class="item-height item-margin" style=''>
+          <input type="hidden" class="item-height " style='text-align:left;line-height:80rpx;' name="town" placeholder=""/>
       </view>
     </view>
 

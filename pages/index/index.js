@@ -18,8 +18,28 @@ Page({
                     url: "/pages/shops/nearby/nearby",
                 })
             },
+        }),
+        wx.getLocation({
+          type: 'wgs84',
+          success: function (res) {
+            var lat = res.latitude
+            var lng = res.longitude
+            app.globalData.lat = lat
+            app.globalData.lng = lng
+            wx.request({
+              url: app.globalData.apiUrl + 'api/v1/address/'+ lat+'/'+lng,
+              success: function (address) {
+                // console.log(address.data.data);
+                if(address.data.state == 1){
+                  app.globalData.province = address.data.data.address.province
+                  app.globalData.city = address.data.data.address.city
+                  app.globalData.district = address.data.data.address.district
+                  app.globalData.address = address.data.data.address.address
+                }
+              }
+            })
+          }
         })
-
     },
     bindGetUserInfo: function (e) {
         if (e.detail.userInfo === undefined) {
