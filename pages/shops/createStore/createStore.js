@@ -13,16 +13,40 @@ Page({
     second: 60,
     phoneNum:'',
     isAgree:true,
-    region: ['','','']
+    provinceIndex:0,
+    province:[],
+    provinceId:'',
+    cityIndex: 0,
+    city: [],
+    cityId: '',
+    districtIndex: 0,
+    district: [],
+    districtId: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      region: [app.globalData.province, app.globalData.city, app.globalData.district],
-    })
+    // 省信息
+    var that = this;
+    if (that.data.province == false){
+      wx.request({
+        url: app.globalData.apiUrl + 'api/v1/site/region/0/1',
+        header: {
+          'content-type': 'application/json'
+        },
+        method: 'Get',
+        success: function (res) {
+          var region = res.data.data.region
+          var id = region[that.data.provinceIndex].id
+          that.setData({
+            province: region,
+            provinceId: id,
+          });
+        }
+      })
+    }
   },
 
   /**
@@ -220,12 +244,6 @@ Page({
       }
     })
   },
-  bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
-  },
   getSanCode: function (event) {
     // 区别 门店和法人
     console.log(event.currentTarget.dataset.type);
@@ -242,74 +260,62 @@ Page({
       }
     })
   },
-  bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+
+  bindProvinceChange:function (e) {
+    var index = e.detail.value
+    var id = this.data.province[index].id
     this.setData({
-      multiIndex: e.detail.value
+      provinceIndex: index,
+      provinceId: id,
+    })
+    var that = this;
+    wx.request({
+      url: app.globalData.apiUrl + 'api/v1/site/region/' + id + '/2',
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'Get',
+      success: function (res) {
+        var region = res.data.data.region
+        var id = region[that.data.cityIndex].id
+        that.setData({
+          city: region,
+          cityId: id,
+        });
+      }
     })
   },
-  bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    switch (e.detail.column) {
-      case 0:
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'];
-            data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-            break;
-          case 1:
-            data.multiArray[1] = ['鱼', '两栖动物', '爬行动物'];
-            data.multiArray[2] = ['鲫鱼', '带鱼'];
-            break;
-        }
-        data.multiIndex[1] = 0;
-        data.multiIndex[2] = 0;
-        break;
-      case 1:
-        switch (data.multiIndex[0]) {
-          case 0:
-            switch (data.multiIndex[1]) {
-              case 0:
-                data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-                break;
-              case 1:
-                data.multiArray[2] = ['蛔虫'];
-                break;
-              case 2:
-                data.multiArray[2] = ['蚂蚁', '蚂蟥'];
-                break;
-              case 3:
-                data.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓'];
-                break;
-              case 4:
-                data.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物'];
-                break;
-            }
-            break;
-          case 1:
-            switch (data.multiIndex[1]) {
-              case 0:
-                data.multiArray[2] = ['鲫鱼', '带鱼'];
-                break;
-              case 1:
-                data.multiArray[2] = ['青蛙', '娃娃鱼'];
-                break;
-              case 2:
-                data.multiArray[2] = ['蜥蜴', '龟', '壁虎'];
-                break;
-            }
-            break;
-        }
-        data.multiIndex[2] = 0;
-        console.log(data.multiIndex);
-        break;
-    }
-    this.setData(data);
+  bindCityChange: function (e) {
+    var index = e.detail.value
+    var id = this.data.city[index].id
+    this.setData({
+      cityIndex: index,
+      cityId: id,
+    })
+    var that = this;
+    wx.request({
+      url: app.globalData.apiUrl + 'api/v1/site/region/' + id + '/3',
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'Get',
+      success: function (res) {
+        var region = res.data.data.region
+        var id = region[that.data.districtIndex].id
+        that.setData({
+          district: region,
+          districtId: id,
+        });
+      }
+    })
+  },
+  bindDistrictChange: function (e) {
+    var index = e.detail.value
+    var id = this.data.district[index].id
+    this.setData({
+      districtIndex: index,
+      districtId: id,
+    })
   },
   formSubmit: function (e) {
     var list = e.detail.value;
