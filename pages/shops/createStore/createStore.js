@@ -38,6 +38,7 @@ Page({
         },
         method: 'Get',
         success: function (res) {
+          console.log(res);
           var region = res.data.data.region
           var id = region[that.data.provinceIndex].id
           that.setData({

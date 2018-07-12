@@ -12,16 +12,17 @@
 </view>
 <form bindsubmit="formSubmit">
   <view class="" style='display:flex;flex-direction:column;'>
-    <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'>
-      <view class="item-height" style='display:flex;flex-direction:row;'>
-        <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
-        <view wx:if="{{agent}}" class="" style='min-width:150rpx;text-align:left;line-height:80rpx;font-size:11pt;'>门店名称:</view>
-        <view wx:if="{{manufacturers}}" class="" style='min-width:150rpx;text-align:left;line-height:80rpx;font-size:11pt;'>门市名称:</view>
+    <block wx:if="{{agent}}">
+      <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'>
+        <view class="item-height" style='display:flex;flex-direction:row;'>
+          <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
+          <view  class="" style='min-width:150rpx;text-align:left;line-height:80rpx;font-size:11pt;'>门店名称:</view>
+        </view>
+        <view class="item-height" style=''>
+            <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="shop_name" placeholder=""/>
+        </view>
       </view>
-      <view class="item-height" style=''>
-          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="shop_name" placeholder=""/>
-      </view>
-    </view>
+    </block>
     <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
@@ -114,7 +115,7 @@
     <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'  >
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
-        <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>乡/镇:</view>
+        <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>乡/镇/街道:</view>
       </view>
       <view class="item-height item-margin" style=''>
           <input type="hidden" class="item-height " style='text-align:left;line-height:80rpx;' name="town" placeholder=""/>
@@ -153,13 +154,13 @@
         <view class="" style='text-align:left;line-height:80rpx;font-size:11pt;'>厂家名称:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder="最多12个字"/>
+          <input name="factory_name" class="item-height item-margin" style='text-align:left;line-height:80rpx;' placeholder="最多12个字"/>
       </view>
     </view>
     <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:20rpx solid #ddd;'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
-        <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>厂家地址:</view>
+        <view name="factory_address" class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>厂家地址:</view>
       </view>
       <view class="item-height" style=''>
           <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
