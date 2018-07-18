@@ -1,0 +1,54 @@
+.category-font {
+  text-align: center;
+  margin-top: 20rpx;
+}
+.category-font text{
+  font-size: 14pt;
+}
+.category-tip {
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items:center;
+  border-bottom:2rpx solid #ddd;
+  padding-bottom: 20rpx;
+}
+.category-tip text{
+  font-size: 14pt;
+  margin-right:10rpx;
+}
+.category-img{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left:10rpx;
+}
+.category-wrap {
+  display: flex;
+  flex-direction:column;
+}
+
+.category-big {
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items:center;
+
+}
+.radius{
+  width: 12rpx;
+  height: 12rpx;
+  border:2rpx solid #F60;
+  background-color:#F60;  
+  border-radius:50%; 
+}
+
+.category-small {
+  display: flex;
+  flex-direction:row;
+}
+
+
+.category-checkbox {
+  display: flex;
+  flex-direction:column;
+}

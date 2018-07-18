@@ -1,6 +1,7 @@
 const app = getApp()
 Page({
 
+
   /**
    * 页面的初始数据
    */
@@ -22,6 +23,9 @@ Page({
     districtIndex: 0,
     district: [],
     districtId: '',
+    shop_img: '',
+    upload_url: app.globalData.apiUrl + 'api/v1/image/temporary',
+    license:'',
   },
 
   /**
@@ -150,28 +154,18 @@ Page({
       if (that.data.send){
         // 请求发送验证码
         wx.request({
-          url: '',
-          data: {
-            phoneNum: this.data.phoneNum
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          method: 'POST',
+          url: app.globalData.apiUrl +'api/v1/sms/getAuthCode/' + that.data.phoneNum,
+          method: 'GET',
           success: function (res) {
-            console.log(res)
+            that.setData({
+              alreadySend: true,
+              send: false
+            })
           }
-        })
-
-        this.setData({
-          alreadySend: true,
-          send: false
         })
         this.timer();
       }
     }
-   
-
   },
 
   timer:function () {
@@ -198,20 +192,45 @@ Page({
   },
 
 
-  gotoShow: function () {
+  gotoShow: function (e) {
     var _this = this
+    let img = e.currentTarget.dataset.img
     wx.chooseImage({
       count: 1, // 最多可以选择的图片张数，默认9
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
         // success
-        console.log(res)
+        var tempFilePaths = res.tempFilePaths
         _this.setData({
           facade: res.tempFilePaths[0]
         })
-        // 上传
-        this.upload_file('facade/',res.tempFilePaths[0]);
+        //上传
+        wx.uploadFile({
+          url: _this.data.upload_url,
+          filePath: res.tempFilePaths[0],
+          name: 'img',
+          header: {
+            'content-type': 'multipart/form-data'
+          }, // 设置请求的 header
+          success: function (res) {
+            var img_data = JSON.parse(res.data);
+            console.log(img_data.state, img)
+            if (img_data.state == 1) {
+              if(img == '1'){
+                _this.setData({
+                  shop_img: img_data.data.img
+                })
+               
+              }
+              if(img == '2'){
+                _this.setData({
+                  license: img_data.data.img
+                })
+              }
+            }
+          }
+        })
       },
       fail: function () {
         // fail
@@ -223,27 +242,9 @@ Page({
   },
 
   upload_file: function (url, filePath, name, formData, success, fail) {
-    wx.uploadFile({
-      url: '' + url,
-      filePath: filePath,
-      name: name,
-      header: {
-        'content-type': 'multipart/form-data'
-      }, // 设置请求的 header
-      formData: formData, // HTTP 请求中其他额外的 form data
-      success: function (res) {
-        console.log(res);
-        if (res.status == 1 && !res.data.error_code) {
-          typeof success == "function" && success(res.data);
-        } else {
-          typeof fail == "function" && fail(res);
-        }
-      },
-      fail: function (res) {
-        console.log(res);
-        typeof fail == "function" && fail(res);
-      }
-    })
+    var _this = this;
+    console.log(url);
+    
   },
   getSanCode: function (event) {
     // 区别 门店和法人
@@ -251,12 +252,16 @@ Page({
     let type = event.currentTarget.dataset.type;
     wx.scanCode({
       success: (res) => {
-        console.log(res)
+        console.log(res.result)
         if (type === '1') {
-
+          this.setData({
+            wx_code: res.result,
+          })
         }
         if (type === '2') {
-
+          this.setData({
+            license_code: res.result,
+          })
         }
       }
     })

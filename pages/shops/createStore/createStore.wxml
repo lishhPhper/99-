@@ -47,6 +47,15 @@
         <view wx:if="{{alreadySend}}" class="item-min-width" style='text-align:center;border:2rpx solid #f60;margin:15rpx 60rpx 0 0;'>{{second+"s"}}</view>
       </view>
     </view>
+    <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'>
+      <view class="item-height" style='display:flex;flex-direction:row;'>
+        <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
+        <view class="" style='min-width:150rpx;text-align:left;line-height:80rpx;font-size:11pt;'>手机验证码:</view> 
+      </view>
+      <view class="item-height" style=''>
+          <input class="item-height item-margin" style='text-align:left;line-height:80rpx;' name="code" placeholder=""/>
+      </view>
+    </view>
     <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
@@ -133,7 +142,7 @@
     </view>
 
     <block wx:if="{{agent}}">
-      <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:20rpx solid #ddd;'  bindtap='gotoShow'>
+      <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:20rpx solid #ddd;'  data-img='1' bindtap='gotoShow'>
         <view class="item-height" style='display:flex;flex-direction:row;'>
           <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
           <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门头照片:</view>
@@ -186,7 +195,7 @@
       </view>
     </view>
 
-    <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
+    <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;' data-img='2' bindtap='gotoShow'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <view style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></view>
         <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>营业执照:</view>
