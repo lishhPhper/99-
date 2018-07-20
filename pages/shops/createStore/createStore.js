@@ -23,9 +23,14 @@ Page({
     districtIndex: 0,
     district: [],
     districtId: '',
+    wx_code:'',
     shop_img: '',
+    license: '',
+    license_code:'',
     upload_url: app.globalData.apiUrl + 'api/v1/image/temporary',
-    license:'',
+    category_id:'',
+    category_name:'',
+    category_child_id:'',
   },
 
   /**
@@ -194,7 +199,7 @@ Page({
 
   gotoShow: function (e) {
     var _this = this
-    let img = e.currentTarget.dataset.img
+    var img = e.currentTarget.dataset.type
     wx.chooseImage({
       count: 1, // 最多可以选择的图片张数，默认9
       sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
@@ -215,18 +220,28 @@ Page({
           }, // 设置请求的 header
           success: function (res) {
             var img_data = JSON.parse(res.data);
-            console.log(img_data.state, img)
-            if (img_data.state == 1) {
-              if(img == '1'){
-                _this.setData({
-                  shop_img: img_data.data.img
-                })
-               
-              }
-              if(img == '2'){
-                _this.setData({
-                  license: img_data.data.img
-                })
+            if (img_data.state == '1') {
+              switch (img){
+                case '1':
+                  _this.setData({
+                    wx_code: img_data.data.img
+                  })
+                  break;
+                case '2':
+                  _this.setData({
+                    shop_img: img_data.data.img
+                  })
+                  break;
+                case '3':
+                  _this.setData({
+                    license: img_data.data.img
+                  })
+                  break;
+                case '4':
+                  _this.setData({
+                    license_code: img_data.data.img
+                  })
+                  break;
               }
             }
           }
@@ -236,7 +251,7 @@ Page({
         // fail
       },
       complete: function () {
-        // complete
+        console.log(_this.data.wx_code, _this.data.shop_img, _this.data.license, _this.data.license_code)
       }
     })
   },
@@ -326,14 +341,32 @@ Page({
   formSubmit: function (e) {
     var list = e.detail.value;
     var that = this;
-
+    console.log(that.data.wx_code)
     if (that.data.agent) {
       // 代理商
       console.log(list);
-      
+      var request_data = list;
+      var type = 1;
     }
     if (that.data.manufacturers) {
       // 厂家
+      var type = 2;
+      var request_data = list;
     }
+    that.checkAgent(request_data, that.data.agent,type);
+    wx.request({
+      url: app.globalData.apiUrl + 'api/v1/shop/register',
+      data: request_data,
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      success: function (res) {
+        
+      }
+    })
   },
+  checkAgent:function (request_data,type){
+
+  }
 })

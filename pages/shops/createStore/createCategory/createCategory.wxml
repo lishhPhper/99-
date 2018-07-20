@@ -1,0 +1,34 @@
+<view class='category-font'>
+  <text>请选择下面的经营的类别</text>
+</view>
+
+<view class='category-tip'>
+  <text>只能选择一个大类</text>
+  <image class='category-img' src='../../../../image/checked.png'></image>
+</view>
+
+<block wx:for="{{categoryList}}" wx:for-index="big" wx:for-item="categoryitem" >
+  <view class="category-wrap">
+    <view class="category-big item-height">
+      <view class="category-item">
+        <view class='radius'></view>
+        <text class='content'>{{categoryitem.name}}</text>
+      </view>
+      <image class='category-img' catchtap='chooseOs' src="../../../../image/{{categoryitem.checked?'checked':'unconfirmed'}}.png" id="{{categoryitem.id}}"></image>
+    </view>
+    <view class="category-small">
+      <checkbox-group class="category-checkbox" bindchange="checkboxChange">
+        <label class="checkbox category-checkbox-item item-height"  wx:for="{{categoryitem.son}}" wx:key="index" wx:for-item="subitems">
+          <view class='category-label-item'>
+            <view class='radius'></view>
+            <text>{{subitems.name}}</text>
+          </view>
+          <checkbox value="{{subitems.id}}" disabled="{{big !== big_index || big_index === '' ? true : false}}"  checked="{{subitems.checked}}" />
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+</block>
+<view class="weui-btn-area" >
+  <button class="weui-btn" style='background-color:#f60;' type="primary" bindtap="back" formType="submit">确定</button>
+</view>
