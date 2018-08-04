@@ -25,7 +25,7 @@
     <navigator class='item item-height'>
         <view class='float-left left-margin'>联系我们</view>
         <view class='float-left tip-font'>（联系99家商城总部）</view>
-        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image> 
     </navigator>
     <navigator class='item item-height'>
         <view class='float-left left-margin'>客服咨询</view>
