@@ -29,7 +29,6 @@ Page({
             wx.request({
               url: app.globalData.apiUrl + 'api/v1/address/'+ lat+'/'+lng,
               success: function (address) {
-                // console.log(address.data.data);
                 if(address.data.state == 1){
                   app.globalData.province = address.data.data.address.province
                   app.globalData.city = address.data.data.address.city
@@ -48,37 +47,25 @@ Page({
             wx.login({
                 success: function (res) {
                     if (res.code) {
-                        //发起网络请求
                         wx.request({
-                            url: app.globalData.apiUrl + 'api/v1/getOpenid',
+                            url: app.globalData.apiUrl + 'api/v1/getToken',
+                            method: 'GET',
                             data: {
-                                code: res.code
+                                code: res.code,
                             },
-                            success: function (loginRes) {
-                                if (loginRes.data.state == 1) {
-                                    var _getUserInfoParam = {
-                                        openid: loginRes.data.data.openid,
-                                        avatarUrl: e.detail.userInfo.avatarUrl,
-                                        nickName: e.detail.userInfo.nickName,
-                                    };
-                                    _getUserInfo(_getUserInfoParam, function (_getUserInfoRes) {
-                                        if (_getUserInfoRes.error_code == 0) {
-                                            var obj = _getUserInfoRes.data;
-                                            wx.setStorage({
-                                                key: 'userInfo',
-                                                data: obj
-                                            })
-                                            wx.reLaunch({
-                                                url: "/pages/shops/nearby/nearby",
-                                            })
-                                        } else {
-                                            _alert({ title: '登录失败', content: '服务器异常，请稍后再试' });
-                                        }
-                                    });
+                            success: function (res) {
+                                if (res.data.state == 1) {
+                                    var obj = res.data.data;
+                                    wx.setStorage({
+                                        key: 'userInfo',
+                                        data: obj
+                                    })
+                                    wx.reLaunch({
+                                        url: "/pages/shops/nearby/nearby",
+                                    })
+                                } else {
+                                    _alert({ title: '登录失败', content: '服务器异常，请稍后再试' });
                                 }
-                            },
-                            fail: function () {
-                                _alert({ title: '登录失败', content: '服务器异常，请稍后再试' });
                             }
                         })
                     } else {
@@ -89,26 +76,6 @@ Page({
         }
     }
 });
-
-function _getUserInfo(param,_callback){
-    wx.request({
-        url: app.globalData.apiUrl + 'api/v1/user',
-        method: 'POST',
-        data: {
-            wx_openid: param.openid,
-            avatar: param.avatarUrl,
-            user_name: param.nickName,
-        },
-        success: function (res) {
-            if(res.data.state == 1){
-                app.globalData.successReturn.data = res.data.data;
-                _callback(app.globalData.successReturn);
-            }else{
-                _callback(app.globalData.failReturn);
-            }
-        }
-    })
-}
 
 function _alert(param) {
     var alertParam = {
