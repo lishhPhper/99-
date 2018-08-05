@@ -2,10 +2,10 @@
   <view style='height:50rpx;'></view>
   <view style='height:50rpx;font-size:14pt;margin-left:30rpx;'>请选择要创建的门店类型：</view>
   <view style='display:flex;flex-direction:row;justify-content:center;align-items:center;'>
-    <view style='line-height:100rpx;text-align:right;font-size:14pt;margin-right:10rpx;' >代理商门店</view>
+    <view style='line-height:100rpx;text-align:right;font-size:14pt;margin-right:10rpx;' bindtap="checkAgent">代理商门店</view>
     <image wx:if="{{agent}}" src='../../../image/yuanHL.png' style='width:40rpx;height:40rpx;margin-right:25rpx;' bindtap="checkAgent"></image>
     <image wx:else src='../../../image/yuan.png' style='width:40rpx;height:40rpx;margin-right:25rpx;' bindtap="checkAgent"></image>
-    <view style='line-height:100rpx;text-align:right;font-size:14pt;margin:0 10rpx 0 25rpx;'>厂家门店</view>
+    <view style='line-height:100rpx;text-align:right;font-size:14pt;margin:0 10rpx 0 25rpx;' bindtap='checkManufacturers'>厂家门店</view>
     <image wx:if="{{manufacturers}}" src='../../../image/yuanHL.png' style='width:40rpx;height:40rpx;' bindtap='checkManufacturers'></image>
     <image  wx:else src='../../../image/yuan.png' style='width:40rpx;height:40rpx;' bindtap='checkManufacturers'></image>
   </view>
@@ -71,7 +71,24 @@
       </view>
     </view>
 
-    <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
+     <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
+      <view class="item-height" style='display:flex;flex-direction:row;'>
+        <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
+         <view wx:if="{{agent}}" class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店地区:</view>
+        <view wx:if="{{manufacturers}}" class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门市地区:</view>
+      </view>
+      <view class="item-height" style=''>
+        <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+          <view class="item-height" style='text-align:left;line-height:80rpx;'>{{region[0]}}{{region[1]}}{{region[2]}}</view>
+        </picker>
+      </view>
+      <view class="item-height" style='display:flex;flex-direction:row;'>
+          <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
+      </view>
+    </view>
+
+
+    <!-- <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:2rpx solid #ddd;'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
         <view wx:if="{{agent}}" class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门店地区:</view>
@@ -118,7 +135,7 @@
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
       </view>
-    </view>
+    </view> -->
 
 
     <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;'  >
@@ -141,19 +158,17 @@
       </view>
     </view>
 
-    <block wx:if="{{agent}}">
-      <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:20rpx solid #ddd;'  data-type="2" bindtap='gotoShow'>
-        <view class="item-height" style='display:flex;flex-direction:row;'>
-          <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
-          <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门头照片:</view>
-        </view>
-        <view class="item-height" style=''>
-        </view>
-        <view class="item-height" style='display:flex;flex-direction:row;'>
-          <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
-        </view>
+    <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:20rpx solid #ddd;'  data-type="2" bindtap='gotoShow'>
+      <view class="item-height" style='display:flex;flex-direction:row;'>
+        <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
+        <view class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>门头照片:</view>
       </view>
-    </block>
+      <view class="item-height" style=''>
+      </view>
+      <view class="item-height" style='display:flex;flex-direction:row;'>
+        <image src='../../../image/youbiao.png' style='margin:18rpx 60rpx 25rpx 0;width:45rpx;height:45rpx;'></image>
+      </view>
+    </view>
 
     <block wx:if="{{manufacturers}}">
       <view class="item-height" style='display:flex;flex-direction:row;border-bottom:2rpx solid #ddd;border-top:20rpx solid #ddd;'>
@@ -168,10 +183,10 @@
     <view class="item-height" style='display:flex;flex-direction:row;justify-content:space-between;border-bottom:20rpx solid #ddd;'>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <image src='../../../image/required_tip.png' style='margin:25rpx 10rpx 25rpx 10rpx;width:30rpx;height:30rpx;'></image>
-        <view name="factory_address" class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>厂家地址:</view>
+        <view  class="item-min-width" style='text-align:left;line-height:80rpx;font-size:11pt;'>厂家地址:</view>
       </view>
       <view class="item-height" style=''>
-          <input class="item-height" style='text-align:left;line-height:80rpx;' placeholder=""/>
+          <input class="item-height" name="factory_address" style='text-align:left;line-height:80rpx;' placeholder=""/>
       </view>
       <view class="item-height" style='display:flex;flex-direction:row;'>
         <view class="" style='line-height:80rpx;min-width:140rpx;'></view>

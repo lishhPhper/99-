@@ -14,6 +14,8 @@ Page({
     second: 60,
     phoneNum:'',
     isAgree:true,
+    region: ['北京市', '北京市', '朝阳区'],
+    customItem: '',
     provinceIndex:0,
     province:[],
     provinceId:'',
@@ -31,32 +33,21 @@ Page({
     category_id:'',
     category_name:'',
     category_child_id:'',
+    userToken:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 省信息
-    var that = this;
-    if (that.data.province == false){
-      wx.request({
-        url: app.globalData.apiUrl + 'api/v1/site/region/0/1',
-        header: {
-          'content-type': 'application/json'
-        },
-        method: 'Get',
-        success: function (res) {
-          console.log(res);
-          var region = res.data.data.region
-          var id = region[that.data.provinceIndex].id
-          that.setData({
-            province: region,
-            provinceId: id,
-          });
-        }
-      })
-    }
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) {
+        this.setData({
+          userToken: res.token,
+        });
+      }
+    })
   },
 
   /**
@@ -158,9 +149,15 @@ Page({
       // 检查是否频繁发送
       if (that.data.send){
         // 请求发送验证码
+        var userToken = that.data.userToken;
         wx.request({
           url: app.globalData.apiUrl +'api/v1/sms/getAuthCode/' + that.data.phoneNum,
           method: 'GET',
+          header: {
+            'content-type': 'application/json',
+            'userToken': userToken
+            // 'userToken': '1376961ed2a0ef59c13a06a718399805'
+          },
           success: function (res) {
             that.setData({
               alreadySend: true,
@@ -211,12 +208,15 @@ Page({
           facade: res.tempFilePaths[0]
         })
         //上传
+        var userToken = _this.data.userToken
         wx.uploadFile({
           url: _this.data.upload_url,
           filePath: res.tempFilePaths[0],
           name: 'img',
           header: {
-            'content-type': 'multipart/form-data'
+            'content-type': 'multipart/form-data',
+            'userToken': userToken
+            // 'userToken': '1376961ed2a0ef59c13a06a718399805'
           }, // 设置请求的 header
           success: function (res) {
             var img_data = JSON.parse(res.data);
@@ -282,6 +282,13 @@ Page({
     })
   },
 
+  bindRegionChange: function (event) {
+    console.log('picker发送选择改变，携带值为',event.detail.value)
+    this.setData({
+      region: event.detail.value
+    })
+  },
+
   bindProvinceChange:function (e) {
     var index = e.detail.value
     var id = this.data.province[index].id
@@ -290,10 +297,13 @@ Page({
       provinceId: id,
     })
     var that = this;
+    var userToken = this.data.userToken
     wx.request({
       url: app.globalData.apiUrl + 'api/v1/site/region/' + id + '/2',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        // 'userToken':'48d56c38ba9d810987577e7250c9223e'
+        'userToken': userToken
       },
       method: 'Get',
       success: function (res) {
@@ -317,7 +327,8 @@ Page({
     wx.request({
       url: app.globalData.apiUrl + 'api/v1/site/region/' + id + '/3',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'userToken': '48d56c38ba9d810987577e7250c9223e'
       },
       method: 'Get',
       success: function (res) {
@@ -341,32 +352,139 @@ Page({
   formSubmit: function (e) {
     var list = e.detail.value;
     var that = this;
-    console.log(that.data.wx_code)
+    console.log(list)
+    var request_data = {};
     if (that.data.agent) {
       // 代理商
-      console.log(list);
-      var request_data = list;
+      request_data.shop_name = list.name;
+      request_data.shop_contact = list.contact;
+      request_data.shop_wx = list.store_wx;
+      request_data.wx_code = that.data.wx_code;
+      request_data.town = list.town;
+      request_data.address = list.address;
+      request_data.shop_img = that.data.shop_img;
+      request_data.license = that.data.license;
+      request_data.user_name = list.user_name;
+      request_data.phone = that.data.phone;
+      request_data.wx_account = that.data.wx_account;
+      request_data.license_code = that.data.license_code;                        
       var type = 1;
+      var url = app.globalData.apiUrl + 'api/v1/shop/register';
     }
     if (that.data.manufacturers) {
       // 厂家
+      request_data.factory_contact = list.contact;
+      request_data.factory_wx = list.store_wx;
+      request_data.wx_code = that.data.wx_code;
+      request_data.town = list.town;
+      request_data.address = list.address;
+      request_data.factory_img = that.data.shop_img;
+      request_data.factory_name = list.factory_name;
+      request_data.factory_address = list.factory_address;
+      request_data.license = that.data.license;
+      request_data.user_name = list.user_name;
+      request_data.phone = that.data.phone;
+      request_data.wx_account = that.data.wx_account;
+      request_data.license_code = that.data.license_code;           
       var type = 2;
-      var request_data = list;
+      var url = app.globalData.apiUrl + 'api/v1/factory/register';
     }
-    that.checkAgent(request_data, that.data.agent,type);
+    //检查手机号码和手机验证码
+    var checkedNum = that.checkPhoneNum(list.store_phone);
+    if(!checkedNum){
+      wx.showToast({
+        title: '手机号码不正确',
+        image: '../../../image/fail.png'
+      })
+      return false
+    }
+    if (that.data.agent) {
+      request_data.shop_phone = list.store_phone;
+    }else{
+      request_data.factory_phone = list.store_phone;
+    }
+    that.checkPhoneCode(list.code);
+    request_data.code = list.code;
+    // 检查地区、乡镇
+    var region = that.data.region;
+    that.checkAddress(region, list.town);
+    if(region[1] == '县'){
+      region[1] = region[0];
+    }
+    request_data.province = region[0];
+    request_data.city = region[1];
+    request_data.district = region[2];
+    // 检查经营类别
+    var category_id = that.data.category_id;
+    var category_child_id = that.data.category_child_id;
+    if (category_id == '' || category_child_id == ''){
+      wx.showToast({
+        title: '请选择经营类别',
+        image: '../../../image/fail.png'
+      })
+      return false;
+    }
+    request_data.category_id = category_id;
+    request_data.category_child_id = category_child_id;
+    // 检查参数
+    var userToken = this.data.userToken
     wx.request({
-      url: app.globalData.apiUrl + 'api/v1/shop/register',
+      url: url,
       data: request_data,
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'userToken': userToken
+        // 'userToken':'1376961ed2a0ef59c13a06a718399805'
       },
       method: 'POST',
       success: function (res) {
-        
+        // 成功之后保存用户开店情况(看后续情况返回)
+        console.log(res,res.data);
+        if(res.data.state == 1){
+          if(res.data.data.store_type == 2) {
+            // 缓存
+            console.log(3232);
+          }
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            image: '../../../image/fail.png'
+          })
+          return false;
+        }
+      },
+      fail: function (res){
+        wx.showToast({
+          title: '提交失败',
+          image: '../../../image/fail.png'
+        })
+        return false;
       }
     })
   },
-  checkAgent:function (request_data,type){
 
+  checkPhoneCode:function(code) {
+    if (code.length != 6){
+      wx.showToast({
+        title: '验证码错误',
+        image: '../../../image/fail.png'
+      })
+    }
+  },
+  checkAddress:function(region,town){
+    if(region[0] == '' || region[1] == '' || region[2] == ''){
+      wx.showToast({
+        title: '请填写地区信息',
+        image: '../../../image/fail.png'
+      })
+      return false
+    }
+    if(town == ''){
+      wx.showToast({
+        title: '请填写乡镇信息',
+        image: '../../../image/fail.png'
+      })
+      return false 
+    }
   }
 })
