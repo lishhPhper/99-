@@ -12,7 +12,8 @@ Page({
           key: 'userInfo',
           success: function(res) {
               obj.setData({
-                  userInfo: res.data,
+                  userInfo: res.data.user_info,
+                  token: res.data.token,
               })
           },
       })

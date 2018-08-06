@@ -41,10 +41,22 @@ Page({
         });
     },
     onLoad: function (options){
-        this.setData({
-            type: options.type,
-            aboutNodeType: options.aboutNodeType,
+        var obj = this;
+        wx.getStorage({
+            key: 'userInfo',
+            success: function (res) {
+                obj.setData({
+                    userInfo: res.data.user_info,
+                    token: res.data.token,
+                    type: options.type,
+                    aboutNodeType: options.aboutNodeType,
+                });
+                wx.setNavigationBarTitle({
+                    title: res.data.user_info.user_name
+                })
+            },
         })
+        
     }
 });
 

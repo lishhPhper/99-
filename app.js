@@ -10,7 +10,8 @@ App({
         city: '',
         district: '',
         address: '',
-        apiUrl: 'https://www.7qiaoban.cn/',
+        // apiUrl: 'https://www.7qiaoban.cn/',
+        apiUrl: 'http://99.icode99.top/',
         successReturn: {
             error_code: 0,
             message: '成功',
