@@ -4,14 +4,10 @@ const app = getApp()
 
 Page({
     data: {
-        inputShowed: false,
-        inputVal: "",
-        toView: 'red',
-        scrollTop: 100,
-        type: 3,
+        //type: 3,
         nodeType: 1,
         productNodeType:1,
-        aboutNodeType: 1,
+        //aboutNodeType: 1,
         array: [
             {},
             {},
@@ -45,12 +41,39 @@ Page({
         wx.getStorage({
             key: 'userInfo',
             success: function (res) {
-                obj.setData({
-                    userInfo: res.data.user_info,
-                    token: res.data.token,
-                    type: options.type,
-                    aboutNodeType: options.aboutNodeType,
-                });
+                var userToken = res.data.token;
+                var user_info = res.data.user_info;
+                switch (user_info.type){
+                    // 厂家
+                    case 1:
+                        wx.request({
+                            url: app.globalData.apiUrl + 'api/v1/factory/getFactoryInfo',
+                            method: 'GET',
+                            header: {
+                                'content-type': 'multipart/form-data',
+                                'userToken': userToken
+                            },
+                            success: function (factoryRes) {
+                                if (factoryRes.data.state == 1) {
+                                    obj.setData({
+                                        userInfo: res.data.user_info,
+                                        token: res.data.token,
+                                        type: options.type,
+                                        aboutNodeType: options.aboutNodeType,
+                                        storeInfo: factoryRes.data.data,
+                                    });
+                                } else {
+                                    _alert({ title: '网络异常', content: '服务器异常，请稍后再试' });
+                                }
+                            }
+                        });
+                        break;
+                        // 商家
+                    case 2:
+
+                        break;
+                }
+                
                 wx.setNavigationBarTitle({
                     title: res.data.user_info.user_name
                 })

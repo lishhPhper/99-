@@ -54,7 +54,7 @@
     </view>
     <view class='item-hr'></view>
     <view class='clear'></view>
-    <view >
+    <view>
         <block wx:if="{{productNodeType == 1}}">
             <view class='product-box' wx:for="{{array}}">
                 <navigator url="/pages/product/detail/detail" style='box-sizing:border-box;padding:10rpx;width:50%;height:420rpx;float:left;background-color:#FFF;border:1px solid #ccc;'>
@@ -124,41 +124,44 @@
         <block wx:if="{{aboutNodeType == 2}}">
             <view style='padding:20rpx 40rpx;'>
                 <view style='height:130rpx;line-height:130rpx;font-size:14pt;font-weight:600;text-align:center;'>诚招全国代理商</view>
-                <view style='text-indent: 60rpx;font-size:12pt;'>注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本注册成本</view>
+                <view style='text-indent: 60rpx;font-size:12pt;'>注册成本厂代理商小程序网店，本厂产品可授权同步到你的小程序网店，你可在当地给消费者“代购、送货、安装、售后”一条龙服务。我们将为你做好产品一件代发业务。</view>
             </view>
             <button style='width:250rpx;height:80rpx;line-height:80rpx;color:#FFF;font-weight:800;background-color:#FF6600'>立即注册</button>
             <navigator url="pages/community/articleInfo/articleInfo" hover-class="navigator-hover" style='text-align:center;color:#FF6600;padding:30rpx;'>注册帮助</navigator>
         </block>
         <block wx:if="{{aboutNodeType == 3}}">
-            <view style='height:80rpx;line-height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;'>门市联系人：王先森</view>
-            <view style='height:80rpx;line-height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;'>门市电话：18700000000</view>
-            <view style='height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
-                <view style='float:left;height:80rpx;line-height:80rpx;'>门市微信：18700000000</view>
+            <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ccc;padding-left:50rpx;'>门市联系人：{{storeInfo.factory_contact}}</view>
+            <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ccc;padding-left:50rpx;'>门市电话：{{storeInfo.factory_phone}}</view>
+            <view style='height:80rpx;border-bottom:1px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
+                <view style='float:left;height:80rpx;line-height:80rpx;'>门市微信：{{storeInfo.factory_wx}}</view>
                 <view style='float:right;height:80rpx;'>
                     <view style='float:left;height:80rpx;line-height:80rpx;'>二维码：</view>
-                    <image src='/image/QRcode.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+                    <image src='{{storeInfo.wx_code}}' class='right-icon'></image>
                 </view>
             </view>
-            <view style='height:160rpx;border-bottom:2px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
-                <view style='float:left;height:80rpx;line-height:80rpx;'>门店地址：江西省赣州市南康区国际家居城中心市场</view>
+            <view class='clear'></view>
+            <view style='border-bottom:1px solid #ccc;padding:0rpx 50rpx;'>
+                <view style='float:left;height:80rpx;line-height:80rpx;'>门店地址：{{storeInfo.province}}{{storeInfo.city}}{{storeInfo.district}}{{storeInfo.town}}{{storeInfo.address}}</view>
                 <view style='float:right;height:80rpx;'>
-                    <image src='/image/mapHL.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+                    <image src='/image/mapHL.png' class='right-icon'></image>
                 </view>
             </view>
+            <view class='clear'></view>
             <view class='item-hr'></view>
-            <view style='height:80rpx;line-height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;'>厂家负责人姓名：王先森</view>
-            <view style='height:80rpx;line-height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;'>厂家负责人电话：13800000000</view>
-            <view style='height:80rpx;border-bottom:2px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
-                <view style='float:left;height:80rpx;line-height:80rpx;'>厂家负责人微信：18700000000</view>
+            <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ccc;padding-left:50rpx;'>厂家负责人姓名：{{storeInfo.user_name}}</view>
+            <view style='height:80rpx;line-height:80rpx;border-bottom:1px solid #ccc;padding-left:50rpx;'>厂家负责人电话：{{storeInfo.phone}}</view>
+            <view style='height:80rpx;border-bottom:1px solid #ccc;padding-left:50rpx;padding-right:50rpx;'>
+                <view style='float:left;height:80rpx;line-height:80rpx;'>厂家负责人微信：{{storeInfo.wx_account}}</view>
                 <view style='float:right;height:80rpx;'>
                     <view style='float:left;height:80rpx;line-height:80rpx;'>二维码：</view>
-                    <image src='/image/QRcode.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+                    <image src='{{storeInfo.license_code}}' class='right-icon'></image>
                 </view>
             </view>
-            <view style='height:160rpx;padding-left:50rpx;padding-right:50rpx;'>
-                <view style='float:left;height:80rpx;line-height:80rpx;'>门店地址：江西省赣州市南康区国际家居城中心市场</view>
+            <view class='clear'></view>
+            <view style='padding-left:50rpx;padding-right:50rpx;'>
+                <view style='float:left;height:80rpx;line-height:80rpx;'>厂家地址：{{storeInfo.factory_address}}</view>
                 <view style='float:right;height:80rpx;'>
-                    <image src='/image/mapHL.png' style='float:right;height:50rpx;width:50rpx;margin:15rpx 0rpx;'></image>
+                    <image src='/image/mapHL.png' class='right-icon'></image>
                 </view>
             </view>
         </block>
