@@ -21,27 +21,20 @@
 <!--  首页相册  start  -->
 <block wx:if="{{type == 1}}">
     <view style='padding:15rpx 30rpx;'>
-        <view style='position:relative;'>
-            <image src='/image/music.png' class='top-right-icon'></image>
-            <image src='/image/jiaju01.jpg' class='image-list'></image>
-            <navigator url='/pages/product/edit/edit' open-type='navigate'>
-                <image src='/image/edit.png' class='bottom-right-icon'></image>
-            </navigator>
+        <image src='/image/jiaju01.jpg' class='image-list'></image>
+        <image src='/image/jiaju01.jpg' class='image-list'></image>
+        <image src='/image/jiaju01.jpg' class='image-list'></image>
+    </view>
+    <view style='display: flex;position:fixed;right:30rpx;bottom: 20rpx;width:210rpx;height:60rpx;z-index:999;border:1px solid gray;flex-direction: row;'>
+        <view bindtap="playVoice" data-voice-resource="{{ }}" style='display: flex;padding:0rpx 5rpx;'>
+            <image src='/image/music.png' style='width:60rpx;height:60rpx;'></image>
         </view>
-        <view style='position:relative;'>
-            <image src='/image/voice.png' class='top-left-icon'></image>
-            <image src='/image/jiaju01.jpg' class='image-list'></image>
-            <navigator url='/pages/product/edit/edit' open-type='navigate'>
-                <image src='/image/edit.png' class='bottom-right-icon'></image>
-            </navigator>
+        <view bindtap="playVoice" data-voice-resource="{{ }}" style='display: flex;padding:0rpx 5rpx;'>
+            <image src='/image/voice.png' style='width:60rpx;height:60rpx;'></image>
         </view>
-        <view style='position:relative;'>
-            <image src='/image/voice.png' class='top-left-icon'></image>
-            <image src='/image/jiaju01.jpg' class='image-list'></image>
-            <navigator url='/pages/product/edit/edit' open-type='navigate'>
-                <image src='/image/edit.png' class='bottom-right-icon'></image>
-            </navigator>
-        </view>
+        <navigator url='/pages/product/edit/edit' open-type='navigate' style='display: flex;padding:0rpx 5rpx;'>
+            <image src='/image/edit.png' style='width:60rpx;height:60rpx;'></image>
+        </navigator>
     </view>
 </block>
 <!--  首页相册  end  -->
@@ -118,8 +111,14 @@
         <block wx:if="{{aboutNodeType == 1}}">
             <view style='padding:20rpx 40rpx;'>
                 <view style='height:130rpx;line-height:130rpx;font-size:14pt;font-weight:600;text-align:center;'>店铺简介</view>
-                <view style='text-indent: 60rpx;font-size:12pt;'>江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司江西木牛家具有限公司</view>
+                <view id="des-view" style='text-indent: 60rpx;font-size:12pt;'>{{storeInfo.introduction}}</view>
             </view>
+            <button bindtap="desChange" style='width:200rpx;height:80rpx;line-height:80rpx;color:#FFF;font-weight:600;background-color:#FF6600'>编辑</button>
+            <modal class="modal" hidden="{{introduction_hidden}}" title="店铺简介" confirm-text="确认" bindconfirm="confirm" no-cancel="true">
+                <form bindsubmit="evaSubmit">
+                    <textarea auto-focus="true" bindinput="bindinput" class='text' placeholder="请输入店铺简介" value='{{storeInfo.introduction}}' />
+                </form>
+            </modal>
         </block>
         <block wx:if="{{aboutNodeType == 2}}">
             <view style='padding:20rpx 40rpx;'>

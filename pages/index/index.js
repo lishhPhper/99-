@@ -8,17 +8,49 @@ Page({
     },
     onLoad: function () {
         var obj = this;
-        wx.getStorage({
-            key: 'userInfo',
+        wx.getSetting({
             success: function (res) {
-                obj.setData({
-                    isShowBtn: 0,
-                });
-                wx.reLaunch({
-                    url: "/pages/shops/nearby/nearby",
-                })
-            },
-        }),
+                if (res.authSetting['scope.userInfo'] === true) {
+                    obj.setData({
+                        isShowBtn: 0,
+                    });
+                    wx.login({
+                        success: function (loginRes) {
+                            if (loginRes.code) {
+                                wx.request({
+                                    url: app.globalData.apiUrl + 'api/v1/getToken',
+                                    method: 'GET',
+                                    data: {
+                                        code: loginRes.code,
+                                    },
+                                    success: function (getTokenRes) {
+                                        if (getTokenRes.data.state == 1) {
+                                            var userObj = getTokenRes.data.data;
+                                            wx.setStorage({
+                                                key: 'userInfo',
+                                                data: userObj
+                                            })
+                                            wx.reLaunch({
+                                                url: "/pages/shops/nearby/nearby",
+                                            })
+                                        } else {
+                                            _alert({ title: '登录失败', content: '服务器异常，请稍后再试' });
+                                        }
+                                    }
+                                })
+                            } else {
+                                _alert({ title: '登录失败', content: '服务器异常，请稍后再试' });
+                            }
+                        }
+                    });
+                } else {
+                    obj.setData({
+                        isShowBtn: 1,
+                    });
+                }
+            }
+        })
+        
         wx.getLocation({
           type: 'wgs84',
           success: function (res) {

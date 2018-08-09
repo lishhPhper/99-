@@ -4,6 +4,11 @@
 <open-data type="userNickName"></open-data> -->
 <!-- 需要使用 button 来授权登录 -->
 <block wx:if="{{isShowBtn == 1}}">
-    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">进入小程序</button>
+    <view class="test-bg">
+        <image src="/image/first.jpg" class="bg-image" mode="scaleToFill"></image>
+    </view>
+    <view wx:if="{{canIUse}}" id="authorize">
+        <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" id="authorize-bottn">授权登录</button>
+    </view>
     <view wx:else>请升级微信版本</view>
 </block>

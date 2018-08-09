@@ -6,8 +6,9 @@ Page({
     data: {
         //type: 3,
         nodeType: 1,
-        productNodeType:1,
+        productNodeType: 1,
         //aboutNodeType: 1,
+        introduction_hidden: true,
         array: [
             {},
             {},
@@ -36,14 +37,53 @@ Page({
             aboutNodeType: event.currentTarget.dataset.aboutNodeType
         });
     },
-    onLoad: function (options){
+    desChange: function (event) {
+        this.setData({
+            introduction_hidden: false
+        });
+    },
+    bindinput: function (e) {
+        this.setData({
+            introduction: e.detail.value
+        });
+    },
+    playVoice: function (e) {
+        
+    },
+    confirm: function (e) {
+        var _obj = this;
+        wx.showLoading({
+            mask: true,
+            title: '努力加载中...',
+        });
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/factory/editFactoryInfo',
+            method: 'POST',
+            data: {
+                introduction: _obj.data.introduction,
+            },
+            header: {
+                'userToken': _obj.data.token
+            },
+            success: function (res) {
+                if(res.data.state == 1){
+                    wx.hideLoading();
+                    _obj.setData({
+                        introduction_hidden: true,
+                        storeInfo: res.data.data
+                    });
+                }
+            }
+        })
+    },
+    onLoad: function (options) {
         var obj = this;
         wx.getStorage({
             key: 'userInfo',
             success: function (res) {
                 var userToken = res.data.token;
                 var user_info = res.data.user_info;
-                switch (user_info.type){
+                switch (user_info.type) {
                     // 厂家
                     case 1:
                         wx.request({
@@ -63,23 +103,24 @@ Page({
                                         storeInfo: factoryRes.data.data,
                                     });
                                 } else {
-                                    _alert({ title: '网络异常', content: '服务器异常，请稍后再试' });
+                                    console.log(factoryRes);
+                                    //_alert({ title: '网络异常', content: '服务器异常，请稍后再试' });
                                 }
                             }
                         });
                         break;
-                        // 商家
+                    // 商家
                     case 2:
 
                         break;
                 }
-                
+
                 wx.setNavigationBarTitle({
                     title: res.data.user_info.user_name
                 })
             },
         })
-        
+
     }
 });
 
