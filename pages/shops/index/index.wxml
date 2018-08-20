@@ -42,7 +42,7 @@
 </view>
 <view class="navs">
   <view class="nav-item nav-item-left" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-    <image src="../../../image/jiaju01.jpg" class="nav-image" bindtap='entityStore'/>
+    <image src='{{shop_img == "" ? defaultImg : shop_img }}'  binderror="imgError" class="nav-image" bindtap='entityStore'/>
     <text style='font-size:12pt'>我的实体门店</text>
   </view>
   <view class="nav-item nav-item-right" catchtap="catchTapCategory" data-type="1" data-typeid="1">
@@ -57,7 +57,7 @@
       <image src="../../../image/nearby.png" style='width:50rpx;height:50rpx;'></image>
     </view>
     <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-      <text>河南省郑州市潢川县戈阳路黄国粮业斜对面</text>
+      <text>{{address}}</text>
     </view>
     <view class="flex-item">
       <image src="../../../image/weixin.png" style='width:50rpx;height:50rpx;'></image>
@@ -81,10 +81,6 @@
   </view>
 </block>
  <block wx:if="{{status == 2}}">
-    <view  class="menu2_view" wx:for="{{arry}}" wx:key="{{arry}}" wx:for-index="idx" bindtap="btnanniu"> 
-        <text>{{item.text}}</text>
-    </view>
-    <view style="clear:both"></view>
     <view style="height:380rpx;padding:30rpx 0 30rpx;">
       <image src='../../../image/jiaju01.jpg' style='width:90%;height:380rpx;padding:20rpx 0 20rpx;margin:0 37rpx 0 37rpx'></image>
       <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:80rpx'></image>

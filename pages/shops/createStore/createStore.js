@@ -44,7 +44,7 @@ Page({
       key: 'userInfo',
       success: function (res) {
         this.setData({
-          userToken: res.token,
+          userToken: res.data.token,
         });
       }
     })
