@@ -31,7 +31,6 @@ Page({
                                                 key: 'userInfo',
                                                 data: userObj
                                             })
-
                                             wx.getLocation({
                                               type: 'wgs84',
                                               success: function (res) {

@@ -32,7 +32,7 @@
         <view bindtap="playVoice" data-voice-resource="https://www.7qiaoban.cn/test_music.mp3" style='display: flex;padding:0rpx 5rpx;'>
             <image src='/image/voice.png' style='width:60rpx;height:60rpx;'></image>
         </view>
-        <navigator url='/pages/product/edit/edit' open-type='navigate' style='display: flex;padding:0rpx 5rpx;'>
+        <navigator url='/pages/manufactor/editor/editor' open-type='navigate' style='display: flex;padding:0rpx 5rpx;'>
             <image src='/image/edit.png' style='width:60rpx;height:60rpx;'></image>
         </navigator>
     </view>

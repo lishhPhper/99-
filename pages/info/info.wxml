@@ -97,5 +97,3 @@
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
 </block>
-<import src="../../wxParse/wxParse.wxml"/>
-<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
