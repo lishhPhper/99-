@@ -40,10 +40,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        this.setData({
+        that.setData({
           userToken: res.data.token,
         });
       }
@@ -324,11 +325,12 @@ Page({
       cityId: id,
     })
     var that = this;
+    var userToken = that.data.userToken;
     wx.request({
       url: app.globalData.apiUrl + 'api/v1/site/region/' + id + '/3',
       header: {
         'content-type': 'application/json',
-        'userToken': '48d56c38ba9d810987577e7250c9223e'
+        'userToken': userToken
       },
       method: 'Get',
       success: function (res) {
@@ -478,13 +480,6 @@ Page({
         image: '../../../image/fail.png'
       })
       return false
-    }
-    if(town == ''){
-      wx.showToast({
-        title: '请填写乡镇信息',
-        image: '../../../image/fail.png'
-      })
-      return false 
     }
   }
 })

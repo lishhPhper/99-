@@ -11,6 +11,7 @@ Page({
     first_category_id:'',
     category_child_id:'',
     categoryList:[],
+    userToken:''
   },
 
   /**
@@ -18,29 +19,32 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    // wx.getStorage({
-    //   key: 'userInfo',
-    //   success: function (res) {
-    //     this.setData({
-    //       userToken: res.token,
-    //     });
-    //   }
-    // })
-    wx.request({
-      url: app.globalData.apiUrl + 'api/v1/category/storeList',
-      header: {
-        'content-type': 'application/json',
-        'userToken':'1376961ed2a0ef59c13a06a718399805'
-      },
-      method: 'Get',
+    wx.getStorage({
+      key: 'userInfo',
       success: function (res) {
-        console.log(res.data.data.category);
-        var categoryList = res.data.data.category;
+        var userToken = res.data.token
         that.setData({
-          categoryList
+          userToken
         });
+
+        wx.request({
+          url: app.globalData.apiUrl + 'api/v1/category/storeList',
+          header: {
+            'content-type': 'application/json',
+            'userToken': userToken
+          },
+          method: 'Get',
+          success: function (res) {
+            console.log(res.data.data.category);
+            var categoryList = res.data.data.category;
+            that.setData({
+              categoryList
+            });
+          }
+        })
       }
     })
+    
   },
 
   /**
