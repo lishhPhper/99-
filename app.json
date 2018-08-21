@@ -49,8 +49,8 @@
                 "selectedIconPath": "image/addHL.png"
             },
             {
-                "pagePath": "pages/editor/editor",
-                "text": "发图文",
+                "pagePath": "pages/shops/index/index",
+                "text": "我门店",
                 "iconPath": "image/write.png",
                 "selectedIconPath": "image/writeHL.png"
             },
