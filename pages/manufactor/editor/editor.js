@@ -32,11 +32,41 @@ Page({
                                 items[i]['format_text'] = obj.data.format_text;
                             }
                             homeContentRes.data.data.items = items;
-                            obj.setData({
-                                userInfo: res.data.user_info,
-                                token: res.data.token,
-                                home_content: homeContentRes.data.data,
-                            });
+                            if (options.type == 2) {
+                                wx.request({
+                                    url: app.globalData.apiUrl + 'api/v1/homeContent/getCache',
+                                    method: 'GET',
+                                    header: {
+                                        'userToken': userToken
+                                    },
+                                    data: { itemId: options.itemId },
+                                    success: function (getCacheRes) {
+                                        if (getCacheRes.data.state == 1) {
+                                            for (var i = 0; i < items.length; i++) {
+                                                if (items[i]['id'] == options.itemId) {
+                                                    WxParse.wxParse('format_text', 'html', getCacheRes.data.data, obj, 5);
+                                                    items[i]['format_text'] = obj.data.format_text;
+                                                    items[i]['text'] = getCacheRes.data.data;
+                                                }
+                                            }
+                                            homeContentRes.data.data.items = items;
+                                            obj.setData({
+                                                userInfo: user_info,
+                                                token: userToken,
+                                                home_content: homeContentRes.data.data,
+                                            });
+                                        } else {
+                                            console.log(getCacheRes);
+                                        }
+                                    }
+                                });
+                            }else{
+                                obj.setData({
+                                    userInfo: res.data.user_info,
+                                    token: res.data.token,
+                                    home_content: homeContentRes.data.data,
+                                });
+                            }
                         } else {
                             console.log(homeContentRes);
                         }
@@ -144,13 +174,44 @@ Page({
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: function (res) {
+                console.log(res);
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                 var tempFilePaths = res.tempFilePaths;
-                home_content.items[itemKey]['img'] = tempFilePaths;
+                home_content.items[itemKey]['img'] = tempFilePaths[0];
                 obj.setData({
                     home_content: home_content
                 });
             }
         })
+    },
+    /**
+     * 保存图文
+     */
+    saveContent: function (event) {
+        var obj = this;
+        var home_content = obj.data.home_content;
+        var itemKey = event.currentTarget.dataset.itemKey;
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/homeContent/saveHomeContent',
+            method: 'POST',
+            header: {
+                'userToken': obj.data.token
+            },
+            data: { 
+                music: home_content.music, 
+                record: home_content.record,
+                music_name: home_content.music_name,
+                items: JSON.stringify(home_content.items),
+            },
+            success: function (saveHomeContentRes) {
+                if (saveHomeContentRes.data.state == 1) {
+                    wx.redirectTo({
+                        url: "../index/index"
+                    })
+                } else {
+                    console.log(saveHomeContentRes);
+                }
+            }
+        });
     }
 })

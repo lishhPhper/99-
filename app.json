@@ -50,7 +50,7 @@
                 "selectedIconPath": "image/addHL.png"
             },
             {
-                "pagePath": "pages/manufactor/editor/editor",
+                "pagePath": "pages/shops/index/index",
                 "text": "我门店",
                 "iconPath": "image/write.png",
                 "selectedIconPath": "image/writeHL.png"

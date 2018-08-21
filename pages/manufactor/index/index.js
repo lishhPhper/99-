@@ -44,10 +44,10 @@ var _music = '';
 // },
 Page({
     data: {
-        //type: 3,
+        type: 1,
         nodeType: 1,
         productNodeType: 1,
-        //aboutNodeType: 1,
+        aboutNodeType: 1,
         introduction_hidden: true,
         array: [
             {},
