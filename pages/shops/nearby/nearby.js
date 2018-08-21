@@ -9,11 +9,18 @@ Page({
       inputVal: "",
       toView: 'red',
       scrollTop: 100,
-      canIUse: wx.canIUse('button.open-type.getUserInfo')
+      canIUse: wx.canIUse('button.open-type.getUserInfo'),
+      userToken:''
     },
     onLoad: function (options) {
-      this.setData({
-        address: app.globalData.address,
+      var that = this;
+      wx.getStorage({
+        key: 'address',
+        success: function (res) {
+          that.setData({
+            address: res.data.address,
+          });
+        }
       })
     },
     showInput: function () {
@@ -60,7 +67,8 @@ Page({
         this.setData({
             scrollTop: this.data.scrollTop + 10
         })
-    }
+    },
+    
 });
 
 
