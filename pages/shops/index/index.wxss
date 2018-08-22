@@ -2,6 +2,7 @@
 .navs {
   display: flex;
   height: 350rpx;
+  padding-top:40rpx; 
 }
 
 .nav-item {
@@ -67,4 +68,15 @@
 }
 .flex-item{
   margin: 15rpx;
+}
+.image-list{
+    width: 100%;
+    margin: 5rpx 0rpx;
+}
+.address{
+  line-height:50rpx;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }

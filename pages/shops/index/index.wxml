@@ -1,45 +1,3 @@
-<view class="page">
-    <view class="page__bd"> 
-        <view class="weui-search-bar" style="background-color:#F4F3E6;">
-            <view class="weui-search-bar__form">
-                <view class="weui-search-bar__box">
-                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                    <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-                        <icon type="clear" size="14"></icon>
-                    </view>
-                </view>
-                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-                    <icon class="weui-icon-search" type="search" size="14"></icon>
-                    <view class="weui-search-bar__text">搜索</view>
-                </label>
-            </view>
-            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-        </view>
-        <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-        </view>
-    </view>
-</view>
 <view class="navs">
   <view class="nav-item nav-item-left" catchtap="catchTapCategory" data-type="1" data-typeid="1">
     <image src='{{shop_img == "" ? defaultImg : shop_img }}'  binderror="imgError" class="nav-image" bindtap='entityStore'/>
@@ -56,41 +14,30 @@
     <view class="flex-item ">
       <image src="../../../image/nearby.png" style='width:50rpx;height:50rpx;'></image>
     </view>
-    <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+    <view class="flex-item address" style="">
       <text>{{address}}</text>
     </view>
     <view class="flex-item">
-      <image src="../../../image/weixin.png" style='width:50rpx;height:50rpx;'></image>
+      <image src="../../../image/weixin.png" data-type="1" bindtap='showStoreContact' style='width:50rpx;height:50rpx;'></image>
     </view>
     <view class="flex-item">
-      <image src="../../../image/weixin.png" style='width:50rpx;height:50rpx;'></image>
+      <image src="../../../image/dianhua.png" data-type="2" bindtap='showStoreContact' style='width:50rpx;height:50rpx;'></image>
     </view>
   </view>
 </view>
 <view style='background-color:#ddd;width:100%;height:2rpx;'></view>
-<block wx:if="{{status == 1}}">
-  <view class='picture'>
-    <view class='picture_top'>
-      <view class='picture_left' bindtap='addImg'>
-        <image src='../../../image/add.png' style='padding:50rpx 0 0'></image>
-        <view>
-          <text>添加首页图片</text>
-        </view>
-      </view>
+
+<view wx:for="{{imageText.items}}" wx:for-item="imageData" style='padding:15rpx 30rpx;'>
+    <image src="{{img_url}}{{imageData.img}}" class='image-list'></image>
+</view>
+<view style='display: flex;position:fixed;right:30rpx;bottom: 20rpx;width:210rpx;height:60rpx;z-index:999;flex-direction: row;'>
+    <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.music}}" style='display: flex;padding:0rpx 5rpx;'>
+        <image src='/image/music.png' style='width:60rpx;height:60rpx;'></image>
     </view>
-  </view>
-</block>
- <block wx:if="{{status == 2}}">
-    <view style="height:380rpx;padding:30rpx 0 30rpx;">
-      <image src='../../../image/jiaju01.jpg' style='width:90%;height:380rpx;padding:20rpx 0 20rpx;margin:0 37rpx 0 37rpx'></image>
-      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:80rpx'></image>
-      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:160rpx;left:525rpx'></image>
-      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:460rpx'></image>
+    <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.record}}" style='display: flex;padding:0rpx 5rpx;'>
+        <image src='/image/voice.png' style='width:60rpx;height:60rpx;'></image>
     </view>
-    <view>
-      <image src='../../../image/jiaju01.jpg' style='width:90%;height:380rpx;padding:20rpx 0 20rpx;margin:0 37rpx 0 37rpx'></image>
-      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:80rpx'></image>
-      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:160rpx;left:525rpx'></image>
-      <image src='../../../image/weixin.png' style='position:relative;width:60rpx;height:60rpx;bottom:360rpx;left:460rpx'></image>
-    </view>
-</block> 
+    <navigator url='/pages/manufactor/editor/editor' open-type='navigate' style='display: flex;padding:0rpx 5rpx;'>
+        <image src='/image/edit.png' style='width:60rpx;height:60rpx;'></image>
+    </navigator>
+</view>

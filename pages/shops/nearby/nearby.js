@@ -114,7 +114,6 @@ Page({
       success: function (res) {
         if (res.data.state == 1) {
           var storeArr = res.data.data
-          console.log(res.data)
           that.setData({
             storeArr
           })

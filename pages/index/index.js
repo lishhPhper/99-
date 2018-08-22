@@ -31,12 +31,12 @@ Page({
                                                 key: 'userInfo',
                                                 data: userObj
                                             })
+                                            var userToken = userObj.token
                                             wx.getLocation({
                                               type: 'wgs84',
                                               success: function (res) {
                                                 var lat = res.latitude
                                                 var lng = res.longitude
-                                                var userToken = userObj.token
                                                 wx.request({
                                                   url: app.globalData.apiUrl + 'api/v1/site/address/' + lat + '/' + lng,
                                                   header: {
@@ -56,7 +56,6 @@ Page({
                                                 })
                                               }
                                             })
-
                                             wx.reLaunch({
                                                 url: "/pages/shops/nearby/nearby",
                                             })

@@ -9,6 +9,7 @@
         "pages/community/index/index",
         "pages/info/info",
         "pages/manufactor/index/index",
+        "pages/shops/create/create",
         "pages/shops/createStore/createStore",
         "pages/shops/createStore/createCategory/createCategory",
         "pages/manufactor/productControl/index",
@@ -44,7 +45,7 @@
                 "selectedIconPath": "image/yuanHL.png"
             },
             {
-                "pagePath": "pages/shops/createStore/createStore",
+                "pagePath": "pages/shops/create/create",
                 "text": "",
                 "iconPath": "image/add.png",
                 "selectedIconPath": "image/addHL.png"

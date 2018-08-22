@@ -16,7 +16,10 @@ Page({
     phone:'',
     shop_name:'',
     shop_img:'',
-    defaultImg:'../../../image/jiaju01.jpg'
+    img_url: '',
+    defaultImg:'../../../image/jiaju01.jpg',
+    user_info:{},
+    imageText:{}
   },
 
   onLoad:function() {
@@ -25,9 +28,28 @@ Page({
       key: 'userInfo',
       success: function (res) {
         var userToken = res.data.token
+        var user_info = res.data;
+        var store_type = res.data.user_info.type
+        // 重新渲染路径
+        switch (store_type) {
+          case 1:
+            wx.reLaunch({
+              url: "../../manufactor/index/index",
+            })
+            break;
+          case 3:
+            wx.reLaunch({
+              url: "../../shops/createStore/createStore",
+            })
+            break;
+        }
+        var img_url = app.globalData.apiUrl
         that.setData({
-          userToken
+          userToken,
+          user_info,
+          img_url
         });
+        // 地址、微信、电话
         wx.request({
           url: app.globalData.apiUrl + 'api/v1/shop/info',
           header: {
@@ -46,15 +68,11 @@ Page({
               }else{
                 address = res.data.province + res.data.city + res.data.district + res.data.town + res.data.address;
               }
-              if (shop_wx == '' && wx_code != ''){
-                wx = wx_code;
-              }else{
+              if (shop_wx != ''){
                 wx = shop_wx;
               }
               var shop_name = res.data.shop_name;
               var shop_img = app.globalData.apiUrl + res.data.shop_img;
-
-              console.log(address);
               that.setData({
                 address,
                 wx,
@@ -64,55 +82,24 @@ Page({
             }
           }
         })
-      }
-    })
-    console.log(that.data.userToken);
-    
-  },
-
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
-  inputTyping: function (e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
-  },
-  upper: function (e) {
-    console.log(e)
-  },
-  lower: function (e) {
-    console.log(e)
-  },
-  scroll: function (e) {
-    console.log(e)
-  },
-  tap: function (e) {
-    for (var i = 0; i < order.length; ++i) {
-      if (order[i] === this.data.toView) {
-        this.setData({
-          toView: order[i + 1]
+        // 图文列表
+        wx.request({
+          url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
+          header: {
+            'content-type': 'application/json',
+            'userToken': userToken
+          },
+          method: 'Get',
+          success: function (res) {
+            if(res.data.state == 1){
+              var imageText = res.data.data 
+              that.setData({
+                imageText
+              })
+            }
+          }
         })
-        break
       }
-    }
-  },
-  tapMove: function (e) {
-    this.setData({
-      scrollTop: this.data.scrollTop + 10
     })
   },
   entityStore:function (e) {
@@ -124,6 +111,30 @@ Page({
     var that = this;
     that.setData({
       shop_img:that.data.defaultImg
+    })
+  },
+  
+  showStoreContact: function(e) {
+    console.log()
+    var that = this;
+    var show_type = e.currentTarget.dataset.type
+    if(show_type == 1){
+      var title = "微信"
+      var content = that.data.wx
+    }else{
+      var title = "联系方式"
+      var content = that.data.user_info.user_info.phone
+    }
+    wx.showModal({
+      title: title,
+      content: content,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
   }
 });
