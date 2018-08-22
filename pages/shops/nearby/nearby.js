@@ -12,7 +12,9 @@ Page({
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
       userToken:'',
       storeArr:[],
-      img_url:''
+      img_url:'',
+      lat:'',
+      lng:'',
     },
     onLoad: function (options) {
       var that = this;
@@ -21,13 +23,16 @@ Page({
       var userInfo = wx.getStorageSync('userInfo')
       var userToken = userInfo.token;
       var img_url = app.globalData.apiUrl;
+      var lat = addressInfo.lat;
+      var lng = addressInfo.lng;
       that.setData({
         address,
         userToken,
-        img_url
+        img_url,
+        lat,
+        lng
       })
-      var lat = addressInfo.lat;
-      var lng = addressInfo.lng;
+      
       wx.request({
         url: app.globalData.apiUrl + 'api/v1/site/nearbyStore/' + lat + '/' + lng +'/2',
         header: {
@@ -91,7 +96,32 @@ Page({
             scrollTop: this.data.scrollTop + 10
         })
     },
-    
+  getNearbyStore:function(e) {
+    var that = this;
+    var userToken = that.data.userToken
+    var lat = that.data.lat
+    var lng = that.data.lng
+    wx.request({
+      url: app.globalData.apiUrl + 'api/v1/site/nearbyStore/' + lat + '/' + lng + '/2',
+      header: {
+        'content-type': 'application/json',
+        'userToken': userToken
+      },
+      data:{
+        'w':that.data.inputVal
+      },
+      method: 'Get',
+      success: function (res) {
+        if (res.data.state == 1) {
+          var storeArr = res.data.data
+          console.log(res.data)
+          that.setData({
+            storeArr
+          })
+        }
+      }
+    })
+  }
 });
 
 
