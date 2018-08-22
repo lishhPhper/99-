@@ -1,3 +1,4 @@
+<import src="../../../wxParse/wxParse.wxml"/>
 <view class='header-item'>
     <text class='warranty'>产品质保1年</text>
     <view class='warranty-image-view'>
@@ -20,10 +21,9 @@
 </view>
 <!--  首页相册  start  -->
 <block wx:if="{{type == 1}}">
-    <view style='padding:15rpx 30rpx;'>
-        <image src='/image/jiaju01.jpg' class='image-list'></image>
-        <image src='/image/jiaju01.jpg' class='image-list'></image>
-        <image src='/image/jiaju01.jpg' class='image-list'></image>
+    <view style='padding:15rpx 30rpx;' wx:for="{{storeInfo.homeContent.items}}">
+        <image src='{{img_url}}{{item.img}}' class='image-list'></image>
+        <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}"/>
     </view>
     <view style='display: flex;position:fixed;right:30rpx;bottom: 20rpx;width:210rpx;height:60rpx;z-index:999;flex-direction: row;'>
         <view bindtap="playVoice" data-voice-resource="https://www.7qiaoban.cn/test_music.mp3" style='display: flex;padding:0rpx 5rpx;'>

@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/music/music",
         "pages/index/index",
         "pages/shops/nearby/nearby",
         "pages/shops/index/index",

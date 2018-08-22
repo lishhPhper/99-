@@ -7,6 +7,8 @@ Page({
      */
     data: {
         add_status: 2,
+        upload_url: app.globalData.apiUrl + 'api/v1/image/temporary',
+        img_url: app.globalData.apiUrl,
     },
     /**
      * 生命周期函数--监听页面加载
@@ -18,60 +20,57 @@ Page({
             success: function (res) {
                 var userToken = res.data.token;
                 var user_info = res.data.user_info;
-                wx.request({
-                    url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
-                    method: 'GET',
-                    header: {
-                        'userToken': userToken
-                    },
-                    success: function (homeContentRes) {
-                        if (homeContentRes.data.state == 1) {
-                            var items = homeContentRes.data.data.items;
-                            for (var i = 0; i < items.length; i++) {
-                                WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
-                                items[i]['format_text'] = obj.data.format_text;
-                            }
-                            homeContentRes.data.data.items = items;
-                            if (options.type == 2) {
-                                wx.request({
-                                    url: app.globalData.apiUrl + 'api/v1/homeContent/getCache',
-                                    method: 'GET',
-                                    header: {
-                                        'userToken': userToken
-                                    },
-                                    data: { itemId: options.itemId },
-                                    success: function (getCacheRes) {
-                                        if (getCacheRes.data.state == 1) {
-                                            for (var i = 0; i < items.length; i++) {
-                                                if (items[i]['id'] == options.itemId) {
-                                                    WxParse.wxParse('format_text', 'html', getCacheRes.data.data, obj, 5);
-                                                    items[i]['format_text'] = obj.data.format_text;
-                                                    items[i]['text'] = getCacheRes.data.data;
-                                                }
-                                            }
-                                            homeContentRes.data.data.items = items;
-                                            obj.setData({
-                                                userInfo: user_info,
-                                                token: userToken,
-                                                home_content: homeContentRes.data.data,
-                                            });
-                                        } else {
-                                            console.log(getCacheRes);
-                                        }
-                                    }
+                if (options.type == 2) {
+                    wx.request({
+                        url: app.globalData.apiUrl + 'api/v1/homeContent/getCache',
+                        method: 'GET',
+                        header: {
+                            'userToken': userToken
+                        },
+                        success: function (getCacheRes) {
+                            var items = getCacheRes.data.data.items;
+                            if (getCacheRes.data.state == 1) {
+                                for (var i = 0; i < items.length; i++) {
+                                    WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
+                                    items[i]['format_text'] = obj.data.format_text;
+                                }
+                                getCacheRes.data.data.items = items;
+                                obj.setData({
+                                    userInfo: user_info,
+                                    token: userToken,
+                                    home_content: getCacheRes.data.data,
                                 });
-                            }else{
+                            } else {
+                                console.log(getCacheRes);
+                            }
+                        }
+                    });
+                }else{
+                    wx.request({
+                        url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
+                        method: 'GET',
+                        header: {
+                            'userToken': userToken
+                        },
+                        success: function (homeContentRes) {
+                            if (homeContentRes.data.state == 1) {
+                                var items = homeContentRes.data.data.items;
+                                for (var i = 0; i < items.length; i++) {
+                                    WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
+                                    items[i]['format_text'] = obj.data.format_text;
+                                }
+                                homeContentRes.data.data.items = items;
                                 obj.setData({
                                     userInfo: res.data.user_info,
                                     token: res.data.token,
                                     home_content: homeContentRes.data.data,
                                 });
+                            } else {
+                                console.log(homeContentRes);
                             }
-                        } else {
-                            console.log(homeContentRes);
                         }
-                    }
-                });
+                    });
+                }
             },
         })
     },
@@ -122,6 +121,7 @@ Page({
      */
     addBox: function() {
         var home_content = this.data.home_content;
+        var userToken = this.data.token;
         var length = home_content.items.length;
         var box = {
             'text': '',
@@ -130,6 +130,19 @@ Page({
         home_content.items[length] = box;
         this.setData({
             home_content: home_content
+        });
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
+            method: 'GET',
+            header: {
+                'userToken': userToken
+            },
+            data:{
+                type:2
+            },
+            success: function (setCacheRes) {
+                console.log(setCacheRes);
+            }
         });
     },
     /**
@@ -177,10 +190,44 @@ Page({
                 console.log(res);
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                 var tempFilePaths = res.tempFilePaths;
-                home_content.items[itemKey]['img'] = tempFilePaths[0];
-                obj.setData({
-                    home_content: home_content
-                });
+                wx.uploadFile({
+                    url: obj.data.upload_url,
+                    filePath: res.tempFilePaths[0],
+                    name: 'img',
+                    header: {
+                        'content-type': 'multipart/form-data',
+                        'userToken': obj.data.token
+                    }, // 设置请求的 header
+                    success: function (uploadRes) {
+                        var img_data = JSON.parse(uploadRes.data);
+                        if (img_data.state == '1') {
+                            wx.request({
+                                url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
+                                method: 'GET',
+                                header: {
+                                    'userToken': obj.data.token
+                                },
+                                data: {
+                                    itemKey: itemKey,
+                                    text: home_content.items[itemKey]['text'],
+                                    img: img_data.data.img
+                                },
+                                success: function (setCacheRes) {
+                                    if (setCacheRes.data.state == 1) {
+                                        home_content.items[itemKey]['img'] = img_data.data.img;
+                                        obj.setData({
+                                            home_content: home_content
+                                        });
+                                    }else{
+                                        console.log(setCacheRes);
+                                    }
+                                }
+                            });
+                        }else{
+                            console.log(uploadRes);
+                        }
+                    }
+                })
             }
         })
     },

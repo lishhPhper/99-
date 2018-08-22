@@ -13,7 +13,7 @@ Page({
             success: function (res) {
                 obj.setData({
                     token: res.data.token,
-                    itemId: options.itemId,
+                    itemKey: options.itemKey,
                 })
             },
         })

@@ -1,5 +1,5 @@
 <import src="../../../wxParse/wxParse.wxml"/>
-<view style='margin-bottom:80rpx;'>
+<view style='margin-bottom:100rpx;'>
 <view class="section">
     <block wx:if="{{home_content.music != ''}}">
         <view class="flex-wrp" style="flex-direction:row;" bindtap="playVoice" data-voice-resource="{{home_content.music}}">
@@ -50,15 +50,15 @@
                 <image src="/image/shanchu.png" data-item-key="{{index}}" bindtap="delBox" style='width:50rpx;height:50rpx;'></image>
             </view>
             <view class="" style='padding:20rpx 20rpx 20rpx 10rpx'>
-                <image data-item-key="{{index}}" src="{{item.img}}" wx:if="{{item.img != ''}}" style='width:250rpx;height:200rpx;' bindtap="uploadImg"/>
+                <image data-item-key="{{index}}" src="{{img_url}}{{item.img}}" wx:if="{{item.img != ''}}" style='width:250rpx;height:200rpx;' bindtap="uploadImg"/>
                 <image data-item-key="{{index}}" src="/image/default_img.png" wx:else style='width:250rpx;height:200rpx;' bindtap="uploadImg" />
             </view>
             <view class="page-section">
                 <view class="textarea-wrp" style='padding:20rpx'>
-                    <navigator url='/pages/editor/editor?itemId={{item.id}}' wx:if="{{item.text != ''}}" style='width:250rpx;height:200rpx;'>
+                    <navigator url='/pages/editor/editor?itemKey={{index}}' wx:if="{{item.text != ''}}" style='width:250rpx;height:200rpx;'>
                         <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}"/>
                     </navigator>
-                    <navigator url='/pages/editor/editor' extra-data="{{item}}" wx:else style='width:250rpx;height:200rpx;'>
+                    <navigator url='/pages/editor/editor?itemKey={{index}}' wx:else style='width:250rpx;height:200rpx;'>
                         点击添加文字
                     </navigator>
                 </view>

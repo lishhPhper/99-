@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp();
 var _music = '';
-
+var WxParse = require('../../../wxParse/wxParse.js');
 // ,
 // audioOpen: function (param) {
 //     if (_music != '') {
@@ -49,6 +49,7 @@ Page({
         productNodeType: 1,
         aboutNodeType: 1,
         introduction_hidden: true,
+        img_url: app.globalData.apiUrl,
         array: [
             {},
             {},
@@ -172,6 +173,12 @@ Page({
                             },
                             success: function (factoryRes) {
                                 if (factoryRes.data.state == 1) {
+                                    var items = factoryRes.data.data.homeContent.items;
+                                    for (var i = 0; i < items.length; i++) {
+                                        WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
+                                        items[i]['format_text'] = obj.data.format_text;
+                                    }
+                                    factoryRes.data.data.homeContent.items = items;
                                     obj.setData({
                                         userInfo: res.data.user_info,
                                         token: res.data.token,
