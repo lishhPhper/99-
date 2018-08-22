@@ -1,5 +1,5 @@
 @import 'style/weui.wxss';
-
+@import "/wxParse/wxParse.wxss";
 page {
     background-color: #f4f3e6;
     font-size: 11pt;

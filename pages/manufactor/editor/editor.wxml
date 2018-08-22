@@ -1,0 +1,80 @@
+<import src="../../../wxParse/wxParse.wxml"/>
+<view style='margin-bottom:80rpx;'>
+<view class="section">
+    <block wx:if="{{home_content.music != ''}}">
+        <view class="flex-wrp" style="flex-direction:row;" bindtap="playVoice" data-voice-resource="{{home_content.music}}">
+            <view class="flex-item ">
+                <image src="/image/music.png" style='width:50rpx;height:50rpx;'></image>
+            </view>
+            <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                <text>{{home_content.music_name}}</text>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{home_content.music == ''}}">
+        <view class="flex-wrp" style="flex-direction:row;">
+            <view class="flex-item ">
+                <image src="/image/tianjia.png" style='width:50rpx;height:50rpx;'></image>
+            </view>
+            <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                <text >点击添加背景音乐</text>
+            </view>
+        </view>
+    </block>
+
+    <block wx:if="{{home_content.music != ''}}">
+        <view class="flex-wrp" style="flex-direction:row;" bindtap="playVoice" data-voice-resource="{{home_content.record}}">
+            <view class="flex-item ">
+                <image src="/image/voice.png" style='width:50rpx;height:50rpx;'></image>
+            </view>
+            <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                <text >点击播放录音</text>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{home_content.music == ''}}">
+        <view class="flex-wrp" style="flex-direction:row;">
+        <view class="flex-item ">
+            <image src="/image/tianjia.png" style='width:50rpx;height:50rpx;'></image>
+        </view>
+        <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+            <text >点击添加录音</text>
+        </view>
+    </view>
+    </block>
+</view>
+<view class='product-box' wx:for="{{home_content.items}}">
+    <view class="section">
+        <view class="flex-wrp-1" style="flex-direction:row;">
+            <view class="flex-item-1">
+                <image src="/image/shanchu.png" data-item-key="{{index}}" bindtap="delBox" style='width:50rpx;height:50rpx;'></image>
+            </view>
+            <view class="" style='padding:20rpx 20rpx 20rpx 10rpx'>
+                <image data-item-key="{{index}}" src="{{item.img}}" wx:if="{{item.img != ''}}" style='width:250rpx;height:200rpx;' bindtap="uploadImg"/>
+                <image data-item-key="{{index}}" src="/image/default_img.png" wx:else style='width:250rpx;height:200rpx;' bindtap="uploadImg" />
+            </view>
+            <view class="page-section">
+                <view class="textarea-wrp" style='padding:20rpx'>
+                    <navigator url='/pages/editor/editor?itemId={{item.id}}' wx:if="{{item.text != ''}}" style='width:250rpx;height:200rpx;'>
+                        <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}"/>
+                    </navigator>
+                    <navigator url='/pages/editor/editor' extra-data="{{item}}" wx:else style='width:250rpx;height:200rpx;'>
+                        点击添加文字
+                    </navigator>
+                </view>
+            </view>
+            <view class="sign" style="flex-direction:column;padding-left:20rpx">
+                <image src="/image/shangbiao.png" style='width:50rpx;height:50rpx;'></image>
+                <view style='width:50rpx;height:130rpx;'></view>
+                <image src="/image/xiabiao.png" style='width:50rpx;height:50rpx;'></image>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='add_img' data-about-node-type="1" bindtap="addBox">
+    <image src='/image/tianjia.png' style='width:50rpx;height:50rpx;'></image>
+</view>
+</view>
+
+
+<button bindtap="saveContent" style='width:100%;height:80rpx;line-height:80rpx;color:#FFF;font-weight:400;background-color:#FF6600;position: fixed;bottom: 0;'>保存</button>

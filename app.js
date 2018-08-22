@@ -4,12 +4,6 @@ App({
 
     },
     globalData: {
-        lat: '',
-        lng: '',
-        province: '',
-        city: '',
-        district: '',
-        address: '',
         apiUrl: 'https://www.7qiaoban.cn/',
         // apiUrl: 'http://99.icode99.top/',
         successReturn: {

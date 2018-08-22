@@ -5,6 +5,7 @@ Page({
     data: {
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         isShowBtn: 1,
+        userToken:''
     },
     onLoad: function () {
         var obj = this;
@@ -30,6 +31,32 @@ Page({
                                                 key: 'userInfo',
                                                 data: userObj
                                             })
+                                            wx.getLocation({
+                                              type: 'wgs84',
+                                              success: function (res) {
+                                                var lat = res.latitude
+                                                var lng = res.longitude
+                                                var userToken = userObj.token
+                                                wx.request({
+                                                  url: app.globalData.apiUrl + 'api/v1/site/address/' + lat + '/' + lng,
+                                                  header: {
+                                                    'content-type': 'application/json',
+                                                    'userToken': userToken
+                                                  },
+                                                  success: function (address) {
+                                                    if(address.data.state == 1){
+                                                      address.data.data.address.lat = lat;
+                                                      address.data.data.address.lng = lng;
+                                                      wx.setStorage({
+                                                        key: 'address',
+                                                        data: address.data.data.address
+                                                      })
+                                                    }
+                                                  }
+                                                })
+                                              }
+                                            })
+
                                             wx.reLaunch({
                                                 url: "/pages/shops/nearby/nearby",
                                             })
@@ -49,27 +76,6 @@ Page({
                     });
                 }
             }
-        })
-        
-        wx.getLocation({
-          type: 'wgs84',
-          success: function (res) {
-            var lat = res.latitude
-            var lng = res.longitude
-            app.globalData.lat = lat
-            app.globalData.lng = lng
-            wx.request({
-              url: app.globalData.apiUrl + 'api/v1/address/'+ lat+'/'+lng,
-              success: function (address) {
-                if(address.data.state == 1){
-                  app.globalData.province = address.data.data.address.province
-                  app.globalData.city = address.data.data.address.city
-                  app.globalData.district = address.data.data.address.district
-                  app.globalData.address = address.data.data.address.address
-                }
-              }
-            })
-          }
         })
     },
     bindGetUserInfo: function (e) {
