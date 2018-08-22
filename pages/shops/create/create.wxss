@@ -1,0 +1,31 @@
+.empty_store{
+  width: 100%;
+  height:120rpx;
+  padding-top:260rpx;
+}
+.empty_store view{
+  height:50%;
+  font-size: 14pt;
+  margin-left:150rpx; 
+}
+
+.add_view{
+  width: 100%;
+  height: 100rpx;
+  padding-top:50rpx;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+}
+
+.add_icon{
+  width: 100rpx;
+  height: 100rpx;
+  margin:0 30rpx 0 150rpx; 
+}
+
+.add_view view{
+  text-align: center;
+  font-size: 14pt;
+  font-weight: bold;
+}

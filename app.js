@@ -5,7 +5,6 @@ App({
     },
     globalData: {
         apiUrl: 'https://www.7qiaoban.cn/',
-        // apiUrl: 'http://furniture.com//',
         // apiUrl: 'http://99.icode99.top/',
         successReturn: {
             error_code: 0,
