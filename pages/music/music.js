@@ -5,6 +5,8 @@ var _music = '';
 Page({
     data: {
         musicArr: [],
+        selected_id: 0,
+        loadingHidden: true
     },
     onLoad: function(options) {
         var obj = this;
@@ -12,20 +14,20 @@ Page({
             key: 'userInfo',
             success: function (res) {
                 wx.request({
-                    url: app.globalData.apiUrl + 'api/v1/music/recommend/1/20',
+                    url: app.globalData.apiUrl + 'api/v1/music/getCategoryList',
                     method: 'GET',
                     header: {
                         'userToken': res.data.token
                     },
-                    success: function (recommendRes) {
-                        console.log(recommendRes);
-                        if (recommendRes.data.state == 1) {
+                    success: function (getCategoryListRes) {
+                        console.log(getCategoryListRes);
+                        if (getCategoryListRes.data.state == 1) {
                             obj.setData({
-                                musicArr: recommendRes.data.data.song_list,
+                                categoryArr: getCategoryListRes.data.data,
                                 token: res.data.token
                             });
                         } else {
-                            console.log(recommendRes);
+                            console.log(getCategoryListRes);
                         }
                     }
                 });
@@ -79,19 +81,64 @@ Page({
         })
     },
     playVoice: function (event) {
+        var obj = this;
+        var musicId = event.currentTarget.dataset.musicId;
+        var musicLink = event.currentTarget.dataset.musicLink;
+        this.setData({
+            loadingHidden: false
+        });
+        obj.setData({
+            selected_music_id: musicId,
+            musicLink: musicLink
+        });
         if (_music != '') {
             _music.destroy();
         }
+        console.log(musicLink);
         _music = wx.createInnerAudioContext();
         _music.autoplay = true;
         _music.loop = true;
-        _music.src = event.currentTarget.dataset.voiceResource
+        _music.src = musicLink;
         _music.onPlay(() => {
             console.log('开始播放');
+            obj.setData({
+                loadingHidden: true
+            });
+            obj.update();
         })
         _music.onError((res) => {
             console.log(res.errMsg)
             console.log(res.errCode)
         })
     },
+    openCategory: function (event) {
+        var obj = this;
+        var categoryId = event.currentTarget.dataset.categoryId;
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/music/getByCategory',
+            method: 'GET',
+            header: {
+                'userToken': obj.data.token
+            },
+            data:{
+                page: 1,
+                row: 20,
+                category_id: categoryId
+            },
+            success: function (getByCategoryRes) {
+                console.log(getByCategoryRes);
+                if (getByCategoryRes.data.state == 1) {
+                    obj.setData({
+                        selected_category_id: categoryId,
+                        musicArr: getByCategoryRes.data.data
+                    });
+                } else {
+                    console.log(recommendRes);
+                }
+            }
+        });
+    },
+    saveMusic: function (event) {
+        var music
+    }
 });

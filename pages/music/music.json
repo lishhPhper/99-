@@ -1,4 +1,5 @@
 {
-  "navigationBarTitleText": "附近门店",
-  "navigationBarBackgroundColor": "#F4F3E6"
+    "navigationBarTitleText": "选择音乐",
+    "navigationBarBackgroundColor": "#FF6600",
+    "navigationBarTextStyle": "white"
 }

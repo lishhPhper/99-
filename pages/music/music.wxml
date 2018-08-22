@@ -40,17 +40,35 @@
         </view>
     </view>
 </view>
-<view class='empty_store' wx:if="{{musicArr === undefined || musicArr.length == 0}}">
-    暂无音乐数据
-</view>
-<view wx:else style='margin-bottom:100rpx;'>
-    <block wx:for="{{musicArr}}">
-        <view bindtap="playVoice" data-music-id="{{item.id}}" style='height:80rpx;border-top:1px solid #ddd;'>
-            <view style='height:80rpx;margin-left:30rpx;'>
-                <view style='height:80rpx;line-height:80rpx;float:left;'>{{item.name}}</view> 
-                <image src='/image/selected.png' class='selected_img'></image>
+<view style='margin-bottom:100rpx;'>
+    <view style='height:90rpx;'>
+        <view style='height:70rpx;margin:10rpx 0rpx 10rpx 0rpx;background-color:#FFF;'>
+            <view style='height:70rpx;line-height:70rpx;float:left;margin-left:30rpx;'>无背景音乐</view>
+            <image wx:if="{{selected_category_id == 0}}" src='/image/selected.png' class='selected_img'></image>
+            <image wx:else src='/image/selected.png' class='no_selected_img'></image>
+        </view>
+    </view>
+    <block wx:for="{{categoryArr}}" wx:for-item="itemCategory">
+        <view bindtap="openCategory" data-category-id="{{itemCategory.id}}" style='margin:10rpx 0rpx 10rpx 0rpx;'>
+            <view style='height:100rpx;background-color:#FFF;'>
+                <view class='selected_category_name' wx:if="{{selected_category_id == itemCategory.id}}">{{itemCategory.category_name}}</view>
+                <view class='category_name' wx:else>{{itemCategory.category_name}}</view>
+                <view class='selected_quantity' wx:if="{{selected_category_id == itemCategory.id}}">包含{{itemCategory.quantity}}首歌曲</view>
+                <view class='quantity' wx:else>包含{{itemCategory.quantity}}首歌曲</view>
             </view>
+            <block wx:if="{{selected_category_id == itemCategory.id}}" wx:for="{{musicArr}}" wx:for-item="itemMusic">
+                <view bindtap="playVoice" data-music-id="{{itemMusic.id}}" data-music-link="{{itemMusic.link}}">
+                    <view style='height:70rpx;background-color:#FFF;border-top:1px solid #ddd'>
+                        <view style='height:70rpx;line-height:70rpx;float:left;margin-left:30rpx;font-size:10pt;'>{{itemMusic.name}} （歌手：{{itemMusic.author}}）</view>
+                        <image wx:if="{{selected_music_id == itemMusic.id}}" src='/image/selected.png' class='selected_img'></image>
+                        <image wx:else src='/image/selected.png' class='no_selected_img'></image>
+                    </view>
+                </view>
+            </block>
         </view>
     </block>
 </view>
-<button bindtap="saveContent" style='width:100%;height:80rpx;line-height:80rpx;color:#FFF;font-weight:400;background-color:#FF6600;position: fixed;bottom: 0;'>完成</button>
+<button bindtap="saveMusic" class='saveMusic'>完成</button>
+<loading hidden="{{loadingHidden}}">
+        加载中...
+</loading>
