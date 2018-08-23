@@ -26,10 +26,10 @@
         <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}"/>
     </view>
     <view style='display: flex;position:fixed;right:30rpx;bottom: 20rpx;width:210rpx;height:60rpx;z-index:999;flex-direction: row;'>
-        <view bindtap="playVoice" data-voice-resource="https://www.7qiaoban.cn/test_music.mp3" style='display: flex;padding:0rpx 5rpx;'>
+        <view bindtap="playVoice" data-voice-resource="{{music_url}}{{storeInfo.homeContent.music}}" style='display: flex;padding:0rpx 5rpx;'>
             <image src='/image/music.png' style='width:60rpx;height:60rpx;'></image>
         </view>
-        <view bindtap="playVoice" data-voice-resource="https://www.7qiaoban.cn/test_music.mp3" style='display: flex;padding:0rpx 5rpx;'>
+        <view bindtap="playVoice" data-voice-resource="{{music_url}}{{storeInfo.homeContent.record}}" style='display: flex;padding:0rpx 5rpx;'>
             <image src='/image/voice.png' style='width:60rpx;height:60rpx;'></image>
         </view>
         <navigator url='/pages/manufactor/editor/editor' open-type='navigate' style='display: flex;padding:0rpx 5rpx;'>
@@ -116,7 +116,7 @@
             <button bindtap="desChange" style='width:200rpx;height:80rpx;line-height:80rpx;color:#FFF;font-weight:600;background-color:#FF6600'>编辑</button>
             <modal class="modal" hidden="{{introduction_hidden}}" title="店铺简介" confirm-text="确认" bindconfirm="confirm" no-cancel="true">
                 <form bindsubmit="evaSubmit">
-                    <textarea auto-focus="true" bindinput="bindinput" class='text' placeholder="请输入店铺简介" value='{{storeInfo.introduction}}' />
+                    <textarea bindinput="bindinput" class='text' placeholder="请输入店铺简介" value='{{storeInfo.introduction}}' />
                 </form>
             </modal>
         </block>

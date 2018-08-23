@@ -6,21 +6,23 @@ Page({
     data: {
         musicArr: [],
         selected_id: 0,
-        loadingHidden: true
+        loadingHidden: true,
+        music_url: app.globalData.apiUrl,
+        default_hidden : false,
+        searchMusicArr: false
     },
     onLoad: function(options) {
         var obj = this;
         wx.getStorage({
             key: 'userInfo',
-            success: function (res) {
+            success: function(res) {
                 wx.request({
                     url: app.globalData.apiUrl + 'api/v1/music/getCategoryList',
                     method: 'GET',
                     header: {
                         'userToken': res.data.token
                     },
-                    success: function (getCategoryListRes) {
-                        console.log(getCategoryListRes);
+                    success: function(getCategoryListRes) {
                         if (getCategoryListRes.data.state == 1) {
                             obj.setData({
                                 categoryArr: getCategoryListRes.data.data,
@@ -33,7 +35,7 @@ Page({
                 });
             }
         })
-        
+
     },
     showInput: function() {
         this.setData({
@@ -80,38 +82,41 @@ Page({
             scrollTop: this.data.scrollTop + 10
         })
     },
-    playVoice: function (event) {
+    playVoice: function(event) {
         var obj = this;
         var musicId = event.currentTarget.dataset.musicId;
         var musicLink = event.currentTarget.dataset.musicLink;
-        this.setData({
-            loadingHidden: false
-        });
+        var musicName = event.currentTarget.dataset.musicName;
         obj.setData({
             selected_music_id: musicId,
-            musicLink: musicLink
+            musicLink: musicLink,
+            musicName: musicName
         });
-        if (_music != '') {
-            _music.destroy();
-        }
-        console.log(musicLink);
-        _music = wx.createInnerAudioContext();
-        _music.autoplay = true;
-        _music.loop = true;
-        _music.src = musicLink;
-        _music.onPlay(() => {
-            console.log('开始播放');
+        if (musicId != 0) {
             obj.setData({
-                loadingHidden: true
+                loadingHidden: false
             });
-            obj.update();
-        })
-        _music.onError((res) => {
-            console.log(res.errMsg)
-            console.log(res.errCode)
-        })
+            if (_music != '') {
+                _music.destroy();
+            }
+            _music = wx.createInnerAudioContext();
+            _music.autoplay = true;
+            _music.loop = true;
+            _music.src = obj.data.music_url + musicLink;
+            _music.onPlay(() => {
+                console.log('开始播放');
+                obj.setData({
+                    loadingHidden: true
+                });
+                obj.update();
+            })
+            _music.onError((res) => {
+                console.log(res.errMsg)
+                console.log(res.errCode)
+            })
+        }
     },
-    openCategory: function (event) {
+    openCategory: function(event) {
         var obj = this;
         var categoryId = event.currentTarget.dataset.categoryId;
         wx.request({
@@ -120,13 +125,12 @@ Page({
             header: {
                 'userToken': obj.data.token
             },
-            data:{
+            data: {
                 page: 1,
                 row: 20,
                 category_id: categoryId
             },
-            success: function (getByCategoryRes) {
-                console.log(getByCategoryRes);
+            success: function(getByCategoryRes) {
                 if (getByCategoryRes.data.state == 1) {
                     obj.setData({
                         selected_category_id: categoryId,
@@ -138,7 +142,71 @@ Page({
             }
         });
     },
-    saveMusic: function (event) {
-        var music
+    saveMusic: function(event) {
+        var musicLink = this.data.musicLink;
+        var musicName = this.data.musicName;
+        var userToken = this.data.token;
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
+            method: 'GET',
+            header: {
+                'userToken': userToken
+            },
+            data: {
+                music: musicLink,
+                music_name: musicName
+            },
+            success: function(setCacheRes) {
+                if (setCacheRes.data.state == 1) {
+                    console.log('保存成功');
+                    if (_music != '') {
+                        _music.destroy();
+                    }
+                    wx.navigateTo({
+                        url: '/pages/manufactor/editor/editor?type=2',
+                    })
+                } else {
+                    console.log(setCacheRes);
+                }
+            }
+        });
+    },
+    searchMusic: function(event) {
+        var obj = this;
+        var keyword = obj.data.inputVal;
+        var userToken = obj.data.token;
+        if (keyword == ''){
+            obj.setData({
+                default_hidden: false
+            });
+        }else{
+            wx.request({
+                url: app.globalData.apiUrl + 'api/v1/music/query',
+                method: 'GET',
+                header: {
+                    'userToken': userToken
+                },
+                data: {
+                    keyword: keyword,
+                },
+                success: function (queryRes) {
+                    if (queryRes.data.state == 1) {
+                        if (queryRes.data.data.length == 0){
+                            obj.setData({
+                                searchMusicArr: false,
+                                default_hidden: true
+                            });
+                        }else{
+                            obj.setData({
+                                searchMusicArr: queryRes.data.data,
+                                default_hidden: true
+                            });
+                        }
+                    } else {
+                        console.log(queryRes);
+                    }
+                }
+            });
+        }
     }
 });
