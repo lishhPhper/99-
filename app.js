@@ -16,6 +16,5 @@ App({
             message: '失败',
             data: {}
         },
-
     }
 })

@@ -1,4 +1,5 @@
 {
-  "navigationBarTitleText": "店铺",
-  "navigationBarBackgroundColor": "#F4F3E6"
+    "navigationBarTitleText": "店铺主页",
+    "navigationBarBackgroundColor": "#FF6600",
+    "navigationBarTextStyle": "white"
 }

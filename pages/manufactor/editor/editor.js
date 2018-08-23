@@ -9,11 +9,14 @@ Page({
         add_status: 2,
         upload_url: app.globalData.apiUrl + 'api/v1/image/temporary',
         img_url: app.globalData.apiUrl,
+        music_url: app.globalData.apiUrl,
+        loadingHidden: true,
+        recordingHidden: true
     },
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
         var obj = this;
         wx.getStorage({
             key: 'userInfo',
@@ -45,7 +48,7 @@ Page({
                             }
                         }
                     });
-                }else{
+                } else {
                     wx.request({
                         url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
                         method: 'GET',
@@ -77,49 +80,49 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
-        
+    onReady: function () {
+
     },
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
+    onShow: function () {
 
     },
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
     },
     /**
      * 添加图文item
      */
-    addBox: function() {
+    addBox: function () {
         var home_content = this.data.home_content;
         var userToken = this.data.token;
         var length = home_content.items.length;
@@ -137,8 +140,8 @@ Page({
             header: {
                 'userToken': userToken
             },
-            data:{
-                type:2
+            data: {
+                type: 2
             },
             success: function (setCacheRes) {
                 console.log(setCacheRes);
@@ -149,26 +152,56 @@ Page({
      * 删除图文item
      */
     delBox: function (event) {
+        var obj = this;
         var home_content = this.data.home_content;
         var itemKey = event.currentTarget.dataset.itemKey;
         home_content.items.splice(itemKey, 1);
         this.setData({
             home_content: home_content
         });
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
+            method: 'GET',
+            header: {
+                'userToken': obj.data.token,
+            },
+            data: {
+                itemKey: itemKey,
+                type: 3,
+            },
+            success: function (setCacheRes) {
+                if (setCacheRes.data.state == 1) {
+                    home_content.items[itemKey]['img'] = img_data.data.img;
+                    obj.setData({
+                        home_content: home_content
+                    });
+                } else {
+                    console.log(setCacheRes);
+                }
+            }
+        });
     },
     /**
      * 播放音乐
      */
     playVoice: function (event) {
+        var obj = this;
+        this.setData({
+            loadingHidden: false
+        });
         if (_music != '') {
             _music.destroy();
         }
         _music = wx.createInnerAudioContext();
         _music.autoplay = true;
         _music.loop = true;
-        _music.src = event.currentTarget.dataset.voiceResource
+        _music.src = event.currentTarget.dataset.voiceResource;
         _music.onPlay(() => {
             console.log('开始播放');
+            obj.setData({
+                loadingHidden: true
+            });
+            obj.update();
         })
         _music.onError((res) => {
             console.log(res.errMsg)
@@ -218,12 +251,12 @@ Page({
                                         obj.setData({
                                             home_content: home_content
                                         });
-                                    }else{
+                                    } else {
                                         console.log(setCacheRes);
                                     }
                                 }
                             });
-                        }else{
+                        } else {
                             console.log(uploadRes);
                         }
                     }
@@ -244,21 +277,68 @@ Page({
             header: {
                 'userToken': obj.data.token
             },
-            data: { 
-                music: home_content.music, 
+            data: {
+                music: home_content.music,
                 record: home_content.record,
                 music_name: home_content.music_name,
                 items: JSON.stringify(home_content.items),
             },
             success: function (saveHomeContentRes) {
                 if (saveHomeContentRes.data.state == 1) {
-                    wx.redirectTo({
-                        url: "../index/index"
-                    })
+                    console.log(obj.data.userInfo);
+                    if (obj.data.userInfo.type == 1){
+                        wx.redirectTo({
+                            url: "../index/index?type=1"
+                        })
+                    }else{
+                        wx.switchTab({
+                            url: "../../shops/index/index"
+                        })
+                    }
                 } else {
                     console.log(saveHomeContentRes);
                 }
             }
         });
+    },
+    /**
+     * 录制语音
+     */
+    recorded: function (event) {
+        const recorderManager = wx.getRecorderManager();
+        var obj = this;
+        this.setData({
+            recordingHidden: false
+        });
+
+        recorderManager.onStart(() => {
+            console.log('recorder start')
+        })
+        recorderManager.onPause(() => {
+            console.log('recorder pause')
+        })
+        recorderManager.onStop((res) => {
+            console.log('recorder stop', res);
+            const { tempFilePath } = res;
+            obj.setData({
+                recordingHidden: true
+            });
+            obj.update();
+        })
+        recorderManager.onFrameRecorded((res) => {
+            const { frameBuffer } = res
+            console.log('frameBuffer.byteLength', frameBuffer.byteLength)
+        })
+
+        const options = {
+            duration: 10000,
+            sampleRate: 44100,
+            numberOfChannels: 1,
+            encodeBitRate: 192000,
+            format: 'aac',
+            frameSize: 50
+        }
+
+        recorderManager.start(options)
     }
 })

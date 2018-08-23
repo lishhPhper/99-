@@ -43,8 +43,8 @@
 </block>
 <!-- 商家 -->
 <block wx:if="{{userInfo.type == 2}}">
-    <navigator url='/pages/manufactor/index/index?type=3&aboutNodeType=1' class='item item-height'>
-        <view class='float-left left-margin'>厂家简介</view>
+    <navigator url='/pages/shops/index/index' open-type='switchTab' class='item item-height'>
+        <view class='float-left left-margin'>商家简介</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
     <navigator url='/pages/manufactor/index/index?type=3&aboutNodeType=2' class='item item-height'>
@@ -56,12 +56,12 @@
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
     <navigator url='/pages/manufactor/index/index?type=3&aboutNodeType=3' class='item item-height'>
-        <view class='float-left left-margin'>发布关于我们厂家信息</view>
+        <view class='float-left left-margin'>发布关于我们商家信息</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
     <view class='item-hr'></view>
     <navigator class='item item-height'>
-        <view class='float-left left-margin'>厂家帮助</view>
+        <view class='float-left left-margin'>商家帮助</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
     <navigator class='item item-height'>

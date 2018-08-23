@@ -2,16 +2,16 @@
 <view style='margin-bottom:100rpx;'>
     <view class="section">
         <block wx:if="{{home_content.music != ''}}">
-            <view class="flex-wrp" style="flex-direction:row;" bindtap="playVoice" data-voice-resource="{{home_content.music}}">
+            <view class="flex-wrp" style="flex-direction:row;">
                 <view class="flex-item ">
-                    <image src="/image/music.png" style='width:50rpx;height:50rpx;'></image>
+                    <image src="/image/music.png" style='width:50rpx;height:50rpx;' bindtap='playVoice' data-voice-resource="{{music_url}}{{home_content.music}}"></image>
                 </view>
-                <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    <text>{{home_content.music_name}}</text>
+                <view class="flex-item" style="width:85%;line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                    <text bindtap='playVoice' data-voice-resource="{{music_url}}{{home_content.music}}">{{home_content.music_name}}</text>
+                    <navigator url='/pages/music/music' style='display:inline;float:right;color:#ccc;font-weight:400'>
+                        更换
+                    </navigator>
                 </view>
-                <navigator url='/pages/music/music'>
-                    更换背景音乐
-                </navigator>
             </view>
         </block>
         <block wx:if="{{home_content.music == ''}}">
@@ -20,28 +20,33 @@
                     <image src="/image/tianjia.png" style='width:50rpx;height:50rpx;'></image>
                 </view>
                 <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    <text>点击添加背景音乐</text>
+                    <navigator url='/pages/music/music'>
+                        点击添加背景音乐
+                    </navigator>
                 </view>
             </view>
         </block>
 
-        <block wx:if="{{home_content.music != ''}}">
-            <view class="flex-wrp" style="flex-direction:row;" bindtap="playVoice" data-voice-resource="{{home_content.record}}">
-                <view class="flex-item ">
+        <block wx:if="{{home_content.record != ''}}">
+            <view class="flex-wrp" style="flex-direction:row;" >
+                <view class="flex-item " bindtap="playVoice" data-voice-resource="{{music_url}}{{home_content.record}}">
                     <image src="/image/voice.png" style='width:50rpx;height:50rpx;'></image>
                 </view>
-                <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    <text>点击播放录音</text>
+                <view class="flex-item" style="width:85%;line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                    <text bindtap="playVoice" data-voice-resource="{{music_url}}{{home_content.record}}">点击播放录音</text>
+                    <view bindtap='recorded' style='display:inline;float:right;color:#ccc;font-weight:400'>录制</view> 
                 </view>
             </view>
         </block>
-        <block wx:if="{{home_content.music == ''}}">
+        <block wx:if="{{home_content.record == ''}}">
             <view class="flex-wrp" style="flex-direction:row;">
                 <view class="flex-item ">
                     <image src="/image/tianjia.png" style='width:50rpx;height:50rpx;'></image>
                 </view>
                 <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    <text>点击添加录音</text>
+                    <view bindtap='recorded'>
+                        点击添加录音
+                    </view>
                 </view>
             </view>
         </block>
@@ -52,25 +57,25 @@
                 <view class="flex-item-1">
                     <image src="/image/shanchu.png" data-item-key="{{index}}" bindtap="delBox" style='width:50rpx;height:50rpx;'></image>
                 </view>
-                <view class="" style='padding:20rpx 20rpx 20rpx 10rpx'>
+                <view class="" style='padding:20rpx 10rpx 10rpx 0rpx'>
                     <image data-item-key="{{index}}" src="{{img_url}}{{item.img}}" wx:if="{{item.img != ''}}" style='width:250rpx;height:200rpx;' bindtap="uploadImg" />
                     <image data-item-key="{{index}}" src="/image/default_img.png" wx:else style='width:250rpx;height:200rpx;' bindtap="uploadImg" />
                 </view>
                 <view class="page-section">
-                    <view class="textarea-wrp" style='padding:20rpx'>
-                        <navigator url='/pages/editor/editor?itemKey={{index}}' wx:if="{{item.text != ''}}" style='width:250rpx;height:200rpx;'>
-                            <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}" />
+                    <view class="textarea-wrp" style='padding:10rpx' style='width:380rpx;height:220rpx;'>
+                        <navigator url='/pages/editor/editor?itemKey={{index}}' wx:if="{{item.text != ''}}" >
+                            <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}"/>
                         </navigator>
-                        <navigator url='/pages/editor/editor?itemKey={{index}}' wx:else style='width:250rpx;height:200rpx;'>
+                        <navigator url='/pages/editor/editor?itemKey={{index}}' wx:else style='width:100%;height:200rpx;'>
                             点击添加文字
                         </navigator>
                     </view>
                 </view>
-                <view class="sign" style="flex-direction:column;padding-left:20rpx">
+                <!-- <view class="sign" style="flex-direction:column;padding-left:20rpx">
                     <image src="/image/shangbiao.png" style='width:50rpx;height:50rpx;'></image>
                     <view style='width:50rpx;height:130rpx;'></view>
                     <image src="/image/xiabiao.png" style='width:50rpx;height:50rpx;'></image>
-                </view>
+                </view> -->
             </view>
         </view>
     </view>
@@ -81,3 +86,9 @@
 
 
 <button bindtap="saveContent" style='width:100%;height:80rpx;line-height:80rpx;color:#FFF;font-weight:400;background-color:#FF6600;position: fixed;bottom: 0;'>保存</button>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>
+<loading hidden="{{recordingHidden}}">
+    录制中...
+</loading>

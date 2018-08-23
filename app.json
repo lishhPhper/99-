@@ -2,6 +2,7 @@
     "pages": [
       "pages/manufactor/productClassify/index",
         "pages/index/index",
+        "pages/manufactor/editor/editor",
         "pages/music/music",
         "pages/shops/nearby/nearby",
         "pages/shops/index/index",
@@ -15,9 +16,7 @@
         "pages/shops/createStore/createStore",
         "pages/shops/createStore/createCategory/createCategory",
         "pages/manufactor/productControl/index",
-  
         "pages/manufactor/addClassify/addClassify",
-        "pages/manufactor/editor/editor",
         "pages/product/detail/detail",
         "pages/product/edit/edit",
         "pages/community/articles/articles",
