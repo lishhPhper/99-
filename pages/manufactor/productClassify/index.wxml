@@ -1,4 +1,4 @@
-<view style='float:left;border:#ddd solid 2rpx;background-color:white;width:50%;height:80rpx;margin:20rpx 0 0 30rpx;'>
+<view data-type="1" bindtap='jumpCreate'  style='float:left;border:#ddd solid 2rpx;background-color:white;width:50%;height:80rpx;margin:20rpx 0 0 30rpx;'>
   <view style='float:left;height:80rpx;width:25%;'>
     <image src='../../../image/tianjia.png' style='width:60rpx;height:60rpx;margin:10rpx 0 0 16rpx;'></image>  
   </view>
@@ -7,13 +7,14 @@
     <image src='../../../image/xiabiao.png' style='width:60rpx;height:60rpx;margin:10rpx 0 0 16rpx;'></image>
   </view>
 </view>
-<view style='float:left;border:#ddd solid 2rpx;background-color:white;width:35%;height:80rpx;margin:20rpx 30rpx;'>
+<view data-type="2" bindtap='jumpCreate' style='float:left;border:#ddd solid 2rpx;background-color:white;width:35%;height:80rpx;margin:20rpx 30rpx;'>
   <view style='float:left;height:80rpx;width:30%;'>
     <image src='../../../image/tianjia.png' style='width:60rpx;height:60rpx;margin:10rpx 0 0 16rpx;'></image>  
   </view>
   <view style='float:left;font-size:14pt;width:70%;height:80rpx;line-height:80rpx;text-align:center;paddding-left:20rpx;'>添加产品</view>
 </view>
 <view style="clear:both"></view> 
+
 <view style='background-color:#888;height:2rpx;'></view>
 <view class='item item-height' style='padding:5rpx;'>
   <view class='item-height' style='float:left;width:15%;text-align:center;font-size:14pt;'>排序</view>
@@ -22,56 +23,35 @@
   <view class='item-height' style='float:left;width:15%;text-align:center;font-size:14pt;'>删除</view>
 </view>
 <view style="clear:both"></view> 
-<view class='item item-height' style='border-bottom:1px dashed #888;'>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;'>
-    <view style='float:left;width:50rpx;height:70rpx;border-right:2rpx solid #ddd;margin:5rpx;'>
-      <image src='../../../image/shangjian.png' style='width:30rpx;height:70rpx;'></image>
+<block wx:for="{{classifyList}}" wx:for-index="index" wx:item="item">
+  <view class='item item-height' style='border-bottom:1px dashed #888;'>
+    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;'>
+      <view data-index="{{index}}" data-id="{{item.id}}" data-type="up" bindtap='sortClassify' style='float:left;width:50rpx;height:70rpx;border-right:2rpx solid #ddd;margin:5rpx;'>
+        <image src='../../../image/shangjian.png' style='width:30rpx;height:70rpx;'></image>
+      </view>
+      <view data-index="{{index}}" data-id="{{item.id}}" data-type="down" data-index="{{index}}" bindtap='sortClassify' style='float:left;width:50rpx;height:80rpx;'>
+        <image src='../../../image/xiajian.png' style='width:30rpx;height:70rpx;'></image>
+      </view>
     </view>
-    <view style='float:left;width:50rpx;height:80rpx;'>
-      <image src='../../../image/xiajian.png' style='width:30rpx;height:70rpx;'></image>
-    </view>
+    <view class='item-height'style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>{{item.classify_name}}</view>
+    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</view>
+    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
   </view>
-  <view class='item-height'style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>客厅家具</view>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</view>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
-</view>
-<view class='item item-height' style='border-bottom:1px dashed #888;'>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;'>
-    <view style='float:left;width:50rpx;height:70rpx;border-right:2rpx solid #ddd;margin:5rpx;'>
-      <image src='../../../image/shangjian.png' style='width:30rpx;height:70rpx;'></image>
+
+  <block wx:for="{{item.son}}" wx:for-index="key"  wx:for-item="son_item">
+    <view class='item item-height' style='border-bottom:1px dashed #888;'>
+    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;'>
+      <view data-parent="{{index}}" data-index="{{key}}" data-id="{{son_item.id}}" data-type="up" bindtap='sortClassify' style='float:left;width:50rpx;height:70rpx;border-right:2rpx solid #ddd;margin:5rpx;'>
+        <image src='../../../image/shangjian.png' style='width:30rpx;height:70rpx;'></image>
+      </view>
+      <view data-parent="{{index}}" data-index="{{key}}" data-id="{{son_item.id}}" data-type="down" bindtap='sortClassify' style='float:left;width:50rpx;height:80rpx;'>
+        <image src='../../../image/xiajian.png' style='width:30rpx;height:70rpx;'></image>
+      </view>
     </view>
-    <view style='float:left;width:50rpx;height:80rpx;'>
-      <image src='../../../image/xiajian.png' style='width:30rpx;height:70rpx;'></image>
-    </view>
+    <view class='item-height'style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>|--{{son_item.classify_name}}</view>
+    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</view>
+    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
   </view>
-  <view class='item-height'style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>|-- 布艺沙发</view>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</view>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
-</view>
-<view style="clear:both"></view> 
-<view class='item item-height' style='border-bottom:1px dashed #888;'>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;'>
-    <view style='float:left;width:50rpx;height:70rpx;border-right:2rpx solid #ddd;margin:5rpx;'>
-      <image src='../../../image/shangjian.png' style='width:30rpx;height:70rpx;'></image>
-    </view>
-    <view style='float:left;width:50rpx;height:80rpx;'>
-      <image src='../../../image/xiajian.png' style='width:30rpx;height:70rpx;'></image>
-    </view>
-  </view>
-  <view class='item-height'style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>客厅家具</view>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</view>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
-</view>
-<view class='item item-height' style='border-bottom:1px dashed #888;'>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;'>
-    <view style='float:left;width:50rpx;height:70rpx;border-right:2rpx solid #ddd;margin:5rpx;'>
-      <image src='../../../image/shangjian.png' style='width:30rpx;height:70rpx;'></image>
-    </view>
-    <view style='float:left;width:50rpx;height:80rpx;'>
-      <image src='../../../image/xiajian.png' style='width:30rpx;height:70rpx;'></image>
-    </view>
-  </view>
-  <view class='item-height'style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>|-- 布艺沙发</view>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</view>
-  <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
-</view>
+  </block>
+
+</block>

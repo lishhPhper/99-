@@ -1,4 +1,4 @@
-<view style='float:left;border:#ddd solid 2rpx;background-color:white;width:50%;height:80rpx;margin:20rpx 0 0 30rpx;'>
+<view data-type="1" bindtap='jumpCreate' style='float:left;border:#ddd solid 2rpx;background-color:white;width:50%;height:80rpx;margin:20rpx 0 0 30rpx;'>
   <view style='float:left;height:80rpx;width:25%;'>
     <image src='../../../image/tianjia.png' style='width:60rpx;height:60rpx;margin:10rpx 0 0 16rpx;'></image>  
   </view>
@@ -7,7 +7,7 @@
     <image src='../../../image/xiabiao.png' style='width:60rpx;height:60rpx;margin:10rpx 0 0 16rpx;'></image>
   </view>
 </view>
-<view style='float:left;border:#ddd solid 2rpx;background-color:white;width:35%;height:80rpx;margin:20rpx 30rpx;'>
+<view data-type="2" bindtap='jumpCreate' style='float:left;border:#ddd solid 2rpx;background-color:white;width:35%;height:80rpx;margin:20rpx 30rpx;'>
   <view style='float:left;height:80rpx;width:30%;'>
     <image src='../../../image/tianjia.png' style='width:60rpx;height:60rpx;margin:10rpx 0 0 16rpx;'></image>  
   </view>
@@ -86,10 +86,10 @@
 </view>
 
 <!-- tarBar -->
-<view class='tarbar' style='background-color:#CCC;'>
+<!-- <view class='tarbar' style='background-color:#CCC;'>
   <view class='tarbar-item' style='width:20%;height:100px;'>
     <image src='../../../image/laji.png' style='width:100rpx;height:100rpx;'></image>
   </view>
   <view class='tarbar-item' style='width:50%;height:100px;line-height:100rpx;text-align:left;color:#d81e06;font-weight:bold;font-size:14pt;'>选择删除</view>
   <view class='tarbar-item' style='width:30%;height:100px;line-height:100rpx;text-align:center;color:#d81e06;font-weight:bold;font-size:14pt;'>关闭本页</view>
-</view>
+</view> -->

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "产品管理",
   "enablePullDownRefresh": true,
-  "navigationBarBackgroundColor": "#CCC"
+  "navigationBarBackgroundColor": "#FF6600",
+  "navigationBarTextStyle": "white"
 }

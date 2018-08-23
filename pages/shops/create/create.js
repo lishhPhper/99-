@@ -95,16 +95,10 @@ Page({
     }
     var store_type = this.data.store_type
     if (add_type == 3) {
-      if (store_type == 1){
-        wx.navigateTo({
-          url: '../../product/edit/edit',
-        })
-      }else{
-        wx.navigateTo({
-          url: '../../product/edit/edit',
-        })
-      }
-      
+      wx.navigateTo({
+        url: '../../manufactor/productControl/index',
+        // url:'../../manufactor/productClassify/index'
+      })
     }
   }
 })

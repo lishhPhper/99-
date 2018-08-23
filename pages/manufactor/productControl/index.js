@@ -61,5 +61,19 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  jumpCreate: function(e){
+    var jump_type = e.currentTarget.dataset.type
+    if (jump_type == 1) {
+      wx.navigateTo({
+        url: '../productClassify/index',
+      })
+    }
+    if (jump_type == 2) {
+      wx.navigateTo({
+        url: '../../product/edit/edit',
+      })
+    }
   }
 })

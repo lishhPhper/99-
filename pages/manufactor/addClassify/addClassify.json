@@ -1,6 +1,5 @@
 {
-  "navigationBarTitleText": "产品分类",
-  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "设置产品分类",
   "navigationBarBackgroundColor": "#FF6600",
   "navigationBarTextStyle": "white"
 }

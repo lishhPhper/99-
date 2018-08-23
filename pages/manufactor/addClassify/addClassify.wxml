@@ -1,0 +1,24 @@
+<view class="classify_view">
+  <view class="base_classify">
+    <view class="father_view">父级:</view>
+    <view class='father_picker'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{fatherArr}}">
+        <view class="picker">
+          {{fatherArr[index]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <form bindsubmit="formSubmit">
+    <view class='base_classify'>
+      <view class='father_view'>分类名称:</view>
+      <view class='classify_input_view'>
+        <input class='classify_input' type='text' name="classify_name" />
+      </view>
+    </view>
+    <view class="weui-btn-area" >
+      <button class="weui-btn" style='background-color:#f60;' type="primary" formType="submit">确定</button>
+    </view>
+  </form>
+</view>
