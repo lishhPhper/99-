@@ -38,6 +38,11 @@ page {
     height: 30rpx;
 }
 
+.icon-md {
+    width: 50rpx;
+    height: 50rpx;
+}
+
 .item-product {
     width: 50%;
     height: 420rpx;
@@ -115,4 +120,12 @@ page {
 .section_gap .section__title {
     padding-left: 0;
     padding-right: 0;
+}
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
 }

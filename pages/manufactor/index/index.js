@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp();
-var _music = '';
 var WxParse = require('../../../wxParse/wxParse.js');
 Page({
     data: {
@@ -10,8 +9,8 @@ Page({
         productNodeType: 1,
         aboutNodeType: 1,
         introduction_hidden: true,
-        img_url: app.globalData.apiUrl,
-        music_url: app.globalData.apiUrl,
+        img_url: app.globalData.img_url,
+        music_url: app.globalData.music_url,
         array: [
             {},
             {},
@@ -42,7 +41,6 @@ Page({
                         'userToken': _obj.data.token
                     },
                     success: function (res) {
-                        console.log(res);
                         if (res.data.state == 1) {
                             wx.hideLoading();
                             _obj.setData({
@@ -76,17 +74,17 @@ Page({
     },
     playVoice: function (event) {
         if (event.currentTarget.dataset.voiceResource != '') {
-            if (_music != '') {
-                _music.destroy();
+            if (app.globalData._music != '') {
+                app.globalData._music.destroy();
             }
-            _music = wx.createInnerAudioContext();
-            _music.autoplay = true;
-            _music.loop = true;
-            _music.src = event.currentTarget.dataset.voiceResource
-            _music.onPlay(() => {
+            app.globalData._music = wx.createInnerAudioContext();
+            app.globalData._music.autoplay = true;
+            app.globalData._music.loop = true;
+            app.globalData._music.src = event.currentTarget.dataset.voiceResource
+            app.globalData._music.onPlay(() => {
                 console.log('开始播放');
             })
-            _music.onError((res) => {
+            app.globalData._music.onError((res) => {
                 console.log(res.errMsg)
                 console.log(res.errCode)
             })
@@ -164,7 +162,6 @@ Page({
 
                         break;
                 }
-
                 wx.setNavigationBarTitle({
                     title: res.data.user_info.user_name
                 })

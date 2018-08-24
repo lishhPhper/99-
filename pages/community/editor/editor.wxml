@@ -1,20 +1,34 @@
 <import src="../../../wxParse/wxParse.wxml" />
+
 <view style='margin-bottom:100rpx;'>
     <view class="section">
-        <block wx:if="{{home_content.music != ''}}">
+        <view style='border:1px solid #ccc;background-color:#FFF;height:80rpx;'>
+            <picker bindchange="bindPickerChange" value="{{classifyArr[index].id}}" range="{{classifyNameArr}}">
+                <view style='width:100%;height:80rpx;line-height:80rpx;'>
+                    <view class="flex-item float-left">
+                        <image src="/image/classify.png" style='width:50rpx;height:50rpx;'></image>
+                    </view>
+                    <view class='picker float-left' style='padding:0rpx 15rpx;'>
+                        动态类别：{{classifyArr[index].classify_name}}
+                    </view>
+                    <image class='icon float-right' style="margin:20rpx;" src='/image/arrowright.png'></image>
+                </view>
+            </picker>
+        </view>
+        <block wx:if="{{contentArr.music != ''}}">
             <view class="flex-wrp" style="flex-direction:row;">
                 <view class="flex-item ">
-                    <image src="/image/music.png" style='width:50rpx;height:50rpx;' bindtap='playVoice' data-voice-resource="{{music_url}}{{home_content.music}}"></image>
+                    <image src="/image/music.png" style='width:50rpx;height:50rpx;' bindtap='playVoice' data-voice-resource="{{music_url}}{{contentArr.music}}"></image>
                 </view>
                 <view class="flex-item" style="width:85%;line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    <text bindtap='playVoice' data-voice-resource="{{music_url}}{{home_content.music}}">{{home_content.music_name}}</text>
+                    <text bindtap='playVoice' data-voice-resource="{{music_url}}{{contentArr.music}}">{{contentArr.music_name}}</text>
                     <navigator url='/pages/music/music' style='display:inline;float:right;color:#ccc;font-weight:400'>
                         更换
                     </navigator>
                 </view>
             </view>
         </block>
-        <block wx:if="{{home_content.music == ''}}">
+        <block wx:if="{{contentArr.music == ''}}">
             <view class="flex-wrp" style="flex-direction:row;">
                 <view class="flex-item ">
                     <image src="/image/tianjia.png" style='width:50rpx;height:50rpx;'></image>
@@ -26,32 +40,8 @@
                 </view>
             </view>
         </block>
-
-        <block wx:if="{{home_content.record != ''}}">
-            <view class="flex-wrp" style="flex-direction:row;" >
-                <view class="flex-item " bindtap="playVoice" data-voice-resource="{{music_url}}{{home_content.record}}">
-                    <image src="/image/voice.png" style='width:50rpx;height:50rpx;'></image>
-                </view>
-                <view class="flex-item" style="width:85%;line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    <text bindtap="playVoice" data-voice-resource="{{music_url}}{{home_content.record}}">点击播放录音</text>
-                    <view bindtap='recorded' style='display:inline;float:right;color:#ccc;font-weight:400'>录制</view> 
-                </view>
-            </view>
-        </block>
-        <block wx:if="{{home_content.record == ''}}">
-            <view class="flex-wrp" style="flex-direction:row;">
-                <view class="flex-item ">
-                    <image src="/image/tianjia.png" style='width:50rpx;height:50rpx;'></image>
-                </view>
-                <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    <view bindtap='recorded'>
-                        点击添加录音
-                    </view>
-                </view>
-            </view>
-        </block>
     </view>
-    <view class='product-box' wx:for="{{home_content.items}}">
+    <view class='product-box' wx:for="{{contentArr.items}}">
         <view class="section">
             <view class="flex-wrp-1" style="flex-direction:row;">
                 <view class="flex-item-1">
@@ -63,10 +53,10 @@
                 </view>
                 <view class="page-section">
                     <view class="textarea-wrp" style='padding:10rpx' style='width:380rpx;height:220rpx;'>
-                        <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=homeContent' wx:if="{{item.text != ''}}" >
-                            <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}"/>
+                        <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=article' wx:if="{{item.text != ''}}">
+                            <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}" />
                         </navigator>
-                        <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=homeContent' wx:else style='width:100%;height:200rpx;'>
+                        <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=article' wx:else style='width:100%;height:200rpx;'>
                             点击添加文字
                         </navigator>
                     </view>

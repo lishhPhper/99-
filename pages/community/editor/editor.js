@@ -10,26 +10,55 @@ Page({
         loadingHidden: true,
         recordingHidden: true,
         music_url: app.globalData.music_url,
-        img_url: app.globalData.img_url
+        img_url: app.globalData.img_url,
     },
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function(options) {
         var obj = this;
         wx.getStorage({
             key: 'userInfo',
-            success: function (res) {
+            success: function(res) {
                 var userToken = res.data.token;
                 var user_info = res.data.user_info;
+                wx.request({
+                    url: app.globalData.apiUrl + 'api/v1/article/classify',
+                    method: 'GET',
+                    header: {
+                        'userToken': userToken
+                    },
+                    success: function (classifyRes) {
+                        if (classifyRes.data.state == 1) {
+                            var items = classifyRes.data.data;
+                            if(items.length > 0){
+                                var classifyNameArr = [];
+                                for (var i = 0; i < items.length; i++) {
+                                    classifyNameArr[classifyNameArr.length] = items[i]['classify_name'];
+                                }
+                            }
+                            obj.setData({
+                                userInfo: res.data.user_info,
+                                token: res.data.token,
+                                classifyArr: classifyRes.data.data,
+                                classifyNameArr: classifyNameArr,
+                            });
+                        } else {
+                            console.log(classifyRes);
+                        }
+                    }
+                });
                 if (options.type == 2) {
                     wx.request({
-                        url: app.globalData.apiUrl + 'api/v1/homeContent/getCache',
+                        url: app.globalData.apiUrl + 'api/v1/article/getCache',
                         method: 'GET',
                         header: {
                             'userToken': userToken
                         },
-                        success: function (getCacheRes) {
+                        data:{
+                            articleId: options.articleId,
+                        },
+                        success: function(getCacheRes) {
                             var items = getCacheRes.data.data.items;
                             if (getCacheRes.data.state == 1) {
                                 for (var i = 0; i < items.length; i++) {
@@ -38,9 +67,7 @@ Page({
                                 }
                                 getCacheRes.data.data.items = items;
                                 obj.setData({
-                                    userInfo: user_info,
-                                    token: userToken,
-                                    home_content: getCacheRes.data.data,
+                                    details: getCacheRes.data.data,
                                 });
                             } else {
                                 console.log(getCacheRes);
@@ -49,29 +76,28 @@ Page({
                     });
                 } else {
                     wx.request({
-                        url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
+                        url: app.globalData.apiUrl + 'api/v1/article/getArticleContent',
                         method: 'GET',
                         header: {
                             'userToken': userToken
                         },
                         data:{
-                            edit_type: 1
+                            id: options.articleId,
                         },
-                        success: function (homeContentRes) {
-                            if (homeContentRes.data.state == 1) {
-                                var items = homeContentRes.data.data.items;
+                        success: function (getArticleContentRes) {
+                            console.log(getArticleContentRes);
+                            if (getArticleContentRes.data.state == 1) {
+                                var items = getArticleContentRes.data.data.items;
                                 for (var i = 0; i < items.length; i++) {
                                     WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
                                     items[i]['format_text'] = obj.data.format_text;
                                 }
-                                homeContentRes.data.data.items = items;
+                                getArticleContentRes.data.data.items = items;
                                 obj.setData({
                                     userInfo: res.data.user_info,
                                     token: res.data.token,
-                                    home_content: homeContentRes.data.data,
+                                    contentArr: getArticleContentRes.data.data,
                                 });
-                            } else {
-                                console.log(homeContentRes);
                             }
                         }
                     });
@@ -82,49 +108,49 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function () {
+    onReady: function() {
 
     },
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
+    onShow: function() {
 
     },
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function () {
+    onHide: function() {
 
     },
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function () {
+    onUnload: function() {
 
     },
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function () {
+    onPullDownRefresh: function() {
 
     },
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function () {
+    onReachBottom: function() {
 
     },
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
+    onShareAppMessage: function() {
 
     },
     /**
      * 添加图文item
      */
-    addBox: function () {
+    addBox: function() {
         var home_content = this.data.home_content;
         var userToken = this.data.token;
         var length = home_content.items.length;
@@ -145,7 +171,7 @@ Page({
             data: {
                 type: 2
             },
-            success: function (setCacheRes) {
+            success: function(setCacheRes) {
                 console.log(setCacheRes);
             }
         });
@@ -153,7 +179,7 @@ Page({
     /**
      * 删除图文item
      */
-    delBox: function (event) {
+    delBox: function(event) {
         var obj = this;
         var home_content = this.data.home_content;
         var itemKey = event.currentTarget.dataset.itemKey;
@@ -171,7 +197,7 @@ Page({
                 itemKey: itemKey,
                 type: 3,
             },
-            success: function (setCacheRes) {
+            success: function(setCacheRes) {
                 if (setCacheRes.data.state == 1) {
                     home_content.items[itemKey]['img'] = img_data.data.img;
                     obj.setData({
@@ -186,7 +212,7 @@ Page({
     /**
      * 播放音乐
      */
-    playVoice: function (event) {
+    playVoice: function(event) {
         var obj = this;
         this.setData({
             loadingHidden: false
@@ -213,7 +239,7 @@ Page({
     /**
      * 上传图片
      */
-    uploadImg: function (event) {
+    uploadImg: function(event) {
         var obj = this;
         var home_content = this.data.home_content;
         var itemKey = event.currentTarget.dataset.itemKey;
@@ -221,7 +247,7 @@ Page({
             count: 1, // 默认9
             sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
             sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-            success: function (res) {
+            success: function(res) {
                 console.log(res);
                 // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
                 var tempFilePaths = res.tempFilePaths;
@@ -233,7 +259,7 @@ Page({
                         'content-type': 'multipart/form-data',
                         'userToken': obj.data.token
                     }, // 设置请求的 header
-                    success: function (uploadRes) {
+                    success: function(uploadRes) {
                         var img_data = JSON.parse(uploadRes.data);
                         if (img_data.state == '1') {
                             wx.request({
@@ -247,7 +273,7 @@ Page({
                                     text: home_content.items[itemKey]['text'],
                                     img: img_data.data.img
                                 },
-                                success: function (setCacheRes) {
+                                success: function(setCacheRes) {
                                     if (setCacheRes.data.state == 1) {
                                         home_content.items[itemKey]['img'] = img_data.data.img;
                                         obj.setData({
@@ -269,7 +295,7 @@ Page({
     /**
      * 保存图文
      */
-    saveContent: function (event) {
+    saveContent: function(event) {
         var obj = this;
         var home_content = obj.data.home_content;
         var itemKey = event.currentTarget.dataset.itemKey;
@@ -285,14 +311,14 @@ Page({
                 music_name: home_content.music_name,
                 items: JSON.stringify(home_content.items),
             },
-            success: function (saveHomeContentRes) {
+            success: function(saveHomeContentRes) {
                 if (saveHomeContentRes.data.state == 1) {
                     console.log(obj.data.userInfo);
-                    if (obj.data.userInfo.type == 1){
+                    if (obj.data.userInfo.type == 1) {
                         wx.redirectTo({
                             url: "../index/index?type=1"
                         })
-                    }else{
+                    } else {
                         wx.switchTab({
                             url: "../../shops/index/index"
                         })
@@ -306,7 +332,7 @@ Page({
     /**
      * 录制语音
      */
-    recorded: function (event) {
+    recorded: function(event) {
         const recorderManager = wx.getRecorderManager();
         var obj = this;
         this.setData({
@@ -321,14 +347,18 @@ Page({
         })
         recorderManager.onStop((res) => {
             console.log('recorder stop', res);
-            const { tempFilePath } = res;
+            const {
+                tempFilePath
+            } = res;
             obj.setData({
                 recordingHidden: true
             });
             obj.update();
         })
         recorderManager.onFrameRecorded((res) => {
-            const { frameBuffer } = res
+            const {
+                frameBuffer
+            } = res
             console.log('frameBuffer.byteLength', frameBuffer.byteLength)
         })
 
@@ -342,5 +372,11 @@ Page({
         }
 
         recorderManager.start(options)
-    }
+    },
+    bindPickerChange: function (e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        this.setData({
+            index: e.detail.value
+        })
+    },
 })

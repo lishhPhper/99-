@@ -41,50 +41,10 @@
         </view>
     </view>
 </view>
-<!-- <view class="section section_gap">
-    <scroll-view class="scroll-view_H" scroll-x style="text-align: center;line-height:80rpx">
-        <view id="green" class="scroll-view-item_H bc_white">热点</view>
-        <view id="red" class="scroll-view-item_H bc_white">美容瘦身</view>
-        <view id="yellow" class="scroll-view-item_H bc_white">旅游健身</view>
-        <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
-        <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
-        <view id="blue" class="scroll-view-item_H bc_white">赏花摄影</view>
-    </scroll-view>
-</view> -->
 <view class="navs">
-    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="/image/home.png" class="nav-image" />
-        <text>秀家</text>
-    </view>
-    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="/image/home.png" class="nav-image" />
-        <text>美文</text>
-    </view>
-    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="/image/home.png" class="nav-image" />
-        <text>身边</text>
-    </view>
-    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="/image/home.png" class="nav-image" />
-        <text>收藏</text>
-    </view>
-</view>
-<view class="navs">
-    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="/image/home.png" class="nav-image" />
-        <text>需求</text>
-    </view>
-    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="/image/home.png" class="nav-image" />
-        <text>服务</text>
-    </view>
-    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="/image/home.png" class="nav-image" />
-        <text>活动</text>
-    </view>
-    <view class="nav-item" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-        <image src="/image/home.png" class="nav-image" />
-        <text>其他</text>
+    <view class="nav-item" catchtap="catchTapCategory" data-classify-id="{{classifyItem.id}}" wx:for="{{classifyArr}}" wx:for-item="classifyItem">
+        <image src="{{img_url}}{{classifyItem.classify_img}}" class="nav-image" />
+        <text>{{classifyItem.classify_name}}</text>
     </view>
 </view>
 <view class='item-hr'></view>

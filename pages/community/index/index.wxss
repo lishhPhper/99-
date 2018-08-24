@@ -13,6 +13,7 @@
 
 .navs {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .nav-item {
@@ -20,7 +21,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 15rpx;
+  margin: 10rpx 0rpx; 
 }
 
 .nav-item .nav-image {
