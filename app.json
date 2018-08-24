@@ -4,7 +4,6 @@
         "pages/index/index",
         "pages/community/editor/editor",
         "pages/community/index/index",
-        "pages/manufactor/productClassify/index",
         "pages/manufactor/editor/editor",
         "pages/music/music",
         "pages/shops/nearby/nearby",
