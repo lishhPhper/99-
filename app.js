@@ -1,11 +1,14 @@
 //app.js
 App({
-    onLaunch: function () {
+    onLaunch: function() {
 
     },
     globalData: {
         apiUrl: 'https://www.7qiaoban.cn/',
         // apiUrl: 'http://99.icode99.top/',
+        _music: '',
+        music_url: 'https://www.7qiaoban.cn',
+        img_url: 'https://www.7qiaoban.cn',
         successReturn: {
             error_code: 0,
             message: '成功',

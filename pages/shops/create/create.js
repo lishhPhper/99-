@@ -90,7 +90,7 @@ Page({
     if (add_type == 2) {
       // 发布动态页面
       wx.navigateTo({
-        url: '../createStore/createStore',
+          url: '../../community/editor/editor',
       })
     }
     var store_type = this.data.store_type

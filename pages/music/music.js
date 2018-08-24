@@ -1,15 +1,14 @@
 //index.js
 //获取应用实例
 const app = getApp();
-var _music = '';
 Page({
     data: {
         musicArr: [],
         selected_id: 0,
         loadingHidden: true,
-        music_url: app.globalData.apiUrl,
         default_hidden : false,
-        searchMusicArr: false
+        searchMusicArr: false,
+        music_url: app.globalData.music_url
     },
     onLoad: function(options) {
         var obj = this;
@@ -96,21 +95,21 @@ Page({
             obj.setData({
                 loadingHidden: false
             });
-            if (_music != '') {
-                _music.destroy();
+            if (app.globalData._music != '') {
+                app.globalData._music.destroy();
             }
-            _music = wx.createInnerAudioContext();
-            _music.autoplay = true;
-            _music.loop = true;
-            _music.src = obj.data.music_url + musicLink;
-            _music.onPlay(() => {
+            app.globalData._music = wx.createInnerAudioContext();
+            app.globalData._music.autoplay = true;
+            app.globalData._music.loop = true;
+            app.globalData._music.src = obj.data.music_url + musicLink;
+            app.globalData._music.onPlay(() => {
                 console.log('开始播放');
                 obj.setData({
                     loadingHidden: true
                 });
                 obj.update();
             })
-            _music.onError((res) => {
+            app.globalData._music.onError((res) => {
                 console.log(res.errMsg)
                 console.log(res.errCode)
             })

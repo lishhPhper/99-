@@ -65,6 +65,7 @@
 </block>
 
 <button bindtap="saveMusic" class='saveMusic'>完成</button>
+
 <loading hidden="{{loadingHidden}}">
     加载中...
-</loading>
+</loading> -->

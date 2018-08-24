@@ -4,11 +4,11 @@
     <view>点击下面立即创建门店</view>
   </view>
   <view class='add_view' data-type="1" bindtap='jump'>
-    <image class="add_icon" src="../../../image/tianjia.png"></image>
+    <image class="add_icon" src="/image/tianjia.png"></image>
     <view>创建门店</view>
   </view>
   <view class='add_view' data-type="2" bindtap='jump'>
-    <image class="add_icon" src="../../../image/writeHL1.png"></image>
+    <image class="add_icon" src="/image/writeHL1.png"></image>
     <view>发布同城动态</view>
   </view>
 </block>
@@ -17,11 +17,11 @@
   <view class='empty_store'>
   </view>
   <view class='add_view' data-type="3" bindtap='jump'>
-    <image class="add_icon" src="../../../image/tianjia.png"></image>
+    <image class="add_icon" src="/image/tianjia.png"></image>
     <view>发布门店产品</view>
   </view>
   <view class='add_view' data-type="2" bindtap='jump'>
-    <image class="add_icon" src="../../../image/writeHL1.png"></image>
+    <image class="add_icon" src="/image/writeHL1.png"></image>
     <view>发布同城动态</view>
   </view>
 </block>

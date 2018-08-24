@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var _music = '';
 var WxParse = require('../../../wxParse/wxParse.js');
 Page({
     data: {
@@ -17,11 +16,11 @@ Page({
         shop_name: '',
         shop_img: '',
         img_url: '',
-        defaultImg: '../../../image/jiaju01.jpg',
+        defaultImg: '/image/jiaju01.jpg',
         user_info: {},
-        imageText: {}
+        imageText: {},
+        music_url: app.globalData.music_url
     },
-
     onLoad: function() {
         var that = this;
         wx.getStorage({
@@ -121,9 +120,7 @@ Page({
             shop_img: that.data.defaultImg
         })
     },
-
     showStoreContact: function(e) {
-        console.log()
         var that = this;
         var show_type = e.currentTarget.dataset.type
         if (show_type == 1) {
@@ -144,5 +141,23 @@ Page({
                 }
             }
         })
+    },
+    playVoice: function (event) {
+        if (event.currentTarget.dataset.voiceResource != '') {
+            if (app.globalData._music != '') {
+                app.globalData._music.destroy();
+            }
+            app.globalData._music = wx.createInnerAudioContext();
+            app.globalData._music.autoplay = true;
+            app.globalData._music.loop = true;
+            app.globalData._music.src = event.currentTarget.dataset.voiceResource
+            app.globalData._music.onPlay(() => {
+                console.log('开始播放');
+            })
+            app.globalData._music.onError((res) => {
+                console.log(res.errMsg)
+                console.log(res.errCode)
+            })
+        }
     }
 });

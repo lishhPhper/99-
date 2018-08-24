@@ -1,7 +1,9 @@
 {
     "pages": [
-      "pages/manufactor/productClassify/index",
         "pages/index/index",
+        "pages/community/editor/editor",
+        "pages/community/index/index",
+        "pages/manufactor/productClassify/index",
         "pages/manufactor/editor/editor",
         "pages/music/music",
         "pages/shops/nearby/nearby",
@@ -9,7 +11,6 @@
         "pages/shops/editor/editor",
         "pages/shops/classify/classify",
         "pages/shops/settings/settings",
-        "pages/community/index/index",
         "pages/info/info",
         "pages/manufactor/index/index",
         "pages/shops/create/create",
@@ -20,6 +21,7 @@
         "pages/product/detail/detail",
         "pages/product/edit/edit",
         "pages/community/articles/articles",
+        "pages/community/add/add",
         "pages/community/articleInfo/articleInfo",
         "pages/popularize/index",
         "pages/editor/editor"
@@ -37,32 +39,32 @@
             {
                 "pagePath": "pages/shops/nearby/nearby",
                 "text": "附近店",
-                "iconPath": "image/nearby.png",
-                "selectedIconPath": "image/nearbyHL.png"
+                "iconPath": "/image/nearby.png",
+                "selectedIconPath": "/image/nearbyHL.png"
             },
             {
                 "pagePath": "pages/community/index/index",
                 "text": "同城圈",
-                "iconPath": "image/yuan.png",
-                "selectedIconPath": "image/yuanHL.png"
+                "iconPath": "/image/yuan.png",
+                "selectedIconPath": "/image/yuanHL.png"
             },
             {
                 "pagePath": "pages/shops/create/create",
                 "text": "",
-                "iconPath": "image/add.png",
-                "selectedIconPath": "image/addHL.png"
+                "iconPath": "/image/add.png",
+                "selectedIconPath": "/image/addHL.png"
             },
             {
                 "pagePath": "pages/shops/index/index",
                 "text": "我门店",
-                "iconPath": "image/write.png",
-                "selectedIconPath": "image/writeHL.png"
+                "iconPath": "/image/write.png",
+                "selectedIconPath": "/image/writeHL.png"
             },
             {
                 "pagePath": "pages/info/info",
                 "text": "我信息",
-                "iconPath": "image/myinfo.png",
-                "selectedIconPath": "image/myinfoHL.png"
+                "iconPath": "/image/myinfo.png",
+                "selectedIconPath": "/image/myinfoHL.png"
             }
         ]
     }
