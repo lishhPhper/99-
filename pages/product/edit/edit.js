@@ -5,74 +5,24 @@ const app = getApp()
 var order = ['red', 'yellow', 'blue', 'green', 'red']
 Page({
     data: {
-        array: ['美国', '中国', '巴西', '日本'],
-        objectArray: [
-            {
-                id: 0,
-                name: '美国'
-            },
-            {
-                id: 1,
-                name: '中国'
-            },
-            {
-                id: 2,
-                name: '巴西'
-            },
-            {
-                id: 3,
-                name: '日本'
-            }
-        ],
-        index: 0,
-        multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'], ['猪肉绦虫', '吸血虫']],
-        objectMultiArray: [
-            [
-                {
-                    id: 0,
-                    name: '无脊柱动物'
-                },
-                {
-                    id: 1,
-                    name: '脊柱动物'
-                }
-            ], [
-                {
-                    id: 0,
-                    name: '扁性动物'
-                },
-                {
-                    id: 1,
-                    name: '线形动物'
-                },
-                {
-                    id: 2,
-                    name: '环节动物'
-                },
-                {
-                    id: 3,
-                    name: '软体动物'
-                },
-                {
-                    id: 3,
-                    name: '节肢动物'
-                }
-            ], [
-                {
-                    id: 0,
-                    name: '猪肉绦虫'
-                },
-                {
-                    id: 1,
-                    name: '吸血虫'
-                }
-            ]
-        ],
-        multiIndex: [0, 0, 0],
-        date: '2016-09-01',
-        time: '12:01',
-        region: ['广东省', '广州市', '海珠区'],
-        customItem: '全部'
+      array: ['美国', '中国', '巴西', '日本'],
+      index: 0,
+      imageIndex:[1],
+      user_info:{},
+      userToken:'',
+      goods_color:[],
+      apiUrl: app.globalData.apiUrl,
+      show_goods_img:[],
+      priceArr:[1]
+    },
+    onLoad:function(options){
+      var that = this
+      var user_info = wx.getStorageSync('userInfo')
+      var userToken = user_info.token
+      that.setData({
+        user_info,
+        userToken
+      })
     },
     bindPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -80,91 +30,99 @@ Page({
             index: e.detail.value
         })
     },
-    bindMultiPickerChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
-        this.setData({
-            multiIndex: e.detail.value
-        })
+    addUpload:function(){
+      var that = this
+      var imageIndex = that.data.imageIndex
+      imageIndex.push(1)
+      that.setData({
+        imageIndex
+      })
     },
-    bindMultiPickerColumnChange: function (e) {
-        console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-        var data = {
-            multiArray: this.data.multiArray,
-            multiIndex: this.data.multiIndex
-        };
-        data.multiIndex[e.detail.column] = e.detail.value;
-        switch (e.detail.column) {
-            case 0:
-                switch (data.multiIndex[0]) {
-                    case 0:
-                        data.multiArray[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'];
-                        data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-                        break;
-                    case 1:
-                        data.multiArray[1] = ['鱼', '两栖动物', '爬行动物'];
-                        data.multiArray[2] = ['鲫鱼', '带鱼'];
-                        break;
-                }
-                data.multiIndex[1] = 0;
-                data.multiIndex[2] = 0;
-                break;
-            case 1:
-                switch (data.multiIndex[0]) {
-                    case 0:
-                        switch (data.multiIndex[1]) {
-                            case 0:
-                                data.multiArray[2] = ['猪肉绦虫', '吸血虫'];
-                                break;
-                            case 1:
-                                data.multiArray[2] = ['蛔虫'];
-                                break;
-                            case 2:
-                                data.multiArray[2] = ['蚂蚁', '蚂蟥'];
-                                break;
-                            case 3:
-                                data.multiArray[2] = ['河蚌', '蜗牛', '蛞蝓'];
-                                break;
-                            case 4:
-                                data.multiArray[2] = ['昆虫', '甲壳动物', '蛛形动物', '多足动物'];
-                                break;
-                        }
-                        break;
-                    case 1:
-                        switch (data.multiIndex[1]) {
-                            case 0:
-                                data.multiArray[2] = ['鲫鱼', '带鱼'];
-                                break;
-                            case 1:
-                                data.multiArray[2] = ['青蛙', '娃娃鱼'];
-                                break;
-                            case 2:
-                                data.multiArray[2] = ['蜥蜴', '龟', '壁虎'];
-                                break;
-                        }
-                        break;
-                }
-                data.multiIndex[2] = 0;
-                console.log(data.multiIndex);
-                break;
+    delUpload:function(e){
+      var that = this
+      var imageIndex = that.data.imageIndex
+      var index = e.currentTarget.dataset.index
+      var imageIndex = that.data.imageIndex
+      imageIndex.splice(index,1)
+      that.setData({
+        imageIndex
+      })
+      // 删除图片
+      var goods_color = that.data.goods_color
+      var show_goods_img = that.data.show_goods_img
+      if (typeof (goods_color) != "undefined" && typeof (show_goods_img) != "undefined" && goods_color.length > 0 && show_goods_img.length > 0){
+        goods_color.splice(index,1)
+        show_goods_img.splice(index, 1)
+        that.setData({
+          goods_color,
+          show_goods_img
+        })
+      }
+    },
+    gotoShow: function (e) {
+      var that = this
+      var goods_color = that.data.goods_color
+      var show_goods_img = that.data.show_goods_img
+      var index = e.currentTarget.dataset.index
+      wx.chooseImage({
+        count: 1, // 最多可以选择的图片张数，默认9
+        sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+        sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
+        success: function (res) {
+          // success
+          var tempFilePaths = res.tempFilePaths
+          //上传
+          var userToken = that.data.userToken
+          wx.uploadFile({
+            url: app.globalData.apiUrl + 'api/v1/image/temporary',
+            filePath: res.tempFilePaths[0],
+            name: 'img',
+            header: {
+              'content-type': 'multipart/form-data',
+              'userToken': userToken
+            }, // 设置请求的 header
+            success: function (res) {
+              var img_data = JSON.parse(res.data);
+              console.log(img_data)
+              goods_color[index] = []
+              
+              if (img_data.state == '1') {
+                show_goods_img[index] = app.globalData.apiUrl + img_data.data.img
+                goods_color[index]['img'] = img_data.data.img
+                that.setData({
+                  goods_color,
+                  show_goods_img
+                })
+              }
+            }
+          })
+        },
+        fail: function () {
+          wx.hideToast();
+          wx.showModal({
+            title: '错误提示',
+            content: '上传图片失败',
+            showCancel: false,
+            success: function (res) { }
+          })
+        },
+        complete: function () {
+        
         }
-        this.setData(data);
+      })
     },
-    bindDateChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
-        this.setData({
-            date: e.detail.value
-        })
-    },
-    bindTimeChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
-        this.setData({
-            time: e.detail.value
-        })
-    },
-    bindRegionChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
-        this.setData({
-            region: e.detail.value
-        })
+    listenerButtonPreviewImage:function(e){
+      var index = e.target.dataset.index;
+      var that = this;
+      wx.previewImage({
+        current: that.data.show_goods_img[index],
+        urls: that.data.show_goods_img,//图片预览list列表
+        success: function (res) {
+          //console.log(res);
+        },
+        fail: function () {
+          //console.log('fail')
+        }
+      })
     }
 })

@@ -3,48 +3,63 @@
 </view>
 <view style='border-top:1px solid #888888;padding:10rpx 15rpx;'>
     <view style='height:80rpx;'>
-        <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
-        <view style='float:left;height:80rpx;line-height:80rpx;margin-right:10rpx;'>产品名称</view>
-        <input style='float:left;border:1px solid #888888;height:50rpx;line-height:50rpx;margin:10rpx;width:500rpx;' placeholder='可填多个名称便于搜索，最多20个字' />
+        <image class='required-img' src='../../../image/required_tip.png'></image>
+        <view class='item-name'>产品名称</view>
+        <input name="goods_name" class='goods_name' style='' placeholder='' />
     </view>
     <view style='height:80rpx;'>
-        <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
-        <view style='float:left;height:80rpx;line-height:80rpx;margin-right:10rpx;'>产品品牌</view>
-        <input style='float:left;border:1px solid #888888;height:50rpx;line-height:50rpx;margin:10rpx;width:200rpx;' />
+        <image src='../../../image/required_tip.png' class='required-img'></image>
+        <view class='item-name'>产品品牌</view>
+        <input name="brand" class='short-input' />
     </view>
     <view style='height:80rpx;'>
-        <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
-        <view style='float:left;height:80rpx;line-height:80rpx;margin-right:10rpx;'>产品型号</view>
-        <input style='float:left;border:1px solid #888888;height:50rpx;line-height:50rpx;margin:10rpx;width:200rpx;' />
+        <image src='../../../image/required_tip.png' class='required-img'></image>
+        <view class='item-name'>产品型号</view>
+        <input name="model_no" class="short-input" />
     </view>
     <view style='height:80rpx;'>
-        <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
-        <button style='height:50rpx;line-height:50rpx;margin:15rpx 0rpx;float:left;'>
-            <image src='../../../image/addHL.png' style='float:left;height:40rpx;width:40rpx;padding:5rpx 0rpx;'></image>
-            <view style='float:left;font-size:11pt;'>产品图和颜色</view>
+        <image src='../../../image/required_tip.png' class='required-img'></image>
+        <button class='item-button' bindtap='addUpload'>
+            <image src='../../../image/addHL.png' class='operation-img'></image>
+            <view class='button-view'>产品图和颜色</view>
         </button>
-        <view style='float:left;height:50rpx;line-height:50rpx;margin:15rpx;'>点击添加多个产品和颜色</view>
+        <view class='tip-view'>点击添加多个产品和颜色</view>
     </view>
-    <view style='min-height:80rpx;'>
-        <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
-        <button style='height:50rpx;line-height:50rpx;margin:15rpx 0rpx;float:left;'>
-            <image src='../../../image/addHL.png' style='float:left;height:40rpx;width:40rpx;padding:5rpx 0rpx;'></image>
-            <view style='float:left;font-size:11pt;'>上传产品</view>
-        </button>
-        <input style='float:left;border:1px solid #888888;height:50rpx;line-height:50rpx;margin:10rpx;width:250rpx;' placeholder='请填写本产品颜色' />
-        <view class='clear'></view>
-        <view style='text-align:center;'>
-            <image src='../../../image/jiaju01.jpg' mode='aspectFit'></image>
-        </view>
-    </view>
+    <block wx:for="{{imageIndex}}">
+      <view style='min-height:80rpx;'>
+          <image src='../../../image/required_tip.png' class='required-img'></image>
+          <button class='item-button' data-index="{{index}}" bindtap='gotoShow'>
+              <image src='../../../image/addHL.png' class='operation-img'></image>
+              <view class='button-view'>上传产品</view>
+          </button>
+          <input class="short-input" style='width:250rpx;' name="goods_img[]" placeholder='请填写产品颜色' />
+          <image src='../../../image/delHL.png' data-index="{{index}}" bindtap='delUpload' class='operation-img' style='margin-top:16rpx;'></image>
+          <view class='clear'></view>
+          <view style='text-align:center;'>
+              <image style='border:1px solid #888888;' bindtap='listenerButtonPreviewImage' data-index="{{index}}" src="{{show_goods_img[index]}}" mode='aspectFit'></image>
+          </view>
+      </view>
+    </block>
+
     <view style='height:80rpx;'>
-        <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
-        <button style='height:50rpx;line-height:50rpx;margin:15rpx 0rpx;float:left;'>
-            <image src='../../../image/addHL.png' style='float:left;height:40rpx;width:40rpx;padding:5rpx 0rpx;'></image>
-            <view style='float:left;font-size:11pt;'>产品价格</view>
+        <image src='../../../image/required_tip.png' class='required-img'></image>
+        <button class='item-button'>
+            <image src='../../../image/addHL.png' class='operation-img'></image>
+            <view class='button-view'>产品价格</view>
         </button>
-        <view style='float:left;height:50rpx;line-height:50rpx;margin:15rpx;'>点击添加多个价格配置条目</view>
+        <view class='tip-view'>点击添加多个价格配置条目</view>
     </view>
+    <block wx:for="{{priceArr}}">
+      <view class='price-item'>
+        <text class="price-text">厂价</text>
+        <input class='price-input' name='price[]' type='number' />
+        <text class="equal-text" decode>=</text>
+        <input class='configuration-input' name='configuration[]' placeholder='填写包括哪些产品组合' />
+        <text class='retail-text'>零售价</text>
+        <input class='price-input' name='retail' disabled />
+      </view>
+    </block>
+
     <view style='height:80rpx;'>
         <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
         <button style='height:50rpx;line-height:50rpx;margin:15rpx 0rpx;float:left;'>

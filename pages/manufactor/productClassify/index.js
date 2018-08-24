@@ -24,7 +24,7 @@ Page({
       userToken
     })
     wx.request({
-      url: app.globalData.apiUrl + 'api/v1/classify/groupClassify',
+      url: app.globalData.apiUrl + 'api/v1/group_classify/list',
       header: {
         'content-type': 'application/json',
         'userToken': userToken
@@ -176,7 +176,7 @@ Page({
 
     var userToken = that.data.userToken
     wx.request({
-      url: app.globalData.apiUrl + 'api/v1/classify/sort',
+      url: app.globalData.apiUrl + 'api/v1/group_classify/sort',
       header: {
         'content-type': 'application/json',
         'userToken': userToken
@@ -189,5 +189,80 @@ Page({
         console.log(res)
       }
     })
+  },
+
+  delClassify:function(e) {
+    var that = this
+    var id = e.currentTarget.dataset.id
+    var parent = e.currentTarget.dataset.parent
+    var index = e.currentTarget.dataset.index
+    var userToken = that.data.userToken
+    var classifyList = that.data.classifyList
+    // console.log(parent)
+    if (typeof (parent) == "undefined"){
+      wx.showModal({
+        title: '提示',
+        content: '删除顶级分类后，下属二级分类都将删除，是否删除？',
+        success: function (sm) {
+          if (sm.confirm) {
+            wx.request({
+              url: app.globalData.apiUrl + 'api/v1/group_classify/del',
+              header: {
+                'content-type': 'application/json',
+                'userToken': userToken
+              },
+              method: 'POST',
+              data: {
+                id: id,
+                parent:true
+              },
+              success: function (res) {
+                console.log(res)
+                //删除分类数据
+                classifyList.splice(index,1);
+                that.setData({
+                  classifyList
+                })
+              }
+            })
+          } else if (sm.cancel) {
+            console.log('用户点击取消')
+            return
+          }
+        }
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '是否删除分类？',
+        success: function (sm) {
+          if (sm.confirm) {
+            wx.request({
+              url: app.globalData.apiUrl + 'api/v1/group_classify/del',
+              header: {
+                'content-type': 'application/json',
+                'userToken': userToken
+              },
+              method: 'POST',
+              data: {
+                id: id,
+                parent: false
+              },
+              success: function (res) {
+                console.log(res)
+                //删除分类数据
+                classifyList[parent]['son'].splice(index, 1);
+                that.setData({
+                  classifyList
+                })
+              }
+            })
+          } else if (sm.cancel) {
+            console.log('用户点击取消')
+            return
+          }
+        }
+      })
+    }
   }
 })

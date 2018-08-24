@@ -1,6 +1,6 @@
 {
     "pages": [
-      "pages/manufactor/productClassify/index",
+      "pages/product/edit/edit",
         "pages/index/index",
         "pages/manufactor/editor/editor",
         "pages/music/music",
@@ -17,8 +17,9 @@
         "pages/shops/createStore/createCategory/createCategory",
         "pages/manufactor/productControl/index",
         "pages/manufactor/addClassify/addClassify",
+        "pages/manufactor/productClassify/index",
         "pages/product/detail/detail",
-        "pages/product/edit/edit",
+        
         "pages/community/articles/articles",
         "pages/community/articleInfo/articleInfo",
         "pages/popularize/index",

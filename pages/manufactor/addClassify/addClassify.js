@@ -6,19 +6,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: ['美国', '中国', '巴西', '日本'],
     index:0,
     user_info:{},
     userToken:'',
     fatherArr:[],
-    index: 0,
-    objFatherArr:[]
+    objFatherArr:[],
+    classify_name:'',
+    disabled:false,
+    id:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(options);return
+    var id = options.id
+    var parent = options.parent
     var that = this;
     var user_info = wx.getStorageSync('userInfo')
     var userToken = user_info.token
@@ -26,23 +30,49 @@ Page({
       user_info,
       userToken
     })
+    var data = {type:1}
+    var index = 0;
+    var disabled = false
+    if (typeof (id) != "undefined") {
+      data.id = id
+      if (typeof (parent) != "undefined") {
+        var index = parseInt(parent)
+      }else{
+        disabled = true
+      }
+    }
+    
 
     wx.request({
-      url: app.globalData.apiUrl + 'api/v1/classify/groupClassify',
+      url: app.globalData.apiUrl + 'api/v1/group_classify/list',
       header: {
         'content-type': 'application/json',
         'userToken': userToken
       },
-      data:{
-        type:1
-      },
+      data: data,
       success:function(res) {
         if(res.data.state == 1){
+          console.log(res.data)
           var fatherArr = res.data.data.array;
           var objFatherArr = res.data.data.objArray;
+          var classify_name = ''
+          if (typeof (id) != "undefined"){
+            var classify_name = res.data.data.edit_classify.classify_name
+            if (typeof (parent) != "undefined") {
+              fatherArr.splice(0, 1)
+              objFatherArr.splice(0, 1)
+            }
+          } else {
+            id = ''
+          }
+          console.log(index);
           that.setData({
             fatherArr,
-            objFatherArr
+            objFatherArr,
+            classify_name,
+            index,
+            disabled,
+            id
           })
         }
       }
@@ -108,9 +138,13 @@ Page({
     var params = e.detail.value
     var index = that.data.index;
     var userToken = that.data.userToken
+    var id = that.data.id
+    if (id != ""){
+      params.id = id
+    }
     params.parent_id = that.data.objFatherArr[index]['id']
     wx.request({
-      url: app.globalData.apiUrl + 'api/v1/classify/addGroupClassify',
+      url: app.globalData.apiUrl + 'api/v1/group_classify/add',
       header: {
         'content-type': 'application/json',
         'userToken': userToken

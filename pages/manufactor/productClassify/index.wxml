@@ -34,8 +34,8 @@
       </view>
     </view>
     <view class='item-height'style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>{{item.classify_name}}</view>
-    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</view>
-    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
+    <navigator class='item-height' url="../../manufactor/addClassify/addClassify?id={{item.id}}" style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</navigator>
+    <view class='item-height' data-id="{{item.id}}" data-index="{{index}}"  bindtap='delClassify' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
   </view>
 
   <block wx:for="{{item.son}}" wx:for-index="key"  wx:for-item="son_item">
@@ -48,9 +48,9 @@
         <image src='../../../image/xiajian.png' style='width:30rpx;height:70rpx;'></image>
       </view>
     </view>
-    <view class='item-height'style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>|--{{son_item.classify_name}}</view>
-    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</view>
-    <view class='item-height' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
+    <view class='item-height' style='float:left;width:50%;text-align:left;font-size:13pt;margin-left:30rpx;'>|--{{son_item.classify_name}}</view>
+    <navigator class='item-height' url="../../manufactor/addClassify/addClassify?id={{son_item.id}}&parent={{index}}"  style='float:left;width:15%;text-align:center;font-size:13pt;color:#00A0E9;'>修改</navigator>
+    <view class='item-height' data-parent="{{index}}" data-index="{{key}}" data-id="{{son_item.id}}" bindtap='delClassify' style='float:left;width:15%;text-align:center;font-size:13pt;color:#d81e06;'>删除</view>
   </view>
   </block>
 
