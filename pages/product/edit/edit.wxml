@@ -17,6 +17,8 @@
         <view class='item-name'>产品型号</view>
         <input name="model_no" class="short-input" />
     </view>
+
+    <!-- 产品图 start -->
     <view style='height:80rpx;'>
         <image src='../../../image/required_tip.png' class='required-img'></image>
         <button class='item-button' bindtap='addUpload'>
@@ -25,7 +27,7 @@
         </button>
         <view class='tip-view'>点击添加多个产品和颜色</view>
     </view>
-    <block wx:for="{{imageIndex}}">
+    <block wx:for="{{imageArr}}">
       <view style='min-height:80rpx;'>
           <image src='../../../image/required_tip.png' class='required-img'></image>
           <button class='item-button' data-index="{{index}}" bindtap='gotoShow'>
@@ -40,72 +42,98 @@
           </view>
       </view>
     </block>
+    <!-- 产品图 end -->
 
+    <!-- 产品价格 start -->
     <view style='height:80rpx;'>
         <image src='../../../image/required_tip.png' class='required-img'></image>
-        <button class='item-button'>
+        <button class='item-button' bindtap='addPrice'>
             <image src='../../../image/addHL.png' class='operation-img'></image>
             <view class='button-view'>产品价格</view>
         </button>
         <view class='tip-view'>点击添加多个价格配置条目</view>
+        <image src='../../../image/delHL.png' bindtap='delPrice' class='operation-img' style='margin-top:16rpx;'></image>
     </view>
     <block wx:for="{{priceArr}}">
       <view class='price-item'>
         <text class="price-text">厂价</text>
-        <input class='price-input' name='price[]' type='number' />
+        <input class='price-input' data-index="{{index}}" bindinput="ratioPrice" name='price[]' type='number' />
         <text class="equal-text" decode>=</text>
         <input class='configuration-input' name='configuration[]' placeholder='填写包括哪些产品组合' />
         <text class='retail-text'>零售价</text>
-        <input class='price-input' name='retail' disabled />
+        <input class='price-input' data-index="{{index}}" name='retail' value="{{ratioArr[index]}}" disabled />
       </view>
     </block>
+    <!-- 产品价格 end -->
 
+    <!-- 规格 start-->
     <view style='height:80rpx;'>
-        <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
-        <button style='height:50rpx;line-height:50rpx;margin:15rpx 0rpx;float:left;'>
-            <image src='../../../image/addHL.png' style='float:left;height:40rpx;width:40rpx;padding:5rpx 0rpx;'></image>
-            <view style='float:left;font-size:11pt;'>产品规格</view>
+        <image src='../../../image/required_tip.png' class='required-img'></image>
+        <button class='item-button' bindtap='addSpec'>
+            <image src='../../../image/addHL.png' class='operation-img'></image>
+            <view class='button-view'>产品规格</view>
         </button>
-        <view style='float:left;height:50rpx;line-height:50rpx;margin:15rpx;'>点击添加多个尺寸条目</view>
+        <view class='tip-view'>点击添加多个尺寸条目</view>
+        <image src='../../../image/delHL.png' bindtap='delSpec' class='operation-img' style='margin-top:16rpx;'></image>
     </view>
+
+    <block wx:for="{{specArr}}">
+      <view class='spec-view'>
+        <input name='spec1[]' type='text' />
+        <input name='spec2[]' type='text' />
+      </view>
+    </block>
+    <!-- 规格 end -->
+
+    <!-- 产品尺寸 start-->
     <view style='height:80rpx;'>
-        <image src='../../../image/required_tip.png' style='float:left;margin:25rpx 10rpx 25rpx 0;width:30rpx;height:30rpx;'></image>
-        <button style='height:50rpx;line-height:50rpx;margin:15rpx 0rpx;float:left;'>
-            <image src='../../../image/addHL.png' style='float:left;height:40rpx;width:40rpx;padding:5rpx 0rpx;'></image>
-            <view style='float:left;font-size:11pt;'>产品尺寸</view>
+        <image src='../../../image/required_tip.png' class='required-img'></image>
+        <button class='item-button' bindtap='addSize'>
+            <image src='../../../image/addHL.png' class='operation-img'></image>
+            <view class='button-view'>产品尺寸</view>
         </button>
-        <view style='float:left;height:50rpx;line-height:50rpx;margin:15rpx;'>点击添加多个尺寸条目</view>
+        <view class='tip-view'>点击添加多个尺寸条目</view>
+        <image src='../../../image/delHL.png' bindtap='delSize' class='operation-img' style='margin-top:16rpx;'></image>
     </view>
+
+    <block wx:for="{{sizeArr}}">
+      <view class='spec-view'>
+        <input name='size1[]' type='text' />
+        <input name='size2[]' type='text' />
+      </view>
+    </block>
+    <!-- 产品尺寸 end -->
+
     <view style='height:80rpx;'>
         <view style='float:left;height:80rpx;line-height:80rpx;margin-right:10rpx;margin-left:35rpx;'>产品分类</view>
         <view class="section">
-            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <picker bindchange="bindPickerChange" value="{{group_index}}" range="{{group_classify}}">
                 <button class="picker" style='height:50rpx;line-height:50rpx;margin:15rpx;float:left;font-size:11pt;'>
-                    {{array[index]}}
+                    {{group_classify[group_index]}}
                 </button>
             </picker>
         </view>
     </view>
     <view style='height:80rpx;'>
-        <view style='float:left;height:80rpx;line-height:80rpx;margin-right:10rpx;margin-left:35rpx;'>产品材质</view>
-        <input style='float:left;border:1px solid #888888;height:50rpx;line-height:50rpx;margin:10rpx;width:200rpx;' />
+        <view class='item-spec'>产品材质</view>
+        <input class='item-spec-input' name="texture_describe" />
     </view>
     <view style='height:80rpx;'>
-        <view style='float:left;height:80rpx;line-height:80rpx;margin-right:10rpx;margin-left:35rpx;'>产品风格</view>
-        <input style='float:left;border:1px solid #888888;height:50rpx;line-height:50rpx;margin:10rpx;width:200rpx;' />
+        <view class='item-spec' >产品风格</view>
+        <input class='item-spec-input' name="style_describe" />
     </view>
     <view style='height:80rpx;'>
-        <view style='float:left;height:80rpx;line-height:80rpx;margin-right:10rpx;margin-left:35rpx;'>产品功能</view>
-        <input style='float:left;border:1px solid #888888;height:50rpx;line-height:50rpx;margin:10rpx;width:200rpx;' />
+        <view class='item-spec' >产品功能</view>
+        <input class='item-spec-input' name="function_describe" />
     </view>
     <view style='height:80rpx;'>
-        <view style='float:left;height:80rpx;line-height:80rpx;margin-right:10rpx;margin-left:35rpx;'>包装说明</view>
-        <input style='float:left;border:1px solid #888888;height:50rpx;line-height:50rpx;margin:10rpx;width:200rpx;' />
+        <view class='item-spec'>包装说明</view>
+        <input class='item-spec-input' name="packaging" />
     </view>
      <view style='min-height:80rpx;'>
-        <button style='height:50rpx;line-height:50rpx;margin:15rpx 35rpx;float:left;'>
-            <image src='../../../image/addHL.png' style='float:left;height:40rpx;width:40rpx;padding:5rpx 0rpx;'></image>
-            <view style='float:left;font-size:11pt;'>产品详图</view>
+        <button class='item-button'>
+            <image src='../../../image/addHL.png' class='operation-img'></image>
+            <view class='button-view'>产品详图</view>
         </button>
         <view class='clear'></view>
         <view style='text-align:center;'>
@@ -113,8 +141,8 @@
         </view>
     </view>
     <view style='height:80rpx;'>
-        <view style='float:left;height:80rpx;margin-right:10rpx;margin-left:35rpx;'>产品说明</view>
-        <textarea style='float:left;border:1px solid #888888;width:500rpx;height:200rpx;'></textarea>
+        <view class='item-spec'>产品说明</view>
+        <textarea style='float:left;border:1px solid #888888;width:500rpx;height:200rpx;' name="remark"></textarea>
     </view>
     <view class='clear'></view>
     <view style='height:80rpx;'>
