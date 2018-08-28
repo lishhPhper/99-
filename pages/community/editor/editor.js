@@ -11,6 +11,11 @@ Page({
         recordingHidden: true,
         music_url: app.globalData.music_url,
         img_url: app.globalData.img_url,
+        contentArr:{
+            music: '',
+            musicName: '',
+            items:[]
+        }
     },
     /**
      * 生命周期函数--监听页面加载
@@ -22,6 +27,7 @@ Page({
             success: function(res) {
                 var userToken = res.data.token;
                 var user_info = res.data.user_info;
+                // 获取动态类别
                 wx.request({
                     url: app.globalData.apiUrl + 'api/v1/article/classify',
                     method: 'GET',
@@ -48,7 +54,11 @@ Page({
                         }
                     }
                 });
+                // 从富文本编辑文字之后回到编辑动态页面 获取临时缓存
                 if (options.type == 2) {
+                    if (options.articleId == undefined){
+                        options.articleId = '';
+                    }
                     wx.request({
                         url: app.globalData.apiUrl + 'api/v1/article/getCache',
                         method: 'GET',
@@ -75,32 +85,34 @@ Page({
                         }
                     });
                 } else {
-                    wx.request({
-                        url: app.globalData.apiUrl + 'api/v1/article/getArticleContent',
-                        method: 'GET',
-                        header: {
-                            'userToken': userToken
-                        },
-                        data:{
-                            id: options.articleId,
-                        },
-                        success: function (getArticleContentRes) {
-                            console.log(getArticleContentRes);
-                            if (getArticleContentRes.data.state == 1) {
-                                var items = getArticleContentRes.data.data.items;
-                                for (var i = 0; i < items.length; i++) {
-                                    WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
-                                    items[i]['format_text'] = obj.data.format_text;
+                    if (options.articleId != undefined){
+                        wx.request({
+                            url: app.globalData.apiUrl + 'api/v1/article/getArticleContent',
+                            method: 'GET',
+                            header: {
+                                'userToken': userToken
+                            },
+                            data: {
+                                id: options.articleId,
+                            },
+                            success: function (getArticleContentRes) {
+                                console.log(getArticleContentRes);
+                                if (getArticleContentRes.data.state == 1) {
+                                    var items = getArticleContentRes.data.data.items;
+                                    for (var i = 0; i < items.length; i++) {
+                                        WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
+                                        items[i]['format_text'] = obj.data.format_text;
+                                    }
+                                    getArticleContentRes.data.data.items = items;
+                                    obj.setData({
+                                        userInfo: res.data.user_info,
+                                        token: res.data.token,
+                                        contentArr: getArticleContentRes.data.data,
+                                    });
                                 }
-                                getArticleContentRes.data.data.items = items;
-                                obj.setData({
-                                    userInfo: res.data.user_info,
-                                    token: res.data.token,
-                                    contentArr: getArticleContentRes.data.data,
-                                });
                             }
-                        }
-                    });
+                        });
+                    }
                 }
             },
         })
@@ -151,19 +163,19 @@ Page({
      * 添加图文item
      */
     addBox: function() {
-        var home_content = this.data.home_content;
+        var contentArr = this.data.contentArr;
         var userToken = this.data.token;
-        var length = home_content.items.length;
+        var length = contentArr.items.length;
         var box = {
             'text': '',
             'img': '',
         };
-        home_content.items[length] = box;
+        contentArr.items[length] = box;
         this.setData({
-            home_content: home_content
+            contentArr: contentArr
         });
         wx.request({
-            url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
+            url: app.globalData.apiUrl + 'api/v1/Article/setCache',
             method: 'GET',
             header: {
                 'userToken': userToken

@@ -12,6 +12,14 @@ Page({
     },
     onLoad: function(options) {
         var obj = this;
+        // 1：首页图文编辑 2：同城圈图文编辑
+        if(options.saveType = 1){
+            var saveUrl = 'api/v1/homeContent/setCache';
+            var navigateUrl = '/pages/manufactor/editor/editor?type=2';
+        }else{
+            var saveUrl = 'api/v1/article/setCache';
+            var navigateUrl = '/pages/community/editor/editor?type=2';
+        }
         wx.getStorage({
             key: 'userInfo',
             success: function(res) {
@@ -142,11 +150,12 @@ Page({
         });
     },
     saveMusic: function(event) {
-        var musicLink = this.data.musicLink;
-        var musicName = this.data.musicName;
-        var userToken = this.data.token;
+        var obj = this;
+        var musicLink = obj.data.musicLink;
+        var musicName = obj.data.musicName;
+        var userToken = obj.data.token;
         wx.request({
-            url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
+            url: app.globalData.apiUrl + obj.data.saveUrl,
             method: 'GET',
             header: {
                 'userToken': userToken
@@ -162,7 +171,7 @@ Page({
                         _music.destroy();
                     }
                     wx.navigateTo({
-                        url: '/pages/manufactor/editor/editor?type=2',
+                        url: obj.data.navigateUrl,
                     })
                 } else {
                     console.log(setCacheRes);
