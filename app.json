@@ -1,7 +1,7 @@
 {
     "pages": [
-      "pages/product/edit/edit",
         "pages/index/index",
+        "pages/product/edit/edit",
         "pages/community/editor/editor",
         "pages/community/index/index",
         "pages/manufactor/editor/editor",
@@ -20,7 +20,6 @@
         "pages/manufactor/addClassify/addClassify",
         "pages/manufactor/productClassify/index",
         "pages/product/detail/detail",
-        
         "pages/community/articles/articles",
         "pages/community/add/add",
         "pages/community/articleInfo/articleInfo",

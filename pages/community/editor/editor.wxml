@@ -52,7 +52,7 @@
                     <image data-item-key="{{index}}" src="/image/default_img.png" wx:else style='width:250rpx;height:200rpx;' bindtap="uploadImg" />
                 </view>
                 <view class="page-section">
-                    <view class="textarea-wrp" style='padding:10rpx' style='width:380rpx;height:220rpx;'>
+                    <view class="textarea-wrp" style='padding:10rpx;width:380rpx;height:220rpx;'>
                         <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=article' wx:if="{{item.text != ''}}">
                             <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}" />
                         </navigator>
