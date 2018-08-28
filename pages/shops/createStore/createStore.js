@@ -33,7 +33,8 @@ Page({
     category_id:'',
     category_name:'',
     category_child_id:'',
-    userToken:''
+    userToken:'',
+    user_info:{},
   },
 
   /**
@@ -41,12 +42,31 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    wx.getStorage({
-      key: 'userInfo',
+    var userInfo = wx.getStorageSync('userInfo')
+    var user_info = userInfo.user_info
+    var userToken = userInfo.token
+    that.setData({
+      userInfo: user_info,
+      userToken,
+    })
+    console.log(options);
+    var group_type = options.group;
+    var url;
+    if(group_type == 2){
+      url = app.globalData.apiUrl + '/api/v1/shop/editRegister'
+    } else if (group_type == 1){
+      url = app.globalData.apiUrl + '/api/v1/factory/editRegister'
+    }
+
+    wx.request({
+      url: url,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json',
+        'userToken': userToken
+      },
       success: function (res) {
-        that.setData({
-          userToken: res.data.token,
-        });
+
       }
     })
   },

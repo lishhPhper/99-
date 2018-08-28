@@ -34,7 +34,7 @@ Page({
         })
 
         wx.request({
-            url: app.globalData.apiUrl + 'api/v1/site/nearbyStore/' + lat + '/' + lng + '/2',
+            url: app.globalData.apiUrl + 'api/v1/site/nearbyStore/' + lat + '/' + lng,
             header: {
                 'content-type': 'application/json',
                 'userToken': userToken
