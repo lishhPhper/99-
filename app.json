@@ -1,6 +1,6 @@
 {
     "pages": [
-      "pages/product/edit/edit",
+      
         "pages/index/index",
         "pages/community/editor/editor",
         "pages/community/index/index",
@@ -20,7 +20,7 @@
         "pages/manufactor/addClassify/addClassify",
         "pages/manufactor/productClassify/index",
         "pages/product/detail/detail",
-        
+        "pages/product/edit/edit",
         "pages/community/articles/articles",
         "pages/community/add/add",
         "pages/community/articleInfo/articleInfo",
