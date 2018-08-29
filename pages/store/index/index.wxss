@@ -1,0 +1,111 @@
+/* pages/shops/index/index.wxss */
+.navs {
+  display: flex;
+  height: 350rpx;
+  padding-top:40rpx; 
+}
+
+.nav-item {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* padding: 10rpx 15rpx;  */
+}
+.nav-item-left{
+  padding: 0 0 0 20rpx; 
+}
+.nav-item-right{
+  padding: 0 20rpx 0 0; 
+}
+
+.nav-shop{
+  display:flex;
+  flex-direction: column;
+  margin:20rpx 20rpx 0 25rpx;
+  width: 50%;
+  height: 300rpx;
+}
+.shop-name{
+  height: 160rpx;
+  font-weight: bold;
+}
+.pop-view{
+  display: flex;
+  height: 100rpx;
+  justify-content: center;
+}
+.shop-pop{
+  font-size: 11pt;
+  color: white;
+  width:75%;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #f60;
+  text-align: center;
+  margin-top:30rpx;
+}
+
+.nav-item .nav-image {
+  width: 95%;
+  height: 300rpx;
+  /* padding: 0rpx 20rpx; */
+}
+
+.nav-item text {
+  padding-top: 20rpx;
+  font-size: 25rpx;
+}
+.picture {
+  padding: 30rpx 30rpx;
+  /* background: white; */
+}
+.picture_top {
+  display: flex;
+  align-items: center;
+}
+.picture_left image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.picture_left {
+  width: 100%;
+  height: 300rpx;
+  border: 2rpx solid #CECECE;
+  border-radius: 10rpx;
+  text-align: center;
+  background: white; 
+}
+.menu2{
+  width: 100%;
+}
+.menu2_view{
+   width: 33%;
+   float:left;
+   text-align: center;
+}
+.pic_index{
+  padding: 20rpx 0rpx;
+}
+.page-section{
+  margin-bottom: 20rpx;
+}
+.flex-wrp {
+  display: flex;
+  height:80rpx;  
+}
+.flex-item{
+  margin: 15rpx;
+}
+.image-list{
+    width: 100%;
+    margin: 5rpx 0rpx;
+}
+.address{
+  line-height:50rpx;
+  max-width: 480rpx;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

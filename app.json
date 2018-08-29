@@ -25,7 +25,8 @@
         "pages/community/add/add",
         "pages/community/articleInfo/articleInfo",
         "pages/popularize/index",
-        "pages/editor/editor"
+        "pages/editor/editor",
+        "pages/store/index/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
