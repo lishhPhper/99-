@@ -6,20 +6,29 @@ Page({
         musicArr: [],
         selected_id: 0,
         loadingHidden: true,
-        default_hidden : false,
+        default_hidden: false,
         searchMusicArr: false,
         music_url: app.globalData.music_url
     },
     onLoad: function(options) {
         var obj = this;
         // 1：首页图文编辑 2：同城圈图文编辑
-        if(options.saveType = 1){
+        if (options.saveType == 1) {
             var saveUrl = 'api/v1/homeContent/setCache';
             var navigateUrl = '/pages/manufactor/editor/editor?type=2';
-        }else{
+        } else {
             var saveUrl = 'api/v1/article/setCache';
             var navigateUrl = '/pages/community/editor/editor?type=2';
         }
+        if (options.articleId == undefined) {
+            options.articleId = '';
+        }
+        obj.setData({
+            articleId: options.articleId,
+            saveType: options.saveType,
+            saveUrl: saveUrl,
+            navigateUrl: navigateUrl,
+        });
         wx.getStorage({
             key: 'userInfo',
             success: function(res) {
@@ -42,7 +51,6 @@ Page({
                 });
             }
         })
-
     },
     showInput: function() {
         this.setData({
@@ -154,21 +162,34 @@ Page({
         var musicLink = obj.data.musicLink;
         var musicName = obj.data.musicName;
         var userToken = obj.data.token;
+        var saveType = obj.data.saveType;
+        switch (saveType) {
+            case '1':
+                var requestData = {
+                    music: musicLink,
+                    musicName: musicName,
+                };
+                break;
+            case '2':
+                var requestData = {
+                    music: musicLink,
+                    musicName: musicName,
+                    articleId: obj.data.articleId
+                };
+                break;
+        }
         wx.request({
             url: app.globalData.apiUrl + obj.data.saveUrl,
             method: 'GET',
             header: {
                 'userToken': userToken
             },
-            data: {
-                music: musicLink,
-                music_name: musicName
-            },
+            data: requestData,
             success: function(setCacheRes) {
                 if (setCacheRes.data.state == 1) {
                     console.log('保存成功');
-                    if (_music != '') {
-                        _music.destroy();
+                    if (app.globalData._music != '') {
+                        app.globalData._music.destroy();
                     }
                     wx.navigateTo({
                         url: obj.data.navigateUrl,
@@ -183,11 +204,11 @@ Page({
         var obj = this;
         var keyword = obj.data.inputVal;
         var userToken = obj.data.token;
-        if (keyword == ''){
+        if (keyword == '') {
             obj.setData({
                 default_hidden: false
             });
-        }else{
+        } else {
             wx.request({
                 url: app.globalData.apiUrl + 'api/v1/music/query',
                 method: 'GET',
@@ -197,14 +218,14 @@ Page({
                 data: {
                     keyword: keyword,
                 },
-                success: function (queryRes) {
+                success: function(queryRes) {
                     if (queryRes.data.state == 1) {
-                        if (queryRes.data.data.length == 0){
+                        if (queryRes.data.data.length == 0) {
                             obj.setData({
                                 searchMusicArr: false,
                                 default_hidden: true
                             });
-                        }else{
+                        } else {
                             obj.setData({
                                 searchMusicArr: queryRes.data.data,
                                 default_hidden: true

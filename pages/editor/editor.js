@@ -5,6 +5,7 @@ Page({
     data: {
         userType: 2,
         request_url: app.globalData.apiUrl,
+        articleId: '',
     },
     onLoad: function(options) {
         console.log(options);
@@ -17,6 +18,11 @@ Page({
                     itemKey: options.itemKey,
                     editorType: options.editorType,
                 })
+                if (options.articleId != undefined || options.articleId != ''){
+                    obj.setData({
+                        articleId: options.articleId,
+                    })
+                }
             },
         })
     },

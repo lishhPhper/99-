@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-
+var WxParse = require('../../../wxParse/wxParse.js');
 Page({
     data: {
         img_url: app.globalData.img_url,
@@ -8,13 +8,8 @@ Page({
         inputVal: "",
         toView: 'red',
         scrollTop: 100,
-        array: [{},
-            {},
-            {},
-            {},
-            {},
-            {},
-        ],
+        articleList: [],
+        titleType:0,
     },
     showInput: function() {
         this.setData({
@@ -60,6 +55,69 @@ Page({
         this.setData({
             scrollTop: this.data.scrollTop + 10
         })
+    }, 
+    titleChange: function (event) {
+        var titleType = event.currentTarget.dataset.titleType;
+        var obj = this;
+        this.setData({
+            titleType: titleType
+        })
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/article/localList',
+            method: 'GET',
+            header: {
+                'userToken': obj.data.token
+            },
+            data: {
+                order: titleType
+            },
+            success: function (localListRes) {
+                if (localListRes.data.state == 1) {
+                    var items = localListRes.data.data;
+                    for (var i = 0; i < items.length; i++) {
+                        WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
+                        items[i]['content']['format_text'] = obj.data.format_text;
+                    }
+                    localListRes.data.data = items;
+                    obj.setData({
+                        articleList: localListRes.data.data,
+                    });
+                } else {
+                    console.log(localListRes);
+                }
+            }
+        });
+    },
+    classifyChange: function (event) {
+        var classifyId = event.currentTarget.dataset.classifyId;
+        var obj = this;
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/article/listByClassify',
+            method: 'GET',
+            header: {
+                'userToken': obj.data.token
+            },
+            data: {
+                order: obj.data.titleType,
+                classify_id: classifyId
+            },
+            success: function (listByClassifyRes) {
+                if (listByClassifyRes.data.state == 1) {
+                    var items = listByClassifyRes.data.data;
+                    for (var i = 0; i < items.length; i++) {
+                        WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
+                        items[i]['content']['format_text'] = obj.data.format_text;
+                    }
+                    listByClassifyRes.data.data = items;
+                    obj.setData({
+                        articleList: listByClassifyRes.data.data,
+                        classifyId: classifyId
+                    });
+                } else {
+                    console.log(listByClassifyRes);
+                }
+            }
+        });
     },
     onLoad: function(options) {
         var obj = this;
@@ -68,6 +126,10 @@ Page({
             success: function(res) {
                 var userToken = res.data.token;
                 var user_info = res.data.user_info;
+                obj.setData({
+                    userInfo: res.data.user_info,
+                    token: res.data.token,
+                });
                 wx.request({
                     url: app.globalData.apiUrl + 'api/v1/article/classify',
                     method: 'GET',
@@ -77,12 +139,35 @@ Page({
                     success: function(classifyRes) {
                         if (classifyRes.data.state == 1) {
                             obj.setData({
-                                userInfo: res.data.user_info,
-                                token: res.data.token,
                                 classifyArr: classifyRes.data.data,
                             });
                         } else {
                             console.log(classifyRes);
+                        }
+                    }
+                });
+                wx.request({
+                    url: app.globalData.apiUrl + 'api/v1/article/localList',
+                    method: 'GET',
+                    header: {
+                        'userToken': userToken
+                    },
+                    data:{
+                        order:0
+                    },
+                    success: function (localListRes) {
+                        if (localListRes.data.state == 1) {
+                            var items = localListRes.data.data;
+                            for (var i = 0; i < items.length; i++) {
+                                WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
+                                items[i]['content']['format_text'] = obj.data.format_text;
+                            }
+                            localListRes.data.data = items;
+                            obj.setData({
+                                articleList: localListRes.data.data,
+                            });
+                        } else {
+                            console.log(localListRes);
                         }
                     }
                 });

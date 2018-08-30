@@ -1,1 +1,1 @@
-<web-view src="{{request_url}}Eleditor/demo?token={{token}}&itemKey={{itemKey}}&editorType={{editorType}}"></web-view>
+<web-view src="{{request_url}}Eleditor/demo?token={{token}}&itemKey={{itemKey}}&editorType={{editorType}}&articleId={{articleId}}"></web-view>

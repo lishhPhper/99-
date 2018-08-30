@@ -1,9 +1,12 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/community/index/index",
+        "pages/community/add/add",
+        "pages/community/articles/articles",
+        "pages/community/articleInfo/articleInfo",
         "pages/product/edit/edit",
         "pages/community/editor/editor",
-        "pages/community/index/index",
         "pages/manufactor/editor/editor",
         "pages/music/music",
         "pages/shops/nearby/nearby",
@@ -20,9 +23,6 @@
         "pages/manufactor/addClassify/addClassify",
         "pages/manufactor/productClassify/index",
         "pages/product/detail/detail",
-        "pages/community/articles/articles",
-        "pages/community/add/add",
-        "pages/community/articleInfo/articleInfo",
         "pages/popularize/index",
         "pages/editor/editor"
     ],

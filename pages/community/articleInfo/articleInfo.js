@@ -1,99 +1,50 @@
 //index.js
 //获取应用实例
-const app = getApp()
-
-var order = ['red', 'yellow', 'blue', 'green', 'red']
+const app = getApp();
+var WxParse = require('../../../wxParse/wxParse.js');
 Page({
-  data: {
-    inputShowed: false,
-    inputVal: "",
-    toView: 'red',
-    scrollTop: 100,
-    tabbar: {
-        color: "#000000",
-        selectedColor: "#ff6600",
-        backgroundColor: "#ffffff",
-        borderStyle: "black",
-        list: [
-            {
-                pagePath: "/pages/aaa",
-                text: "评论",
-                iconPath: "../../../image/comment.png",
-                selectedIconPath: "../../../image/comment.png",
-                selected: false
-            },
-            {
-                pagePath: "/pages/aaa",
-                text: "点赞",
-                iconPath: "../../../image/thumbs-up.png",
-                selectedIconPath: "../../../image/thumbs-up.png",
-                selected: false
-            }
-            ,
-            {
-                pagePath: "/pages/aaa",
-                text: "收藏",
-                iconPath: "../../../image/collect02.png",
-                selectedIconPath: "../../../image/collect02.png",
-                selected: false
-            }
-            ,
-            {
-                pagePath: "/pages/aaa",
-                text: "分享",
-                iconPath: "../../../image/share.png",
-                selectedIconPath: "../../../image/share.png",
-                selected: false
-            }
-        ],
-        position: "bottom"
+    data: {
+        img_url: app.globalData.img_url,
     },
-  },
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
-  inputTyping: function (e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
-  },
-  upper: function (e) {
-    console.log(e)
-  },
-  lower: function (e) {
-    console.log(e)
-  },
-  scroll: function (e) {
-    console.log(e)
-  },
-  tap: function (e) {
-    for (var i = 0; i < order.length; ++i) {
-      if (order[i] === this.data.toView) {
-        this.setData({
-          toView: order[i + 1]
+    onLoad: function(options) {
+        var obj = this;
+        var articleId = options.articleId;
+        wx.getStorage({
+            key: 'userInfo',
+            success: function(res) {
+                var userToken = res.data.token;
+                var user_info = res.data.user_info;
+                obj.setData({
+                    userInfo: res.data.user_info,
+                    token: res.data.token,
+                    articleId: articleId,
+                });
+                wx.request({
+                    url: app.globalData.apiUrl + 'api/v1/article/details',
+                    method: 'GET',
+                    header: {
+                        'userToken': userToken
+                    },
+                    data:{
+                        id: articleId,
+                    },
+                    success: function (detailsRes) {
+                        if (detailsRes.data.state == 1) {
+                            var items = detailsRes.data.data.content;
+                            for (var i = 0; i < items.length; i++) {
+                                WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
+                                items[i]['format_text'] = obj.data.format_text;
+                            }
+                            detailsRes.data.data.content = items;
+                            obj.setData({
+                                detailsRes: detailsRes.data.data,
+                            });
+                        } else {
+                            console.log(detailsRes);
+                        }
+                    }
+                });
+            },
         })
-        break
-      }
     }
-  },
-  tapMove: function (e) {
-    this.setData({
-      scrollTop: this.data.scrollTop + 10
-    })
-  }
 });
-
-
