@@ -19,7 +19,8 @@ Page({
         defaultImg: '/image/jiaju01.jpg',
         user_info: {},
         imageText: {},
-        music_url: app.globalData.music_url
+        music_url: app.globalData.music_url,
+        pop:0,
     },
     onLoad: function(options) {
       console.log(options)
@@ -72,12 +73,14 @@ Page({
                               wx = shop_wx;
                           }
                           var shop_name = res.data.shop_name;
+                          var pop = res.data.pop_value;
                           var shop_img = app.globalData.apiUrl + res.data.shop_img;
                           that.setData({
-                              address,
-                              wx,
-                              shop_name,
-                              shop_img
+                            address,
+                            wx,
+                            shop_name,
+                            shop_img,
+                            pop
                           })
                       }
                   }

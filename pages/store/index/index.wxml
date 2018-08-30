@@ -12,7 +12,11 @@
     <view class="nav-shop">
       <view class="shop-name">{{shop.shop_name}}</view>
       <view class="pop-view">
-        <view class="shop-pop">月人气：2555</view>
+        <view class="shop-pop">月人气：{{pop}}</view>
+      </view>
+      <view class='relate-view'>
+        <button class="relate-button" data-store='shop' bindtap='realteStore'>已关注</button>
+        <button class="relate-button" data-store='shop' bindtap='realteStore'>拉黑</button>
       </view>
     </view>
   </view>

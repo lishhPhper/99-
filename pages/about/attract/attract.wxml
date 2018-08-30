@@ -1,0 +1,15 @@
+<block wx:if="{{content.attract != ''}}">
+  <view style='padding:20rpx 40rpx;'>
+    <view style='height:130rpx;line-height:130rpx;font-size:14pt;font-weight:600;text-align:center;'>{{content.attract.title}}</view>
+    <view style='text-indent: 60rpx;font-size:12pt;'>{{content.attract.content}}</view>
+  </view>
+  <button style='width:250rpx;height:80rpx;line-height:80rpx;color:#FFF;font-weight:800;background-color:#FF6600'>立即注册</button>
+  <navigator url="pages/community/articleInfo/articleInfo" hover-class="navigator-hover" style='text-align:center;color:#FF6600;padding:30rpx;'>注册帮助</navigator>
+</block>
+
+<block wx:if="{{content.about != ''}}">
+  <view style='padding:20rpx 40rpx;'>
+      <view style='height:130rpx;line-height:130rpx;font-size:14pt;font-weight:600;text-align:center;'>关于99家具</view>
+      <view style='text-indent: 60rpx;font-size:12pt;'>{{content.about.content}}</view>
+  </view>
+</block>

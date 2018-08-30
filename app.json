@@ -1,6 +1,7 @@
 {
     "pages": [
-
+        "pages/store/index/index",
+"pages/info/auth/auth",
         "pages/index/index",
         "pages/community/editor/editor",
         "pages/community/index/index",
@@ -26,7 +27,9 @@
         "pages/community/articleInfo/articleInfo",
         "pages/popularize/index",
         "pages/editor/editor",
-        "pages/store/index/index"
+      
+        "pages/about/attract/attract"
+        
     ],
     "window": {
         "backgroundTextStyle": "light",
