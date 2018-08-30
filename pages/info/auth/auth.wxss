@@ -1,0 +1,52 @@
+.black-category{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 104rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+.black-category view{
+  border: 2rpx solid red;
+  margin: 10rpx;
+  font-size: 14pt;
+  border-radius: 10rpx;
+  width: 100rpx;
+  text-align: center;
+}
+.list-view{
+  width: 100%;
+  height: 104rpx;
+  border-bottom: 2rpx solid #ccc;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top:10rpx;
+}
+.info-view{
+  width: 75%;
+  height: 90rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.avatar{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-left:30rpx; 
+}
+.nickname{
+  font-weight: bold;
+  margin-left:30rpx; 
+}
+.operate{
+  width: 30%;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 10rpx;
+  font-size: 11pt;
+  font-weight: bold;
+  margin-right: 30rpx;
+}

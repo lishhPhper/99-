@@ -27,25 +27,42 @@
   height: 300rpx;
 }
 .shop-name{
-  height: 160rpx;
+  height: 100rpx;
   font-weight: bold;
 }
 .pop-view{
   display: flex;
   height: 100rpx;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .shop-pop{
   font-size: 11pt;
   color: white;
-  width:75%;
+  width:60%;
   height: 60rpx;
   line-height: 60rpx;
   background-color: #f60;
   text-align: center;
   margin-top:30rpx;
 }
-
+relate-view{
+  display: flex;
+  flex-direction: row;
+  height: 100rpx;
+  align-items: center;
+  justify-content: center;
+}
+.relate-button{
+  font-size: 11pt;
+  color: white;
+  width: 60rpx;
+  height: 40rpx;
+  line-height: 60rpx;
+  background-color: #f60;
+  text-align: center;
+  margin-top:30rpx;
+}
 .nav-item .nav-image {
   width: 95%;
   height: 300rpx;

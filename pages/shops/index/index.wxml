@@ -11,7 +11,7 @@
   <view class="nav-shop">
     <view class="shop-name">{{shop_name}}</view>
     <view class="pop-view">
-      <view class="shop-pop">月人气：2555</view>
+      <view class="shop-pop">月人气：{{pop}}</view>
     </view>
   </view>
 </view>

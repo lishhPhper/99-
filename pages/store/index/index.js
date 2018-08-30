@@ -15,6 +15,7 @@ Page({
     imageText: {},
     music_url: app.globalData.music_url,
     addrees:'',
+    pop:0,
   },
   onLoad: function (options) {
     console.log(options)
@@ -43,11 +44,13 @@ Page({
           } else {
             address = shop.province + shop.city + shop.district + shop.town + shop.address;
           }
+          var pop = shop.pop_value
           that.setData({
             shop,
             factory,
             img_url,
-            address
+            address,
+            pop
           })
         }
       }

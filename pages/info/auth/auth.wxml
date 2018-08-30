@@ -1,0 +1,26 @@
+<view class='black-category'>
+  <block wx:if="{{type == 2}}">
+    <view data-category="factory" bindtap="categoryChange" style='background-color:{{category == "factory" ? "red" : "#f4f3e6"}};color:{{category == "factory" ? "white" : "black"}};'>厂家</view>
+    <view data-category="goods" bindtap="categoryChange" style='background-color:{{category == "goods" ? "red" : "#f4f3e6"}};color:{{category == "goods" ? "white" : "black"}};'>商品</view>
+  </block>
+  <block wx:if="{{type == 1}}">
+    <view data-category="shop" bindtap="categoryChange" style='background-color:{{category == "shop" ? "red" : "#f4f3e6"}};color:{{category == "shop" ? "white" : "black"}};'>商家</view>
+  </block>
+</view>
+
+<block wx:for="{{backList}}">
+  <view class='list-view'>
+    <view class='info-view'>
+      <image class='avatar' src='/image/jiaju01.jpg'></image>
+      <view class='nickname'>尼采</view>
+    </view>
+    <button type='warn' plain class='operate' bindtap='relieve'>解除黑名单</button>
+  </view>
+  <view class='list-view'>
+    <view class='info-view'>
+      <image class='avatar' src='/image/jiaju01.jpg'></image>
+      <view class='nickname'>尼采</view>
+    </view>
+    <button type='warn' plain class='operate' bindtap='relieve'>解除黑名单</button>
+  </view>
+</block>
