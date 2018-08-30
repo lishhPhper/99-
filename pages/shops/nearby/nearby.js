@@ -34,7 +34,7 @@ Page({
         })
 
         wx.request({
-            url: app.globalData.apiUrl + 'api/v1/site/nearbyStore/' + lat + '/' + lng + '/2',
+            url: app.globalData.apiUrl + 'api/v1/site/nearbyStore/' + lat + '/' + lng,
             header: {
                 'content-type': 'application/json',
                 'userToken': userToken
@@ -96,6 +96,37 @@ Page({
             scrollTop: this.data.scrollTop + 10
         })
     },
+    onPullDownRefresh: function () {
+      wx.showNavigationBarLoading();
+      var that = this;
+      var userToken = that.data.userToken
+      var lat = that.data.lat
+      var lng = that.data.lng
+      wx.request({
+        url: app.globalData.apiUrl + 'api/v1/site/nearbyStore/' + lat + '/' + lng + '/2',
+        header: {
+          'content-type': 'application/json',
+          'userToken': userToken
+        },
+        data: {
+          'w': that.data.inputVal
+        },
+        method: 'Get',
+        success: function (res) {
+          if (res.data.state == 1) {
+            var storeArr = res.data.data
+            that.setData({
+              storeArr
+            })
+          }
+        },
+        complete: function () {
+          wx.hideNavigationBarLoading();                   //完成停止加载
+          wx.stopPullDownRefresh();                       //停止下拉刷新
+        }
+      })
+    },
+
     getNearbyStore: function(e) {
         var that = this;
         var userToken = that.data.userToken

@@ -103,6 +103,7 @@
 }
 .address{
   line-height:50rpx;
+  max-width: 480rpx;
   word-break:keep-all;
   white-space:nowrap;
   overflow:hidden;

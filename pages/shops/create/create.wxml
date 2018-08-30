@@ -25,3 +25,16 @@
     <view>发布同城动态</view>
   </view>
 </block>
+
+<block wx:if="{{state == 3}}">
+  <view class='empty_store'>
+  </view>
+  <view class='add_view' data-type="4" bindtap='jump'>
+    <image class="add_icon" src="/image/tianjia.png"></image>
+    <view>发布门店商品</view>
+  </view>
+  <view class='add_view' data-type="2" bindtap='jump'>
+    <image class="add_icon" src="/image/writeHL1.png"></image>
+    <view>发布同城动态</view>
+  </view>
+</block>

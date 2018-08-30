@@ -21,93 +21,94 @@ Page({
         imageText: {},
         music_url: app.globalData.music_url
     },
-    onLoad: function() {
-        var that = this;
-        wx.getStorage({
-            key: 'userInfo',
-            success: function(res) {
-                var userToken = res.data.token
-                var user_info = res.data;
-                var store_type = res.data.user_info.type
-                // 重新渲染路径
-                switch (store_type) {
-                    case 1:
-                        wx.reLaunch({
-                            url: "../../manufactor/index/index",
-                        })
-                        break;
-                    case 3:
-                        wx.reLaunch({
-                            url: "../../shops/createStore/createStore",
-                        })
-                        break;
-                }
-                var img_url = app.globalData.apiUrl
-                that.setData({
-                    userToken,
-                    user_info,
-                    img_url
-                });
-                // 地址、微信、电话
-                wx.request({
-                    url: app.globalData.apiUrl + 'api/v1/shop/info',
-                    header: {
-                        'content-type': 'application/json',
-                        'userToken': userToken
-                    },
-                    method: 'Get',
-                    success: function(res) {
-                        if (res.statusCode == 200) {
-                            var address = '';
-                            var wx = '';
-                            var shop_wx = res.data.shop_wx;
-                            var wx_code = res.data.wx_code;
-                            if (res.data.province == res.data.city) {
-                                address = res.data.province + res.data.district + res.data.town + res.data.address;
-                            } else {
-                                address = res.data.province + res.data.city + res.data.district + res.data.town + res.data.address;
-                            }
-                            if (shop_wx != '') {
-                                wx = shop_wx;
-                            }
-                            var shop_name = res.data.shop_name;
-                            var shop_img = app.globalData.apiUrl + res.data.shop_img;
-                            that.setData({
-                                address,
-                                wx,
-                                shop_name,
-                                shop_img
-                            })
-                        }
-                    }
-                })
-                // 图文列表
-                wx.request({
-                    url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
-                    header: {
-                        'content-type': 'application/json',
-                        'userToken': userToken
-                    },
-                    method: 'GET',
-                    success: function(res) {
-                        if (res.data.state == 1) {
-                            var items = res.data.data.items;
-                            if (items.length > 0) {
-                                for (var i = 0; i < items.length; i++) {
-                                    WxParse.wxParse('format_text', 'html', items[i]['text'], that, 5);
-                                    items[i]['format_text'] = that.data.format_text;
-                                }
-                                res.data.data.items = items;
-                            }
-                            var imageText = res.data.data
-                            that.setData({
-                                imageText
-                            })
-                        }
-                    }
-                })
-            }
-        })
+    onLoad: function(options) {
+      console.log(options)
+      var that = this;
+      wx.getStorage({
+          key: 'userInfo',
+          success: function(res) {
+              var userToken = res.data.token
+              var user_info = res.data;
+              var store_type = res.data.user_info.type
+              // 重新渲染路径
+              switch (store_type) {
+                  case 1:
+                  wx.navigateTo({
+                          url: "../../manufactor/index/index",
+                      })
+                      break;
+                  case 3:
+                  wx.navigateTo({
+                          url: "../../shops/createStore/createStore",
+                      })
+                      break;
+              }
+              var img_url = app.globalData.apiUrl
+              that.setData({
+                  userToken,
+                  user_info,
+                  img_url
+              });
+              // 地址、微信、电话
+              wx.request({
+                  url: app.globalData.apiUrl + 'api/v1/shop/info',
+                  header: {
+                      'content-type': 'application/json',
+                      'userToken': userToken
+                  },
+                  method: 'Get',
+                  success: function(res) {
+                      if (res.statusCode == 200) {
+                          var address = '';
+                          var wx = '';
+                          var shop_wx = res.data.shop_wx;
+                          var wx_code = res.data.wx_code;
+                          if (res.data.province == res.data.city) {
+                              address = res.data.province + res.data.district + res.data.town + res.data.address;
+                          } else {
+                              address = res.data.province + res.data.city + res.data.district + res.data.town + res.data.address;
+                          }
+                          if (shop_wx != '') {
+                              wx = shop_wx;
+                          }
+                          var shop_name = res.data.shop_name;
+                          var shop_img = app.globalData.apiUrl + res.data.shop_img;
+                          that.setData({
+                              address,
+                              wx,
+                              shop_name,
+                              shop_img
+                          })
+                      }
+                  }
+              })
+              // 图文列表
+              wx.request({
+                  url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
+                  header: {
+                      'content-type': 'application/json',
+                      'userToken': userToken
+                  },
+                  method: 'GET',
+                  success: function(res) {
+                      if (res.data.state == 1) {
+                          var items = res.data.data.items;
+                          if (items.length > 0) {
+                              for (var i = 0; i < items.length; i++) {
+                                  WxParse.wxParse('format_text', 'html', items[i]['text'], that, 5);
+                                  items[i]['format_text'] = that.data.format_text;
+                              }
+                              res.data.data.items = items;
+                          }
+                          var imageText = res.data.data
+                          that.setData({
+                              imageText
+                          })
+                      }
+                  }
+              })
+          }
+      })
     },
     entityStore: function(e) {
         this.setData({

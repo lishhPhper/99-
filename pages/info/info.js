@@ -10,14 +10,10 @@ Page({
   },
   onLoad:function(){
       var obj = this;
-      wx.getStorage({
-          key: 'userInfo',
-          success: function(res) {
-              obj.setData({
-                  userInfo: res.data.user_info,
-                  token: res.data.token,
-              })
-          },
+      var userInfo = wx.getStorageSync('userInfo')
+      obj.setData({
+        userInfo: userInfo.user_info,
+        token: userInfo.token,
       })
   }
 });

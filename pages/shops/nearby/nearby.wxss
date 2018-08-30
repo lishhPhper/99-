@@ -1,6 +1,7 @@
 
 .flex-wrp {
   display: flex;
+  align-items: center;
   height:100rpx;  
 }
 .flex-item{

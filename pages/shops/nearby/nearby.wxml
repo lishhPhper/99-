@@ -33,13 +33,13 @@
   暂无门店数据
 </view>
 <block  wx:for="{{storeArr}}">
-  <navigator class="section" url='/pages/manufactor/index/index/' >
+  <navigator class="section" open-type="navigate" url="/pages/store/index/index?store_type={{item.store_type}}&id={{item.id}}" >
     <view class="flex-wrp-1" style="flex-direction:row;">
       <image class="store_img" src="{{img_url}}{{item.img}}" style=''></image>
       <view class="page-section" style='width:480rpx;'>
         <view class="store_name" style=''>{{item.name}}</view>
         <view class="store_address" style="">
-          <text class='item-text' style='width:440rpx;'>地址：{{item.address}}打打看还是得看d安安哒所大所多啊实打实大</text>
+          <text class='item-text' style='width:440rpx;'>地址：{{item.address}}</text>
         </view>
         <view class="store_about" style="">
           <view class="store_pop" style=''>人气：<text style='color:#FF6600;font-weight:bold;'>{{item.pop}}</text></view>

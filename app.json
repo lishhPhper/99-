@@ -24,13 +24,14 @@
         "pages/manufactor/productClassify/index",
         "pages/product/detail/detail",
         "pages/popularize/index",
-        "pages/editor/editor"
+        "pages/editor/editor",
+        "pages/store/index/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
+        "navigationBarBackgroundColor": "#FF6600",
         "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "white"
     },
     "tabBar": {
         "color": "#DDD",

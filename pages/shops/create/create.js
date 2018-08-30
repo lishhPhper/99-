@@ -20,9 +20,13 @@ Page({
       that.setData({
         state:1
       })
-    }else{
+    } else if(store_type == 1){
       that.setData({
         state: 2
+      })
+    } else if (store_type == 2){
+      that.setData({
+        state: 3
       })
     }
     that.setData({

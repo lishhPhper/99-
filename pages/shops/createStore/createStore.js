@@ -13,6 +13,7 @@ Page({
     send: true,
     second: 60,
     phoneNum:'',
+    pre_phone:'',
     isAgree:true,
     region: ['北京市', '北京市', '朝阳区'],
     customItem: '',
@@ -33,7 +34,17 @@ Page({
     category_id:'',
     category_name:'',
     category_child_id:'',
-    userToken:''
+    userToken:'',
+    user_info:{},
+    store_name:'',
+    store_contact:'',
+    editState:false,
+    town:'',
+    address:'',
+    user_name:'',
+    phone:'',
+    factory_address:'',
+    checkStore:true,
   },
 
   /**
@@ -41,14 +52,66 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-        that.setData({
-          userToken: res.data.token,
-        });
-      }
+    var userInfo = wx.getStorageSync('userInfo')
+    var user_info = userInfo.user_info
+    var userToken = userInfo.token
+    that.setData({
+      userInfo: user_info,
+      userToken,
     })
+    console.log(options);
+    var group_type = options.group;
+    if (typeof (group_type) != "undefined"){
+      var checkStore = false;
+      if(group_type == 1){
+        that.setData({
+          agent: false,
+          manufacturers: true,
+          checkStore
+        })
+      } else if (group_type == 2){
+        that.setData({
+          agent: true,
+          manufacturers: false,
+          checkStore
+        })
+      }
+      wx.request({
+        url: app.globalData.apiUrl + '/api/v1/shop/editRegister',
+        method: 'GET',
+        header: {
+          'content-type': 'application/json',
+          'userToken': userToken
+        },
+        success: function (res) {
+          console.log(res);
+          if (res.data.state == 1) {
+            that.setData({
+              editState:true,
+              store_name: res.data.data.store_name,
+              phoneNum: res.data.data.store_phone,
+              pre_phone: res.data.data.store_phone,             
+              store_contact: res.data.data.store_contact,
+              store_wx: res.data.data.store_wx,
+              wx_code: res.data.data.wx_code,
+              region: [res.data.data.province, res.data.data.city, res.data.data.district],
+              town:res.data.data.town,
+              address: res.data.data.address,
+              shop_img: res.data.data.shop_img,
+              factory_address: res.data.data.factory_address,
+              category_id: res.data.data.category_id,
+              category_child_id: res.data.data.category_child_id,
+              license: res.data.data.license,
+              user_name: res.data.data.user_name,
+              phone: res.data.data.phone,
+              wx_account: res.data.data.wx_account,
+              license_code: res.data.data.license_code,
+              category_name: res.data.data.classify_name
+            })
+          }
+        }
+      })
+    }
   },
 
   /**
@@ -101,16 +164,22 @@ Page({
   },
 
   checkAgent: function () {
-    this.setData({
-      agent:true,
-      manufacturers: false
-    });
+    var checkStore = this.data.checkStore
+    if(checkStore){
+      this.setData({
+        agent: true,
+        manufacturers: false
+      });
+    }
   },
   checkManufacturers: function () {
-    this.setData({
-      agent: false,
-      manufacturers: true
-    });
+    var checkStore = this.data.checkStore
+    if (checkStore) {
+      this.setData({
+        agent: false,
+        manufacturers: true
+      });
+    }
   },
   bindAgreeChange: function (e) {
     this.setData({
@@ -354,7 +423,14 @@ Page({
   formSubmit: function (e) {
     var list = e.detail.value;
     var that = this;
-    console.log(list)
+    var isAgree = that.data.isAgree
+    if(!isAgree){
+      wx.showToast({
+        title: '请先勾选协议',
+        image: '../../../image/fail.png'
+      })
+      return false
+    }
     var request_data = {};
     if (that.data.agent) {
       // 代理商
@@ -391,6 +467,7 @@ Page({
       var type = 2;
       var url = app.globalData.apiUrl + 'api/v1/factory/register';
     }
+   
     //检查手机号码和手机验证码
     var checkedNum = that.checkPhoneNum(list.store_phone);
     if(!checkedNum){
@@ -405,7 +482,14 @@ Page({
     }else{
       request_data.factory_phone = list.store_phone;
     }
-    that.checkPhoneCode(list.code);
+    var editState = that.data.editState
+    var pre_phone = that.data.pre_phone
+    request_data.editState = editState
+    if (!editState || (typeof (pre_phone) != "undefined" && pre_phone != list.store_phone)){
+      console.log(11)
+      that.checkPhoneCode(list.code);
+    }
+    
     request_data.code = list.code;
     // 检查地区、乡镇
     var region = that.data.region;
@@ -428,6 +512,7 @@ Page({
     }
     request_data.category_id = category_id;
     request_data.category_child_id = category_child_id;
+    // console.log(request_data); return
     // 检查参数
     var userToken = this.data.userToken
     wx.request({
@@ -443,9 +528,21 @@ Page({
         // 成功之后保存用户开店情况(看后续情况返回)
         console.log(res,res.data);
         if(res.data.state == 1){
-          if(res.data.data.store_type == 2) {
-            // 缓存
-            console.log(3232);
+          var userInfo = {}
+          userInfo.user_info = res.data.data.user_info
+          userInfo.token = userToken
+          wx.setStorage({
+            key: 'userInfo',
+            data: userInfo
+          })
+          if(editState){
+            wx.navigateBack({
+              delta: 1
+            })
+          }else{
+            wx.reLaunch({
+              url: "../../shops/create/create",
+            })
           }
         }else{
           wx.showToast({
