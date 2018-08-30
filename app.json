@@ -3,8 +3,12 @@
         "pages/store/index/index",
 "pages/info/auth/auth",
         "pages/index/index",
-        "pages/community/editor/editor",
         "pages/community/index/index",
+        "pages/community/add/add",
+        "pages/community/articles/articles",
+        "pages/community/articleInfo/articleInfo",
+        "pages/product/edit/edit",
+        "pages/community/editor/editor",
         "pages/manufactor/editor/editor",
         "pages/music/music",
         "pages/shops/nearby/nearby",
@@ -21,10 +25,6 @@
         "pages/manufactor/addClassify/addClassify",
         "pages/manufactor/productClassify/index",
         "pages/product/detail/detail",
-        "pages/product/edit/edit",
-        "pages/community/articles/articles",
-        "pages/community/add/add",
-        "pages/community/articleInfo/articleInfo",
         "pages/popularize/index",
         "pages/editor/editor",
       
@@ -33,9 +33,9 @@
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
+        "navigationBarBackgroundColor": "#FF6600",
         "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "white"
     },
     "tabBar": {
         "color": "#DDD",

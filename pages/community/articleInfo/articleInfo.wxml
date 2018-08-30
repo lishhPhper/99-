@@ -1,28 +1,29 @@
+<import src="../../../wxParse/wxParse.wxml"/>
 <view style='height:100rpx;line-height:100rpx;'>
-    <view style='float:left;height:70rpx;'>
-        <image src='../../../image/header.jpg' style='border-radius:50%;width:70rpx;height:70rpx;margin:15rpx 20rpx 15rpx 50rpx;'></image>
+    <view style='float:left;'>
+        <image src='{{userInfo.avatar}}' style='border-radius:50%;width:70rpx;height:70rpx;margin:15rpx 20rpx 15rpx 50rpx;'></image>
     </view>
     <view style='float:left;width:300rpx;'>
-        <text>某某会员</text>
+        <text>{{userInfo.user_name}}</text>
     </view>
     <view style='float:right;width:150rpx;height:60rpx;background-color:#FF6600;margin:20rpx 30rpx;;line-height:60rpx;border-radius:5%;'>
         <text style='float:left;padding-left:20rpx;color:#FFF'>关注</text>
-        <image src='../../../image/people.png' style='float:right;width:40rpx;height:40rpx;margin:10rpx 10rpx;'></image>
+        <image src='/image/people.png' style='float:right;width:40rpx;height:40rpx;margin:10rpx 10rpx;'></image>
     </view>
 </view>
 <view style='height:5rpx;background-color:#ddd;float:clear;'></view>
 <view style='padding:15rpx 30rpx;'>
     <view>
         <view style='text-align:left;'>
-            <text style='font-size:14pt;'>某某某文章</text>    
+            <text style='font-size:14pt;'>某某某文章</text>
         </view>
         <view style='padding:10rpx 0rpx;'>
-            <text style='float:left;'>2017.10.27</text>
-            <text style='float:left;margin-left:100rpx;'>阅读：896</text>
+            <text style='float:left;'>{{detailsRes.create_time}}</text>
+            <text style='float:left;margin-left:100rpx;'>阅读：{{detailsRes.pageview}}</text>
         </view>
-        <view>
-            <image src='../../../image/jiaju01.jpg' style='width:100%;'></image>
-            <image src='../../../image/jiaju01.jpg' style='width:100%;'></image>
+        <view wx:for="{{detailsRes.content}}" wx:for-item="contentItem">
+            <image src='{{img_url}}{{contentItem.img}}' class='image-list'></image>
+            <template is="wxParse" data="{{wxParseData:contentItem.format_text.nodes}}" />
         </view>
     </view>
 </view>

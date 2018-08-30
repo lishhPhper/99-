@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<import src="../../../wxParse/wxParse.wxml" />
 <view class="page">
     <view class="page__bd">
         <view class="weui-search-bar">
@@ -42,53 +42,55 @@
     </view>
 </view>
 <view class="navs">
-    <view class="nav-item" catchtap="catchTapCategory" data-classify-id="{{classifyItem.id}}" wx:for="{{classifyArr}}" wx:for-item="classifyItem">
+    <view class="nav-item" bindtap="classifyChange" data-classify-id="{{classifyItem.id}}" wx:for="{{classifyArr}}" wx:for-item="classifyItem">
         <image src="{{img_url}}{{classifyItem.classify_img}}" class="nav-image" />
-        <text>{{classifyItem.classify_name}}</text>
+        <text style='color:{{classifyId == classifyItem.id ? "#F60" : "black"}};'>{{classifyItem.classify_name}}</text>
     </view>
 </view>
 <view class='item-hr'></view>
 <view class='clear'></view>
 <view class='title-view'>
-    <view class='title' style='color:{{type == 1 ? "#F60" : "black"}};' data-type="1" bindtap="titleChange">人气</view>
-    <view class='title' style='color:{{type == 2 ? "#F60" : "black"}};' data-type="2" bindtap="titleChange">最新</view>
-    <view class='title' style='color:{{type == 3 ? "#F60" : "black"}};' data-type="3" bindtap="titleChange">最近</view>
-    <view class='title' style='color:{{type == 4 ? "#F60" : "black"}};' data-type="3" bindtap="titleChange">回复</view>
+    <view class='title' style='color:{{titleType == 0 ? "#F60" : "black"}};' data-title-type="0" bindtap="titleChange">最新</view>
+    <view class='title' style='color:{{titleType == 1 ? "#F60" : "black"}};' data-title-type="1" bindtap="titleChange">人气</view>
+    <view class='title' style='color:{{titleType == 2 ? "#F60" : "black"}};' data-title-type="2" bindtap="titleChange">最近</view>
+    <view class='title' style='color:{{titleType == 3 ? "#F60" : "black"}};' data-title-type="3" bindtap="titleChange">回复</view>
 </view>
 <view class='clear'></view>
-<view style='margin:20rpx;border-bottom:1rpx solid #ccc;' wx:for="{{array}}">
+<view style='margin:20rpx;border-bottom:1rpx solid #ccc;' wx:for="{{articleList}}" wx:for-item="articleItem">
     <view style='height:100rpx;'>
-        <image src='/image/header.jpg' style='width:100rpx;height:100rpx;float:left;border-radius:50%;'></image>
+        <image src='{{articleItem.avatar}}' style='width:100rpx;height:100rpx;float:left;border-radius:50%;'></image>
         <view style='float:left;margin-left:20rpx;'>
-            <view style='height:70rpx;line-height:70rpx;'>99家具网陈少峰</view>
-            <view style='height:30rpx;line-height:30rpx;font-size:8pt;'>昨天 17:36</view>
+            <view style='height:70rpx;line-height:70rpx;'>{{articleItem.user_name}}</view>
+            <view style='height:30rpx;line-height:30rpx;font-size:8pt;'>{{articleItem.create_time}}</view>
         </view>
         <button style='width:150rpx;height:60rpx;line-height:60rpx;margin:20rpx;float:right;border:1rpx solid #F60;color:#F60;font-size:11pt;'>联系ta</button>
     </view>
     <view style='margin-top:20rpx;'>
-        <view>家具店招聘管理一名</view>
+        <navigator url='/pages/community/articleInfo/articleInfo?articleId={{articleItem.id}}'>
+        <template is="wxParse" data="{{wxParseData:articleItem.content.format_text.nodes}}" />
         <view>
-            <image style="width:210rpx;height:200rpx;margin:10rpx;" src='/image/jiaju01.jpg'></image>
-            <image style="width:210rpx;height:200rpx;margin:10rpx;" src='/image/jiaju01.jpg'></image>
-            <image style="width:210rpx;height:200rpx;margin:10rpx;" src='/image/jiaju01.jpg'></image>
+            <block wx:for="{{articleItem.content.img}}" wx:for-item="imgItem">
+                <image style="width:210rpx;height:200rpx;margin:10rpx;" src='{{img_url}}{{imgItem}}'></image>
+            </block>
         </view>
+        </navigator>
     </view>
     <view class='clear'></view>
     <view style='height:50rpx;'>
-        <view style='float:left;'>需求</view>
+        <view style='float:left;'>{{articleItem.classify_name}}</view>
         <view style='float:right;margin-left:10rpx;'>
             <image src='/image/share.png' style='width:40rpx;height:40rpx;margin:5rpx;float:left;'></image>
             <text style='height:50rpx;line-height:50rpx;float:left;'>分享</text>
         </view>
         <view style='float:right;margin-left:10rpx;'>
             <image src='/image/comment.png' style='width:40rpx;height:40rpx;margin:5rpx;float:left;'></image>
-            <text style='height:50rpx;line-height:50rpx;float:left;'>896</text>
+            <text style='height:50rpx;line-height:50rpx;float:left;'>{{articleItem.comment_total}}</text>
         </view>
         <view style='float:right;margin-left:10rpx;'>
             <image src='/image/thumbs-up.png' style='width:40rpx;height:40rpx;margin:5rpx;float:left;'></image>
-            <text style='height:50rpx;line-height:50rpx;float:left;'>896</text>
+            <text style='height:50rpx;line-height:50rpx;float:left;'>{{articleItem.great_total}}</text>
         </view>
-        <view style='float:right;height:50rpx;line-height:50rpx;margin-left:10rpx;'>浏览：896</view>
+        <view style='float:right;height:50rpx;line-height:50rpx;margin-left:10rpx;'>浏览：{{articleItem.pageview}}</view>
     </view>
 </view>
 <!-- <navigator style='padding: 26rpx 40rpx 26rpx 40rpx;' url='/pages/community/articles/articles'>

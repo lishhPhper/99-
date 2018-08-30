@@ -3,13 +3,13 @@
 <view style='margin-bottom:100rpx;'>
     <view class="section">
         <view style='border:1px solid #ccc;background-color:#FFF;height:80rpx;'>
-            <picker bindchange="bindPickerChange" value="{{classifyArr[index].id}}" range="{{classifyNameArr}}">
+            <picker bindchange="bindPickerChange" value="{{pickerIndex}}" range="{{classifyNameArr}}">
                 <view style='width:100%;height:80rpx;line-height:80rpx;'>
                     <view class="flex-item float-left">
                         <image src="/image/classify.png" style='width:50rpx;height:50rpx;'></image>
                     </view>
                     <view class='picker float-left' style='padding:0rpx 15rpx;'>
-                        动态类别：{{classifyArr[index].classify_name}}
+                        动态类别：{{classifyArr[pickerIndex].classify_name}}
                     </view>
                     <image class='icon float-right' style="margin:20rpx;" src='/image/arrowright.png'></image>
                 </view>
@@ -22,7 +22,7 @@
                 </view>
                 <view class="flex-item" style="width:85%;line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                     <text bindtap='playVoice' data-voice-resource="{{music_url}}{{contentArr.music}}">{{contentArr.music_name}}</text>
-                    <navigator url='/pages/music/music' style='display:inline;float:right;color:#ccc;font-weight:400'>
+                    <navigator url='/pages/music/music?saveType=2&articleId={{articleId}}' style='display:inline;float:right;color:#ccc;font-weight:400'>
                         更换
                     </navigator>
                 </view>
@@ -34,7 +34,7 @@
                     <image src="/image/tianjia.png" style='width:50rpx;height:50rpx;'></image>
                 </view>
                 <view class="flex-item" style="line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    <navigator url='/pages/music/music'>
+                    <navigator url='/pages/music/music?saveType=2&articleId={{articleId}}'>
                         点击添加背景音乐
                     </navigator>
                 </view>
@@ -53,10 +53,10 @@
                 </view>
                 <view class="page-section">
                     <view class="textarea-wrp" style='padding:10rpx;width:380rpx;height:220rpx;'>
-                        <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=article' wx:if="{{item.text != ''}}">
+                        <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=article&articleId={{articleId}}' wx:if="{{item.text != ''}}">
                             <template is="wxParse" data="{{wxParseData:item.format_text.nodes}}" />
                         </navigator>
-                        <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=article' wx:else style='width:100%;height:200rpx;'>
+                        <navigator url='/pages/editor/editor?itemKey={{index}}&editorType=article&articleId={{articleId}}' wx:else style='width:100%;height:200rpx;'>
                             点击添加文字
                         </navigator>
                     </view>

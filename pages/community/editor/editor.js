@@ -11,7 +11,9 @@ Page({
         recordingHidden: true,
         music_url: app.globalData.music_url,
         img_url: app.globalData.img_url,
+        articleId: '',
         contentArr:{
+            classify_id: '',
             music: '',
             musicName: '',
             items:[]
@@ -22,6 +24,12 @@ Page({
      */
     onLoad: function(options) {
         var obj = this;
+        if (options.articleId == undefined) {
+            options.articleId = '';
+        }
+        obj.setData({
+            articleId: options.articleId,
+        });
         wx.getStorage({
             key: 'userInfo',
             success: function(res) {
@@ -54,11 +62,8 @@ Page({
                         }
                     }
                 });
-                // 从富文本编辑文字之后回到编辑动态页面 获取临时缓存
-                if (options.type == 2) {
-                    if (options.articleId == undefined){
-                        options.articleId = '';
-                    }
+                // 从富文本编辑文字之后回到编辑动态页面 获取临时缓存 或者添加新动态
+                if (options.type == 2 || options.articleId == '') {
                     wx.request({
                         url: app.globalData.apiUrl + 'api/v1/article/getCache',
                         method: 'GET',
@@ -77,7 +82,7 @@ Page({
                                 }
                                 getCacheRes.data.data.items = items;
                                 obj.setData({
-                                    details: getCacheRes.data.data,
+                                    contentArr: getCacheRes.data.data,
                                 });
                             } else {
                                 console.log(getCacheRes);
@@ -85,34 +90,32 @@ Page({
                         }
                     });
                 } else {
-                    if (options.articleId != undefined){
-                        wx.request({
-                            url: app.globalData.apiUrl + 'api/v1/article/getArticleContent',
-                            method: 'GET',
-                            header: {
-                                'userToken': userToken
-                            },
-                            data: {
-                                id: options.articleId,
-                            },
-                            success: function (getArticleContentRes) {
-                                console.log(getArticleContentRes);
-                                if (getArticleContentRes.data.state == 1) {
-                                    var items = getArticleContentRes.data.data.items;
-                                    for (var i = 0; i < items.length; i++) {
-                                        WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
-                                        items[i]['format_text'] = obj.data.format_text;
-                                    }
-                                    getArticleContentRes.data.data.items = items;
-                                    obj.setData({
-                                        userInfo: res.data.user_info,
-                                        token: res.data.token,
-                                        contentArr: getArticleContentRes.data.data,
-                                    });
+                    wx.request({
+                        url: app.globalData.apiUrl + 'api/v1/article/getArticleContent',
+                        method: 'GET',
+                        header: {
+                            'userToken': userToken
+                        },
+                        data: {
+                            id: options.articleId,
+                        },
+                        success: function (getArticleContentRes) {
+                            console.log(getArticleContentRes);
+                            if (getArticleContentRes.data.state == 1) {
+                                var items = getArticleContentRes.data.data.items;
+                                for (var i = 0; i < items.length; i++) {
+                                    WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
+                                    items[i]['format_text'] = obj.data.format_text;
                                 }
+                                getArticleContentRes.data.data.items = items;
+                                obj.setData({
+                                    userInfo: res.data.user_info,
+                                    token: res.data.token,
+                                    contentArr: getArticleContentRes.data.data,
+                                });
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             },
         })
@@ -253,7 +256,7 @@ Page({
      */
     uploadImg: function(event) {
         var obj = this;
-        var home_content = this.data.home_content;
+        var contentArr = this.data.contentArr;
         var itemKey = event.currentTarget.dataset.itemKey;
         wx.chooseImage({
             count: 1, // 默认9
@@ -275,21 +278,21 @@ Page({
                         var img_data = JSON.parse(uploadRes.data);
                         if (img_data.state == '1') {
                             wx.request({
-                                url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
+                                url: app.globalData.apiUrl + 'api/v1/article/setCache',
                                 method: 'GET',
                                 header: {
                                     'userToken': obj.data.token
                                 },
                                 data: {
                                     itemKey: itemKey,
-                                    text: home_content.items[itemKey]['text'],
-                                    img: img_data.data.img
+                                    img: img_data.data.img,
+                                    articleId: obj.data.articleId
                                 },
                                 success: function(setCacheRes) {
                                     if (setCacheRes.data.state == 1) {
-                                        home_content.items[itemKey]['img'] = img_data.data.img;
+                                        contentArr.items[itemKey]['img'] = img_data.data.img;
                                         obj.setData({
-                                            home_content: home_content
+                                            contentArr: contentArr
                                         });
                                     } else {
                                         console.log(setCacheRes);
@@ -305,38 +308,31 @@ Page({
         })
     },
     /**
-     * 保存图文
+     * 保存动态
      */
     saveContent: function(event) {
         var obj = this;
-        var home_content = obj.data.home_content;
-        var itemKey = event.currentTarget.dataset.itemKey;
+        var contentArr = obj.data.contentArr;
         wx.request({
-            url: app.globalData.apiUrl + 'api/v1/homeContent/saveHomeContent',
+            url: app.globalData.apiUrl + 'api/v1/article/saveArticleContent',
             method: 'POST',
             header: {
                 'userToken': obj.data.token
             },
             data: {
-                music: home_content.music,
-                record: home_content.record,
-                music_name: home_content.music_name,
-                items: JSON.stringify(home_content.items),
+                article_id: obj.data.article_id,
+                classify_id: contentArr.classify_id,
+                music: contentArr.music,
+                music_name: contentArr.music_name,
+                items: JSON.stringify(contentArr.items),
             },
-            success: function(saveHomeContentRes) {
-                if (saveHomeContentRes.data.state == 1) {
-                    console.log(obj.data.userInfo);
-                    if (obj.data.userInfo.type == 1) {
-                        wx.redirectTo({
-                            url: "../index/index?type=1"
-                        })
-                    } else {
-                        wx.switchTab({
-                            url: "../../shops/index/index"
-                        })
-                    }
+            success: function (saveArticleContentRes) {
+                if (saveArticleContentRes.data.state == 1) {
+                    wx.redirectTo({
+                        url: "../index/index?type=1"
+                    })
                 } else {
-                    console.log(saveHomeContentRes);
+                    console.log(saveArticleContentRes);
                 }
             }
         });
@@ -386,9 +382,33 @@ Page({
         recorderManager.start(options)
     },
     bindPickerChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
-        this.setData({
-            index: e.detail.value
-        })
+        var obj = this;
+        var contentArr = obj.data.contentArr;
+        var classifyArr  = obj.data.classifyArr;
+        var pickerIndex = e.detail.value;
+        obj.setData({
+            pickerIndex: pickerIndex,
+        });
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/article/setCache',
+            method: 'GET',
+            header: {
+                'userToken': obj.data.token
+            },
+            data: {
+                classifyId: classifyArr[pickerIndex]['id'],
+                articleId: obj.data.articleId
+            },
+            success: function (setCacheRes) {
+                if (setCacheRes.data.state == 1) {
+                    contentArr.classify_id = classifyArr[pickerIndex]['id'];
+                    obj.setData({
+                        contentArr: contentArr
+                    });
+                } else {
+                    console.log(setCacheRes);
+                }
+            }
+        });
     },
 })
