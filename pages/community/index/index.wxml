@@ -1,7 +1,7 @@
 <import src="../../../wxParse/wxParse.wxml" />
 <view class="page">
     <view class="page__bd">
-        <view class="weui-search-bar">
+        <view class="weui-search-bar" style="background-color:#F4F3E6;">
             <view class="weui-search-bar__form">
                 <view class="weui-search-bar__box">
                     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -15,36 +15,15 @@
                     <view class="weui-search-bar__text">搜索</view>
                 </label>
             </view>
+            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="searchArticle">确定</view>
             <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-        </view>
-        <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
-            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-                <view class="weui-cell__bd">
-                    <view>实时搜索文本</view>
-                </view>
-            </navigator>
         </view>
     </view>
 </view>
 <view class="navs">
     <view class="nav-item" bindtap="classifyChange" data-classify-id="{{classifyItem.id}}" wx:for="{{classifyArr}}" wx:for-item="classifyItem">
         <image src="{{img_url}}{{classifyItem.classify_img}}" class="nav-image" />
-        <text style='color:{{classifyId == classifyItem.id ? "#F60" : "black"}};'>{{classifyItem.classify_name}}</text>
+        <text style='color:{{classify_id == classifyItem.id ? "#F60" : "black"}};'>{{classifyItem.classify_name}}</text>
     </view>
 </view>
 <view class='item-hr'></view>
@@ -67,9 +46,10 @@
     </view>
     <view style='margin-top:20rpx;'>
         <navigator url='/pages/community/articleInfo/articleInfo?articleId={{articleItem.id}}'>
-        <template is="wxParse" data="{{wxParseData:articleItem.content.format_text.nodes}}" />
+        <!-- <template is="wxParse" data="{{wxParseData:articleItem.content.format_text.nodes}}" /> -->
+        <text>{{articleItem.title}}</text>
         <view>
-            <block wx:for="{{articleItem.content.img}}" wx:for-item="imgItem">
+            <block wx:for="{{articleItem.img}}" wx:for-item="imgItem">
                 <image style="width:210rpx;height:200rpx;margin:10rpx;" src='{{img_url}}{{imgItem}}'></image>
             </block>
         </view>

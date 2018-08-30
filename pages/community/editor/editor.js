@@ -13,6 +13,7 @@ Page({
         img_url: app.globalData.img_url,
         articleId: '',
         contentArr:{
+            title: '',
             classify_id: '',
             music: '',
             musicName: '',
@@ -84,6 +85,15 @@ Page({
                                 obj.setData({
                                     contentArr: getCacheRes.data.data,
                                 });
+                                var classifyArr = obj.data.classifyArr;
+                                for (var j = 0; j < classifyArr.length; j++) {
+                                    if (classifyArr[j]['id'] == getCacheRes.data.data.classify_id){
+                                        obj.setData({
+                                            pickerIndex: j,
+                                        });
+                                        break; 
+                                    }
+                                }
                             } else {
                                 console.log(getCacheRes);
                             }
@@ -310,7 +320,7 @@ Page({
     /**
      * 保存动态
      */
-    saveContent: function(event) {
+    saveArticle: function(event) {
         var obj = this;
         var contentArr = obj.data.contentArr;
         wx.request({
@@ -320,8 +330,9 @@ Page({
                 'userToken': obj.data.token
             },
             data: {
-                article_id: obj.data.article_id,
+                article_id: obj.data.articleId,
                 classify_id: contentArr.classify_id,
+                title: contentArr.title,
                 music: contentArr.music,
                 music_name: contentArr.music_name,
                 items: JSON.stringify(contentArr.items),
@@ -408,6 +419,28 @@ Page({
                 } else {
                     console.log(setCacheRes);
                 }
+            }
+        });
+    },
+    inputTyping: function (e) {
+        var title = e.detail.value;
+        var contentArr = this.data.contentArr;
+        contentArr.title = title;
+        var userToken = this.data.token;
+        this.setData({
+            contentArr: contentArr
+        });
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/article/setCache',
+            method: 'GET',
+            header: {
+                'userToken': userToken
+            },
+            data: {
+                title: title
+            },
+            success: function (setCacheRes) {
+                console.log(setCacheRes);
             }
         });
     },

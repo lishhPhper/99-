@@ -15,7 +15,7 @@
 <view style='padding:15rpx 30rpx;'>
     <view>
         <view style='text-align:left;'>
-            <text style='font-size:14pt;'>某某某文章</text>
+            <text style='font-size:14pt;'>{{detailsRes.title}}</text>
         </view>
         <view style='padding:10rpx 0rpx;'>
             <text style='float:left;'>{{detailsRes.create_time}}</text>

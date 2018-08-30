@@ -10,6 +10,7 @@ Page({
         scrollTop: 100,
         articleList: [],
         titleType:0,
+        classify_id: 0,
     },
     showInput: function() {
         this.setData({
@@ -63,27 +64,29 @@ Page({
             titleType: titleType
         })
         wx.request({
-            url: app.globalData.apiUrl + 'api/v1/article/localList',
+            url: app.globalData.apiUrl + 'api/v1/article/queryArticle',
             method: 'GET',
             header: {
                 'userToken': obj.data.token
             },
             data: {
-                order: titleType
+                order: titleType,
+                classify_id: obj.data.classify_id,
+                keyword: obj.data.inputVal,
             },
-            success: function (localListRes) {
-                if (localListRes.data.state == 1) {
-                    var items = localListRes.data.data;
-                    for (var i = 0; i < items.length; i++) {
-                        WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
-                        items[i]['content']['format_text'] = obj.data.format_text;
-                    }
-                    localListRes.data.data = items;
+            success: function (queryArticleRes) {
+                if (queryArticleRes.data.state == 1) {
+                    // var items = queryArticleRes.data.data;
+                    // for (var i = 0; i < items.length; i++) {
+                    //     WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
+                    //     items[i]['content']['format_text'] = obj.data.format_text;
+                    // }
+                    // queryArticleRes.data.data = items;
                     obj.setData({
-                        articleList: localListRes.data.data,
+                        articleList: queryArticleRes.data.data,
                     });
                 } else {
-                    console.log(localListRes);
+                    console.log(queryArticleRes);
                 }
             }
         });
@@ -92,29 +95,30 @@ Page({
         var classifyId = event.currentTarget.dataset.classifyId;
         var obj = this;
         wx.request({
-            url: app.globalData.apiUrl + 'api/v1/article/listByClassify',
+            url: app.globalData.apiUrl + 'api/v1/article/queryArticle',
             method: 'GET',
             header: {
                 'userToken': obj.data.token
             },
             data: {
                 order: obj.data.titleType,
-                classify_id: classifyId
+                classify_id: classifyId,
+                keyword: obj.data.inputVal,
             },
-            success: function (listByClassifyRes) {
-                if (listByClassifyRes.data.state == 1) {
-                    var items = listByClassifyRes.data.data;
-                    for (var i = 0; i < items.length; i++) {
-                        WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
-                        items[i]['content']['format_text'] = obj.data.format_text;
-                    }
-                    listByClassifyRes.data.data = items;
+            success: function (queryArticleRes) {
+                if (queryArticleRes.data.state == 1) {
+                    // var items = queryArticleRes.data.data;
+                    // for (var i = 0; i < items.length; i++) {
+                    //     WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
+                    //     items[i]['content']['format_text'] = obj.data.format_text;
+                    // }
+                    // queryArticleRes.data.data = items;
                     obj.setData({
-                        articleList: listByClassifyRes.data.data,
-                        classifyId: classifyId
+                        articleList: queryArticleRes.data.data,
+                        classify_id: classifyId
                     });
                 } else {
-                    console.log(listByClassifyRes);
+                    console.log(queryArticleRes);
                 }
             }
         });
@@ -147,31 +151,58 @@ Page({
                     }
                 });
                 wx.request({
-                    url: app.globalData.apiUrl + 'api/v1/article/localList',
+                    url: app.globalData.apiUrl + 'api/v1/article/queryArticle',
                     method: 'GET',
                     header: {
                         'userToken': userToken
                     },
-                    data:{
-                        order:0
-                    },
-                    success: function (localListRes) {
-                        if (localListRes.data.state == 1) {
-                            var items = localListRes.data.data;
-                            for (var i = 0; i < items.length; i++) {
-                                WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
-                                items[i]['content']['format_text'] = obj.data.format_text;
-                            }
-                            localListRes.data.data = items;
+                    success: function (queryArticleRes) {
+                        if (queryArticleRes.data.state == 1) {
+                            // var items = queryArticleRes.data.data;
+                            // for (var i = 0; i < items.length; i++) {
+                            //     WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
+                            //     items[i]['content']['format_text'] = obj.data.format_text;
+                            // }
+                            // queryArticleRes.data.data = items;
                             obj.setData({
-                                articleList: localListRes.data.data,
+                                articleList: queryArticleRes.data.data,
                             });
                         } else {
-                            console.log(localListRes);
+                            console.log(queryArticleRes);
                         }
                     }
                 });
             },
         })
+    },
+    searchArticle: function (event) {
+        var obj = this;
+        wx.request({
+            url: app.globalData.apiUrl + 'api/v1/article/queryArticle',
+            method: 'GET',
+            header: {
+                'userToken': obj.data.token
+            },
+            data: {
+                order: obj.data.titleType,
+                classify_id: obj.data.classify_id,
+                keyword: obj.data.inputVal,
+            },
+            success: function (queryArticleRes) {
+                if (queryArticleRes.data.state == 1) {
+                    // var items = queryArticleRes.data.data;
+                    // for (var i = 0; i < items.length; i++) {
+                    //     WxParse.wxParse('format_text', 'html', items[i]['content']['text'], obj, 5);
+                    //     items[i]['content']['format_text'] = obj.data.format_text;
+                    // }
+                    // queryArticleRes.data.data = items;
+                    obj.setData({
+                        articleList: queryArticleRes.data.data,
+                    });
+                } else {
+                    console.log(queryArticleRes);
+                }
+            }
+        });
     }
 });

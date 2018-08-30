@@ -2,6 +2,17 @@
 
 <view style='margin-bottom:100rpx;'>
     <view class="section">
+        <view style='border:1px solid #ccc;background-color:#FFF;height:80rpx;margin:10rpx 0rpx;'>
+            <view style='width:100%;height:80rpx;line-height:80rpx;'>
+                <view class="flex-item float-left">
+                    <image src="/image/title.png" style='width:50rpx;height:50rpx;'></image>
+                </view>
+                <view class='float-left' style='padding:0rpx 15rpx;'>
+                    标题：
+                </view>
+                <input class='float-left' bindblur='inputTyping' placeholder="请输入标题" style='padding:15rpx 0rpx;' value='{{contentArr.title}}'/>
+            </view>
+        </view>
         <view style='border:1px solid #ccc;background-color:#FFF;height:80rpx;'>
             <picker bindchange="bindPickerChange" value="{{pickerIndex}}" range="{{classifyNameArr}}">
                 <view style='width:100%;height:80rpx;line-height:80rpx;'>
@@ -75,7 +86,7 @@
 </view>
 
 
-<button bindtap="saveContent" style='width:100%;height:80rpx;line-height:80rpx;color:#FFF;font-weight:400;background-color:#FF6600;position: fixed;bottom: 0;'>保存</button>
+<button bindtap="saveArticle" style='width:100%;height:80rpx;line-height:80rpx;color:#FFF;font-weight:400;background-color:#FF6600;position: fixed;bottom: 0;'>保存</button>
 <loading hidden="{{loadingHidden}}">
     加载中...
 </loading>
