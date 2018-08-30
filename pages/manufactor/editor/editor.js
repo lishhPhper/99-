@@ -48,6 +48,7 @@ Page({
                         }
                     });
                 } else {
+                    
                     wx.request({
                         url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
                         method: 'GET',
