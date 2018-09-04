@@ -1,8 +1,8 @@
 {
     "pages": [
-        "pages/store/index/index",
-"pages/info/auth/auth",
         "pages/index/index",
+        "pages/store/index/index",
+        "pages/info/auth/auth",
         "pages/community/index/index",
         "pages/community/add/add",
         "pages/community/articles/articles",

@@ -76,6 +76,7 @@ Page({
                         },
                         success: function(getCacheRes) {
                             var items = getCacheRes.data.data.items;
+                            console.log(getCacheRes);
                             if (getCacheRes.data.state == 1) {
                                 for (var i = 0; i < items.length; i++) {
                                     WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
@@ -339,7 +340,7 @@ Page({
             },
             success: function (saveArticleContentRes) {
                 if (saveArticleContentRes.data.state == 1) {
-                    wx.redirectTo({
+                    wx.switchTab({
                         url: "../index/index?type=1"
                     })
                 } else {
