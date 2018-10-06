@@ -10,7 +10,8 @@ Page({
         loadingHidden: true,
         recordingHidden: true,
         music_url: app.globalData.music_url,
-        img_url: app.globalData.img_url
+        img_url: app.globalData.img_url,
+        aboutNodeType:1,
     },
     /**
      * 生命周期函数--监听页面加载
@@ -22,6 +23,7 @@ Page({
             success: function (res) {
                 var userToken = res.data.token;
                 var user_info = res.data.user_info;
+                // 从富文本编辑器返回
                 if (options.type == 2) {
                     wx.request({
                         url: app.globalData.apiUrl + 'api/v1/homeContent/getCache',
@@ -48,7 +50,6 @@ Page({
                         }
                     });
                 } else {
-                    
                     wx.request({
                         url: app.globalData.apiUrl + 'api/v1/homeContent/getHomeContent',
                         method: 'GET',
@@ -59,6 +60,7 @@ Page({
                             edit_type: 1
                         },
                         success: function (homeContentRes) {
+                            console.log(homeContentRes);
                             if (homeContentRes.data.state == 1) {
                                 var items = homeContentRes.data.data.items;
                                 for (var i = 0; i < items.length; i++) {
@@ -159,9 +161,9 @@ Page({
         var home_content = this.data.home_content;
         var itemKey = event.currentTarget.dataset.itemKey;
         home_content.items.splice(itemKey, 1);
-        this.setData({
-            home_content: home_content
-        });
+        // this.setData({
+        //     home_content: home_content
+        // });
         wx.request({
             url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
             method: 'GET',
@@ -174,7 +176,7 @@ Page({
             },
             success: function (setCacheRes) {
                 if (setCacheRes.data.state == 1) {
-                    home_content.items[itemKey]['img'] = img_data.data.img;
+                    //home_content.items[itemKey]['img'] = img_data.data.img;
                     obj.setData({
                         home_content: home_content
                     });
