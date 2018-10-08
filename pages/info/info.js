@@ -5,17 +5,16 @@ var WxParse = require('../../wxParse/wxParse.js');
 
 
 Page({
-  data: {
-    userInfo:{}
-  },
-  onLoad:function(){
-      var obj = this;
-      var userInfo = wx.getStorageSync('userInfo')
-      obj.setData({
-        userInfo: userInfo.user_info,
-        token: userInfo.token,
-      })
-  }
+    data: {
+        userInfo: {},
+        img_url: app.globalData.img_url,
+    },
+    onLoad: function() {
+        var obj = this;
+        var userInfo = wx.getStorageSync('userInfo')
+        obj.setData({
+            userInfo: userInfo.user_info,
+            token: userInfo.token,
+        })
+    }
 });
-
-
