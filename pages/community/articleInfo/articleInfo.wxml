@@ -1,15 +1,15 @@
 <import src="../../../wxParse/wxParse.wxml"/>
 <view style='height:100rpx;line-height:100rpx;'>
     <view style='float:left;'>
-        <image src='{{userInfo.avatar}}' style='border-radius:50%;width:70rpx;height:70rpx;margin:15rpx 20rpx 15rpx 50rpx;'></image>
+        <image src='{{img_url}}{{userInfo.avatar}}' style='border-radius:50%;width:70rpx;height:70rpx;margin:15rpx 20rpx 15rpx 50rpx;'></image>
     </view>
     <view style='float:left;width:300rpx;'>
         <text>{{userInfo.user_name}}</text>
     </view>
-    <view style='float:right;width:150rpx;height:60rpx;background-color:#FF6600;margin:20rpx 30rpx;;line-height:60rpx;border-radius:5%;'>
+    <!-- <view style='float:right;width:150rpx;height:60rpx;background-color:#FF6600;margin:20rpx 30rpx;;line-height:60rpx;border-radius:5%;'>
         <text style='float:left;padding-left:20rpx;color:#FFF'>关注</text>
         <image src='/image/people.png' style='float:right;width:40rpx;height:40rpx;margin:10rpx 10rpx;'></image>
-    </view>
+    </view> -->
 </view>
 <view style='height:5rpx;background-color:#ddd;float:clear;'></view>
 <view style='padding:15rpx 30rpx;'>
@@ -19,7 +19,7 @@
         </view>
         <view style='padding:10rpx 0rpx;'>
             <text style='float:left;'>{{detailsRes.create_time}}</text>
-            <text style='float:left;margin-left:100rpx;'>阅读：{{detailsRes.pageview}}</text>
+            <!-- <text style='float:left;margin-left:100rpx;'>阅读：{{detailsRes.pageview}}</text> -->
         </view>
         <view wx:for="{{detailsRes.content}}" wx:for-item="contentItem">
             <image src='{{img_url}}{{contentItem.img}}' class='image-list'></image>

@@ -5,6 +5,7 @@ var WxParse = require('../../../wxParse/wxParse.js');
 Page({
     data: {
         img_url: app.globalData.img_url,
+        music_url: app.globalData.music_url,
     },
     onLoad: function(options) {
         var obj = this;
@@ -29,6 +30,7 @@ Page({
                         id: articleId,
                     },
                     success: function (detailsRes) {
+                        console.log(detailsRes);
                         if (detailsRes.data.state == 1) {
                             var items = detailsRes.data.data.content;
                             for (var i = 0; i < items.length; i++) {
@@ -39,6 +41,22 @@ Page({
                             obj.setData({
                                 detailsRes: detailsRes.data.data,
                             });
+
+                            if (app.globalData._music != '') {
+                                app.globalData._music.destroy();
+                            }
+                            app.globalData._music = wx.createInnerAudioContext();
+                            app.globalData._music.autoplay = true;
+                            app.globalData._music.loop = true;
+                            app.globalData._music.src = obj.data.music_url + detailsRes.data.data.music;
+                            app.globalData._music.onPlay(() => {
+                                console.log('开始播放');
+                            })
+                            app.globalData._music.onError((res) => {
+                                console.log(res.errMsg)
+                                console.log(res.errCode)
+                            })
+
                         } else {
                             console.log(detailsRes);
                         }

@@ -13,6 +13,11 @@ Page({
         img_url: app.globalData.img_url,
         aboutNodeType:1,
     },
+    onShow: function () {
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */

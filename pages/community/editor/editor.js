@@ -20,6 +20,11 @@ Page({
             items:[]
         }
     },
+    onShow: function () {
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -58,76 +63,75 @@ Page({
                                 classifyArr: classifyRes.data.data,
                                 classifyNameArr: classifyNameArr,
                             });
+                            // 从富文本编辑文字之后回到编辑动态页面 获取临时缓存 或者添加新动态
+                            if (options.type == 2 || options.articleId == '') {
+                                wx.request({
+                                    url: app.globalData.apiUrl + 'api/v1/article/getCache',
+                                    method: 'GET',
+                                    header: {
+                                        'userToken': userToken
+                                    },
+                                    data: {
+                                        articleId: options.articleId,
+                                    },
+                                    success: function (getCacheRes) {
+                                        var items = getCacheRes.data.data.items;
+                                        if (getCacheRes.data.state == 1) {
+                                            for (var i = 0; i < items.length; i++) {
+                                                WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
+                                                items[i]['format_text'] = obj.data.format_text;
+                                            }
+                                            getCacheRes.data.data.items = items;
+                                            obj.setData({
+                                                contentArr: getCacheRes.data.data,
+                                            });
+                                            var classifyArr = obj.data.classifyArr;
+                                            for (var j = 0; j < classifyArr.length; j++) {
+                                                if (classifyArr[j]['id'] == getCacheRes.data.data.classify_id) {
+                                                    obj.setData({
+                                                        pickerIndex: j,
+                                                    });
+                                                    break;
+                                                }
+                                            }
+                                        } else {
+                                            console.log(getCacheRes);
+                                        }
+                                    }
+                                });
+                            } else {
+                                wx.request({
+                                    url: app.globalData.apiUrl + 'api/v1/article/getArticleContent',
+                                    method: 'GET',
+                                    header: {
+                                        'userToken': userToken
+                                    },
+                                    data: {
+                                        id: options.articleId,
+                                    },
+                                    success: function (getArticleContentRes) {
+                                        console.log(getArticleContentRes);
+                                        if (getArticleContentRes.data.state == 1) {
+                                            var items = getArticleContentRes.data.data.items;
+                                            for (var i = 0; i < items.length; i++) {
+                                                WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
+                                                items[i]['format_text'] = obj.data.format_text;
+                                            }
+                                            getArticleContentRes.data.data.items = items;
+                                            obj.setData({
+                                                userInfo: res.data.user_info,
+                                                token: res.data.token,
+                                                contentArr: getArticleContentRes.data.data,
+                                            });
+                                        }
+                                    }
+                                });
+                            }
                         } else {
                             console.log(classifyRes);
                         }
                     }
                 });
-                // 从富文本编辑文字之后回到编辑动态页面 获取临时缓存 或者添加新动态
-                if (options.type == 2 || options.articleId == '') {
-                    wx.request({
-                        url: app.globalData.apiUrl + 'api/v1/article/getCache',
-                        method: 'GET',
-                        header: {
-                            'userToken': userToken
-                        },
-                        data:{
-                            articleId: options.articleId,
-                        },
-                        success: function(getCacheRes) {
-                            var items = getCacheRes.data.data.items;
-                            console.log(getCacheRes);
-                            if (getCacheRes.data.state == 1) {
-                                for (var i = 0; i < items.length; i++) {
-                                    WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
-                                    items[i]['format_text'] = obj.data.format_text;
-                                }
-                                getCacheRes.data.data.items = items;
-                                obj.setData({
-                                    contentArr: getCacheRes.data.data,
-                                });
-                                var classifyArr = obj.data.classifyArr;
-                                for (var j = 0; j < classifyArr.length; j++) {
-                                    if (classifyArr[j]['id'] == getCacheRes.data.data.classify_id){
-                                        obj.setData({
-                                            pickerIndex: j,
-                                        });
-                                        break; 
-                                    }
-                                }
-                            } else {
-                                console.log(getCacheRes);
-                            }
-                        }
-                    });
-                } else {
-                    wx.request({
-                        url: app.globalData.apiUrl + 'api/v1/article/getArticleContent',
-                        method: 'GET',
-                        header: {
-                            'userToken': userToken
-                        },
-                        data: {
-                            id: options.articleId,
-                        },
-                        success: function (getArticleContentRes) {
-                            console.log(getArticleContentRes);
-                            if (getArticleContentRes.data.state == 1) {
-                                var items = getArticleContentRes.data.data.items;
-                                for (var i = 0; i < items.length; i++) {
-                                    WxParse.wxParse('format_text', 'html', items[i]['text'], obj, 5);
-                                    items[i]['format_text'] = obj.data.format_text;
-                                }
-                                getArticleContentRes.data.data.items = items;
-                                obj.setData({
-                                    userInfo: res.data.user_info,
-                                    token: res.data.token,
-                                    contentArr: getArticleContentRes.data.data,
-                                });
-                            }
-                        }
-                    });
-                }
             },
         })
     },
@@ -207,14 +211,16 @@ Page({
      */
     delBox: function(event) {
         var obj = this;
-        var home_content = this.data.home_content;
+        var contentArr = this.data.contentArr;
         var itemKey = event.currentTarget.dataset.itemKey;
-        home_content.items.splice(itemKey, 1);
+        console.log(contentArr);
+        console.log(itemKey);
+        contentArr.items.splice(itemKey, 1);
         this.setData({
-            home_content: home_content
+            contentArr: contentArr
         });
         wx.request({
-            url: app.globalData.apiUrl + 'api/v1/homeContent/setCache',
+            url: app.globalData.apiUrl + 'api/v1/Article/setCache',
             method: 'GET',
             header: {
                 'userToken': obj.data.token,
@@ -225,10 +231,7 @@ Page({
             },
             success: function(setCacheRes) {
                 if (setCacheRes.data.state == 1) {
-                    home_content.items[itemKey]['img'] = img_data.data.img;
-                    obj.setData({
-                        home_content: home_content
-                    });
+                    console.log(setCacheRes);
                 } else {
                     console.log(setCacheRes);
                 }

@@ -94,6 +94,7 @@ Page({
     classifyChange: function (event) {
         var classifyId = event.currentTarget.dataset.classifyId;
         var obj = this;
+        console.log(classifyId);
         wx.request({
             url: app.globalData.apiUrl + 'api/v1/article/queryArticle',
             method: 'GET',
@@ -122,6 +123,11 @@ Page({
                 }
             }
         });
+    },
+    onShow:function(){
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
     },
     onLoad: function(options) {
         var obj = this;

@@ -7,8 +7,12 @@ Page({
         request_url: app.globalData.apiUrl,
         articleId: '',
     },
+    onShow: function () {
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
+    },
     onLoad: function(options) {
-        console.log(options);
         var obj = this;
         wx.getStorage({
             key: 'userInfo',

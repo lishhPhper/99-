@@ -42,7 +42,7 @@
             <view style='height:70rpx;line-height:70rpx;'>{{articleItem.user_name}}</view>
             <view style='height:30rpx;line-height:30rpx;font-size:8pt;'>{{articleItem.create_time}}</view>
         </view>
-        <button style='width:150rpx;height:60rpx;line-height:60rpx;margin:20rpx;float:right;border:1rpx solid #F60;color:#F60;font-size:11pt;'>联系ta</button>
+        <!-- <button style='width:150rpx;height:60rpx;line-height:60rpx;margin:20rpx;float:right;border:1rpx solid #F60;color:#F60;font-size:11pt;'>联系ta</button> -->
     </view>
     <view style='margin-top:20rpx;'>
         <navigator url='/pages/community/articleInfo/articleInfo?articleId={{articleItem.id}}'>
@@ -58,7 +58,7 @@
     <view class='clear'></view>
     <view style='height:50rpx;'>
         <view style='float:left;'>{{articleItem.classify_name}}</view>
-        <view style='float:right;margin-left:10rpx;'>
+        <!-- <view style='float:right;margin-left:10rpx;'>
             <image src='/image/share.png' style='width:40rpx;height:40rpx;margin:5rpx;float:left;'></image>
             <text style='height:50rpx;line-height:50rpx;float:left;'>分享</text>
         </view>
@@ -70,7 +70,7 @@
             <image src='/image/thumbs-up.png' style='width:40rpx;height:40rpx;margin:5rpx;float:left;'></image>
             <text style='height:50rpx;line-height:50rpx;float:left;'>{{articleItem.great_total}}</text>
         </view>
-        <view style='float:right;height:50rpx;line-height:50rpx;margin-left:10rpx;'>浏览：{{articleItem.pageview}}</view>
+        <view style='float:right;height:50rpx;line-height:50rpx;margin-left:10rpx;'>浏览：{{articleItem.pageview}}</view> -->
     </view>
 </view>
 <!-- <navigator style='padding: 26rpx 40rpx 26rpx 40rpx;' url='/pages/community/articles/articles'>

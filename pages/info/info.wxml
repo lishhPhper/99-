@@ -60,14 +60,14 @@
         <view class='float-left left-margin'>商家帮助</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator> -->
-    <navigator url='/pages/info/auth/auth' class='item item-height'>
+    <!-- <navigator url='/pages/info/auth/auth' class='item item-height'>
         <view class='float-left left-margin'>权限设置</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
-    </navigator>
-    <navigator class='item item-height' url="/pages/popularize/index">
+    </navigator> -->
+    <!-- <navigator class='item item-height' url="/pages/popularize/index">
         <view class='float-left left-margin'>我的推广</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
-    </navigator>
+    </navigator> -->
     <navigator url='/pages/about/attract/attract?type=2' class='item item-height'>
         <view class='float-left left-margin'>关于99家具网</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
@@ -76,10 +76,14 @@
 <!-- 普通用户 -->
 <block wx:if="{{userInfo.type == 3}}">
     <view class='item-hr'></view>
-    <navigator class='item item-height' url="/pages/popularize/index">
-        <view class='float-left left-margin'>我的推广</view>
+    <navigator url='/pages/about/attract/attract?type=1' class='item item-height'>
+        <view class='float-left left-margin'>招商加盟</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
+    <!-- <navigator class='item item-height' url="/pages/popularize/index">
+        <view class='float-left left-margin'>我的推广</view>
+        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
+    </navigator> -->
     <navigator url='/pages/about/attract/attract?type=2' class='item item-height'>
         <view class='float-left left-margin'>关于99家具网</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
