@@ -185,6 +185,7 @@ Page({
         var userToken = this.data.token;
         var length = contentArr.items.length;
         var box = {
+            'id': 0,
             'text': '',
             'img': '',
         };

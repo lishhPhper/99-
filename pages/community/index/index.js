@@ -124,12 +124,10 @@ Page({
             }
         });
     },
-    onShow:function(){
+    onShow: function(options) {
         if (app.globalData._music != '') {
             app.globalData._music.destroy();
         }
-    },
-    onLoad: function(options) {
         var obj = this;
         wx.getStorage({
             key: 'userInfo',

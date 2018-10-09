@@ -16,7 +16,15 @@ Page({
         lat: '',
         lng: '',
     },
+    onShow: function (options) {
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
+    },
     onLoad: function(options) {
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
         var that = this;
         var addressInfo = wx.getStorageSync('address')
         var address = addressInfo.address

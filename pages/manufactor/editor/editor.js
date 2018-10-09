@@ -22,6 +22,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
         var obj = this;
         wx.getStorage({
             key: 'userInfo',

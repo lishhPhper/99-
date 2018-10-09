@@ -9,7 +9,15 @@ Page({
         userInfo: {},
         img_url: app.globalData.img_url,
     },
+    onShow: function () {
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
+    },
     onLoad: function() {
+        if (app.globalData._music != '') {
+            app.globalData._music.destroy();
+        }
         var obj = this;
         var userInfo = wx.getStorageSync('userInfo')
         obj.setData({

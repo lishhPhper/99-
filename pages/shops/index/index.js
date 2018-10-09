@@ -22,7 +22,7 @@ Page({
         music_url: app.globalData.music_url,
         pop:0,
     },
-    onLoad: function(options) {
+    onShow: function(options) {
       console.log(options)
       var that = this;
       wx.getStorage({
