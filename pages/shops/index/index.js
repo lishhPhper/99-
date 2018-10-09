@@ -103,6 +103,22 @@ Page({
                   method: 'GET',
                   success: function(res) {
                       if (res.data.state == 1) {
+                          console.log(res.data.data);
+                          if (app.globalData._music != '') {
+                              app.globalData._music.destroy();
+                          }
+                          app.globalData._music = wx.createInnerAudioContext();
+                          app.globalData._music.autoplay = true;
+                          app.globalData._music.loop = true;
+                          app.globalData._music.src = that.data.music_url+res.data.data.music;
+                          app.globalData._music.onPlay(() => {
+                              console.log('开始播放');
+                          })
+                          app.globalData._music.onError((res) => {
+                              console.log(res.errMsg)
+                              console.log(res.errCode)
+                          })
+
                           var items = res.data.data.items;
                           if (items.length > 0) {
                               for (var i = 0; i < items.length; i++) {

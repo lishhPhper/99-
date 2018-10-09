@@ -284,7 +284,7 @@ Page({
             },
             data: {
                 music: home_content.music,
-                record: home_content.record,
+                // record: home_content.record,
                 music_name: home_content.music_name,
                 items: JSON.stringify(home_content.items),
             },

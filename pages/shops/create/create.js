@@ -104,5 +104,11 @@ Page({
         // url:'../../manufactor/productClassify/index'
       })
     }
+      if (add_type == 4) {
+          wx.navigateTo({
+              url: '../../manufactor/editor/editor',
+              // url:'../../manufactor/productClassify/index'
+          })
+      }
   }
 })

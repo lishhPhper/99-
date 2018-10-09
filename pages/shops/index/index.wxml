@@ -49,9 +49,9 @@
       <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.music}}" style='display: flex;padding:0rpx 5rpx;'>
           <image src='/image/music.png' style='width:60rpx;height:60rpx;'></image>
       </view>
-      <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.record}}" style='display: flex;padding:0rpx 5rpx;'>
+      <!-- <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.record}}" style='display: flex;padding:0rpx 5rpx;'>
           <image src='/image/voice.png' style='width:60rpx;height:60rpx;'></image>
-      </view>
+      </view> -->
       <navigator url='/pages/manufactor/editor/editor' open-type='navigate' style='display: flex;padding:0rpx 5rpx;'>
           <image src='/image/edit.png' style='width:60rpx;height:60rpx;'></image>
       </navigator>

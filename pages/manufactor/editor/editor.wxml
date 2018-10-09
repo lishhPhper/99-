@@ -8,7 +8,7 @@
                 </view>
                 <view class="flex-item" style="width:85%;line-height:50rpx;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
                     <text bindtap='playVoice' data-voice-resource="{{music_url}}{{home_content.music}}">{{home_content.music_name}}</text>
-                    <navigator url='/pages/music/music' style='display:inline;float:right;color:#ccc;font-weight:400'>
+                    <navigator url='/pages/music/music?saveType=1' style='display:inline;float:right;color:#ccc;font-weight:400'>
                         更换
                     </navigator>
                 </view>
@@ -27,7 +27,7 @@
             </view>
         </block>
 
-        <block wx:if="{{home_content.record != ''}}">
+        <!-- <block wx:if="{{home_content.record != ''}}">
             <view class="flex-wrp" style="flex-direction:row;" >
                 <view class="flex-item " bindtap="playVoice" data-voice-resource="{{music_url}}{{home_content.record}}">
                     <image src="/image/voice.png" style='width:50rpx;height:50rpx;'></image>
@@ -49,7 +49,7 @@
                     </view>
                 </view>
             </view>
-        </block>
+        </block> -->
     </view>
     <view class='product-box' wx:for="{{home_content.items}}">
         <view class="section">
