@@ -269,7 +269,7 @@ Page({
     var img = e.currentTarget.dataset.type
     wx.chooseImage({
       count: 1, // 最多可以选择的图片张数，默认9
-      sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+      sizeType: ['original'], // original 原图，compressed 压缩图，默认二者都有
       sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
       success: function (res) {
         // success
@@ -443,8 +443,8 @@ Page({
       request_data.shop_img = that.data.shop_img;
       request_data.license = that.data.license;
       request_data.user_name = list.user_name;
-      request_data.phone = that.data.phone;
-      request_data.wx_account = that.data.wx_account;
+      request_data.phone = list.phone;
+      request_data.wx_account = list.wx_account;
       request_data.license_code = that.data.license_code;                        
       var type = 1;
       var url = app.globalData.apiUrl + 'api/v1/shop/register';
@@ -461,8 +461,8 @@ Page({
       request_data.factory_address = list.factory_address;
       request_data.license = that.data.license;
       request_data.user_name = list.user_name;
-      request_data.phone = that.data.phone;
-      request_data.wx_account = that.data.wx_account;
+      request_data.phone = list.phone;
+      request_data.wx_account = list.wx_account;
       request_data.license_code = that.data.license_code;           
       var type = 2;
       var url = app.globalData.apiUrl + 'api/v1/factory/register';

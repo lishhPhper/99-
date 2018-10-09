@@ -34,14 +34,22 @@ Page({
               // 重新渲染路径
               switch (store_type) {
                   case 1:
-                  wx.navigateTo({
-                          url: "../../manufactor/index/index",
-                      })
-                      break;
+                    that.setData({
+                      level: 1
+                    });
+                    return false;
+                    break;
+                  case 2:
+                    that.setData({
+                      level: 2
+                    });
+                    break;
                   case 3:
-                  wx.navigateTo({
-                          url: "../../shops/createStore/createStore",
-                      })
+                      // 普通用户 显示去创建
+                      that.setData({
+                        level:3
+                      });
+                      return false;
                       break;
               }
               var img_url = app.globalData.apiUrl
@@ -130,21 +138,36 @@ Page({
         if (show_type == 1) {
             var title = "微信"
             var content = that.data.wx
-        } else {
+            
+          } else {
             var title = "联系方式"
-            var content = that.data.user_info.user_info.phone
+            var phone = that.data.user_info.user_info.phone
+            var content = "拨打" + phone + "?"
+            
         }
         wx.showModal({
-            title: title,
-            content: content,
-            success: function(res) {
-                if (res.confirm) {
-                    console.log('用户点击确定')
-                } else if (res.cancel) {
-                    console.log('用户点击取消')
-                }
+          title: title,
+          content: content,
+          success: function (res) {
+            if (res.confirm) {
+              if (show_type == 2){
+                wx.makePhoneCall({
+                  phoneNumber: content,
+                  success: function () {
+
+                  },
+                  fail: function () {
+
+                  }
+                })
+              }
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
             }
+          }
         })
+        
     },
     playVoice: function (event) {
         if (event.currentTarget.dataset.voiceResource != '') {

@@ -14,10 +14,10 @@
       <view class="pop-view">
         <view class="shop-pop">月人气：{{pop}}</view>
       </view>
-      <view class='relate-view'>
+      <!-- <view class='relate-view'>
         <button class="relate-button" data-store='shop' bindtap='realteStore'>已关注</button>
         <button class="relate-button" data-store='shop' bindtap='realteStore'>拉黑</button>
-      </view>
+      </view> -->
     </view>
   </view>
   <view style='background-color:#ddd;width:100%;height:3rpx;'></view>

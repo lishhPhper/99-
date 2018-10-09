@@ -108,3 +108,12 @@
   overflow:hidden;
   text-overflow:ellipsis;
 }
+.ordinary {
+  text-align: center;
+  margin-top:100rpx;
+  font-size:14pt;
+  font-weight: bold;
+}
+.release {
+  color:#f60;
+}

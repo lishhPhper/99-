@@ -7,6 +7,7 @@ Page({
   data: {
     category:'',
     type:'',
+    userToken:'',
     blackList:[],
   },
 
@@ -19,7 +20,8 @@ Page({
     var userToken = userInfo.token
     var type = userInfo.user_info.type
     that.setData({
-      type
+      type,
+      userToken
     })
     // 获取黑名单
     wx.request({
@@ -42,6 +44,7 @@ Page({
   categoryChange:function(e){
     var category = e.currentTarget.dataset.category
     var that = this
+    var userToken = that.data.userToken
     that.setData({
       category
     })

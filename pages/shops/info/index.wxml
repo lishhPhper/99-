@@ -1,0 +1,48 @@
+<view class="info">
+  <text class='info-title'>门店名称</text>
+  <view class='info-detail'>{{shop.shop_name}}</view>
+</view>
+<view class="info">
+  <text class='info-title'>门店联系人</text>
+  <view class='info-detail'>{{shop.shop_contact}}</view>
+</view>
+<view class="info">
+  <text class='info-title'>门店电话</text>
+  <view class='info-detail'>{{shop.shop_phone}}</view>
+</view>
+<view class="info">
+  <text class='info-title'>门店微信</text>
+  <view class='info-detail'>{{shop.shop_wx}}</view>
+</view>
+<view class="info">
+  <text class='info-title'>门店微信二维码</text>
+  <image class='info-img' src='{{shop.wx_code == "" ? "" : img_url + shop.wx_code }}' />
+</view>
+<view class="info">
+  <text class='info-title'>门店地址</text>
+  <view class='info-detail'>{{address}}</view>
+</view>
+<view class="info">
+  <text class='info-title'>门店照片</text>
+  <image class='info-img' src='{{shop.shop_img == "" ? "" : img_url + shop.shop_img }}' />
+</view>
+<view class="info">
+  <text class='info-title'>营业执照</text>
+  <image class='info-img' src='{{shop.license == "" ? "" : img_url + shop.license }}' />
+</view>
+<view class="info">
+  <text class='info-title'>负责人姓名</text>
+   <view class='info-detail'>{{shop.user_name}}</view>
+</view>
+<view class="info">
+  <text class='info-title'>负责人电话</text>
+   <view class='info-detail'>{{shop.phone}}</view>
+</view>
+<view class="info">
+  <text class='info-title'>负责人微信</text>
+   <view class='info-detail'>{{shop.wx_account}}</view>
+</view>
+<view class="info">
+  <text class='info-title'>负责人微信二维码</text>
+  <image class='info-img' src='{{shop.license_code == "" ? "" : img_url + shop.license_code }}' />
+</view>

@@ -51,7 +51,7 @@
         <view class='float-left left-margin'>招商加盟</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
-    <navigator url='/pages/shops/createStore/createStore?group=2' class='item item-height'>
+    <navigator url='/pages/shops/info/index' class='item item-height'>
         <view class='float-left left-margin'>注册信息</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
@@ -75,16 +75,12 @@
 </block>
 <!-- 普通用户 -->
 <block wx:if="{{userInfo.type == 3}}">
-    <navigator class='item item-height'>
-        <view class='float-left left-margin'>我的收藏</view>
-        <image class='icon-sm float-right' src='/image/arrowright.png'></image>
-    </navigator>
     <view class='item-hr'></view>
     <navigator class='item item-height' url="/pages/popularize/index">
         <view class='float-left left-margin'>我的推广</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>
-    <navigator class='item item-height'>
+    <navigator url='/pages/about/attract/attract?type=2' class='item item-height'>
         <view class='float-left left-margin'>关于99家具网</view>
         <image class='icon-sm float-right' src='/image/arrowright.png'></image>
     </navigator>

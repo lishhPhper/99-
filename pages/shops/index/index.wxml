@@ -1,51 +1,59 @@
-<import src="../../../wxParse/wxParse.wxml"/>
-<view class="navs">
-  <view class="nav-item nav-item-left" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-    <image src='{{shop_img == "" ? defaultImg : shop_img }}'  binderror="imgError" class="nav-image" bindtap='entityStore'/>
-    <text style='font-size:12pt'>我的实体门店</text>
-  </view>
-  <!-- <view class="nav-item nav-item-right" catchtap="catchTapCategory" data-type="1" data-typeid="1">
-    <image src="/image/jiaju01.jpg" class="nav-image"/>
-    <text style='font-size:12pt'>我的网上商城</text>
-  </view> -->
-  <view class="nav-shop">
-    <view class="shop-name">{{shop_name}}</view>
-    <view class="pop-view">
-      <view class="shop-pop">月人气：{{pop}}</view>
+<block wx:if="{{level == 3}}">
+  <view class="ordinary">请点击下面菜单<text class='release'>发布</text>按钮创建门店</view>
+</block>
+<block wx:if="{{level == 1}}">
+  <view class="ordinary">厂家功能暂未开放，敬请期待！</view>
+</block>
+<block wx:if="{{level == 2}}">
+  <import src="../../../wxParse/wxParse.wxml"/>
+  <view class="navs">
+    <view class="nav-item nav-item-left" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+      <image src='{{shop_img == "" ? defaultImg : shop_img }}'  binderror="imgError" class="nav-image" bindtap='entityStore'/>
+      <text style='font-size:12pt'>我的实体门店</text>
+    </view>
+    <!-- <view class="nav-item nav-item-right" catchtap="catchTapCategory" data-type="1" data-typeid="1">
+      <image src="/image/jiaju01.jpg" class="nav-image"/>
+      <text style='font-size:12pt'>我的网上商城</text>
+    </view> -->
+    <view class="nav-shop">
+      <view class="shop-name">{{shop_name}}</view>
+      <view class="pop-view">
+        <view class="shop-pop">月人气：{{pop}}</view>
+      </view>
     </view>
   </view>
-</view>
-<view style='background-color:#ddd;width:100%;height:3rpx;'></view>
-<view class="section">
-  <view class="flex-wrp" style="flex-direction:row;">
-    <view class="flex-item ">
-      <image src="/image/nearby.png" style='width:50rpx;height:50rpx;'></image>
-    </view>
-    <view class="flex-item address" style="">
-      <text>{{address}}</text>
-    </view>
-    <view class="flex-item">
-      <image src="/image/weixin.png" data-type="1" bindtap='showStoreContact' style='width:50rpx;height:50rpx;'></image>
-    </view>
-    <view class="flex-item">
-      <image src="/image/dianhua.png" data-type="2" bindtap='showStoreContact' style='width:50rpx;height:50rpx;'></image>
+  <view style='background-color:#ddd;width:100%;height:3rpx;'></view>
+  <view class="section">
+    <view class="flex-wrp" style="flex-direction:row;">
+      <view class="flex-item ">
+        <image src="/image/nearby.png" style='width:50rpx;height:50rpx;'></image>
+      </view>
+      <view class="flex-item address" style="">
+        <text>{{address}}</text>
+      </view>
+      <view class="flex-item">
+        <image src="/image/weixin.png" data-type="1" bindtap='showStoreContact' style='width:50rpx;height:50rpx;'></image>
+      </view>
+      <view class="flex-item">
+        <image src="/image/dianhua.png" data-type="2" bindtap='showStoreContact' style='width:50rpx;height:50rpx;'></image>
+      </view>
     </view>
   </view>
-</view>
-<view style='background-color:#ddd;width:100%;height:2rpx;'></view>
+  <view style='background-color:#ddd;width:100%;height:2rpx;'></view>
 
-<view wx:for="{{imageText.items}}" wx:for-item="imageData" style='padding:15rpx 30rpx;'>
-    <image src="{{img_url}}{{imageData.img}}" class='image-list'></image>
-    <template is="wxParse" data="{{wxParseData:imageData.format_text.nodes}}"/>
-</view>
-<view style='display: flex;position:fixed;right:30rpx;bottom: 20rpx;width:210rpx;height:60rpx;z-index:999;flex-direction: row;'>
-    <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.music}}" style='display: flex;padding:0rpx 5rpx;'>
-        <image src='/image/music.png' style='width:60rpx;height:60rpx;'></image>
-    </view>
-    <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.record}}" style='display: flex;padding:0rpx 5rpx;'>
-        <image src='/image/voice.png' style='width:60rpx;height:60rpx;'></image>
-    </view>
-    <navigator url='/pages/manufactor/editor/editor' open-type='navigate' style='display: flex;padding:0rpx 5rpx;'>
-        <image src='/image/edit.png' style='width:60rpx;height:60rpx;'></image>
-    </navigator>
-</view>
+  <view wx:for="{{imageText.items}}" wx:for-item="imageData" style='padding:15rpx 30rpx;'>
+      <image src="{{img_url}}{{imageData.img}}" class='image-list'></image>
+      <template is="wxParse" data="{{wxParseData:imageData.format_text.nodes}}"/>
+  </view>
+  <view style='display: flex;position:fixed;right:30rpx;bottom: 20rpx;width:210rpx;height:60rpx;z-index:999;flex-direction: row;'>
+      <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.music}}" style='display: flex;padding:0rpx 5rpx;'>
+          <image src='/image/music.png' style='width:60rpx;height:60rpx;'></image>
+      </view>
+      <view bindtap="playVoice" data-voice-resource="{{img_url}}{{imageText.record}}" style='display: flex;padding:0rpx 5rpx;'>
+          <image src='/image/voice.png' style='width:60rpx;height:60rpx;'></image>
+      </view>
+      <navigator url='/pages/manufactor/editor/editor' open-type='navigate' style='display: flex;padding:0rpx 5rpx;'>
+          <image src='/image/edit.png' style='width:60rpx;height:60rpx;'></image>
+      </navigator>
+  </view>
+</block>

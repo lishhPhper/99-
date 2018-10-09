@@ -1,8 +1,7 @@
 {
     "pages": [
+
         "pages/index/index",
-        "pages/store/index/index",
-        "pages/info/auth/auth",
         "pages/community/index/index",
         "pages/community/add/add",
         "pages/community/articles/articles",
@@ -27,7 +26,10 @@
         "pages/product/detail/detail",
         "pages/popularize/index",
         "pages/editor/editor",
-        "pages/about/attract/attract"
+        "pages/store/index/index",
+        "pages/info/auth/auth",
+        "pages/about/attract/attract",
+        "pages/shops/info/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -53,7 +55,7 @@
             },
             {
                 "pagePath": "pages/shops/create/create",
-                "text": "",
+                "text": "发布",
                 "iconPath": "/image/add.png",
                 "selectedIconPath": "/image/addHL.png"
             },

@@ -35,6 +35,7 @@ Page({
       },
       method: 'Get',
       success: function (res) {
+        console.log(res.data);
         if (res.data.state == 1) {
           var shop = res.data.data.shop
           var factory = res.data.data.factory

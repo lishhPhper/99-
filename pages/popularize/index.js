@@ -5,9 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo:{},
     arry: [
-      { user: "11211",category:"厂家",date:"2018-06-21",put:"200" },
-      { user: "11211",category: "商家", date: "2018-06-21", put: "200" }
+
     ]
   },
 
@@ -15,7 +15,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this
+    var userInfo = wx.getStorageSync('userInfo')
+    var userToken = userInfo.token
+    that.setData({
+      userInfo,
+      userToken
+    })
   },
 
   /**
