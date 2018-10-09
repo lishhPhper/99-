@@ -5,9 +5,9 @@
     <view style='line-height:100rpx;text-align:right;font-size:14pt;margin-right:10rpx;' bindtap="checkAgent">代理商门店</view>
     <image wx:if="{{agent}}" src='../../../image/yuanHL.png' style='width:40rpx;height:40rpx;margin-right:25rpx;' bindtap="checkAgent"></image>
     <image wx:else src='../../../image/yuan.png' style='width:40rpx;height:40rpx;margin-right:25rpx;' bindtap="checkAgent"></image>
-    <view style='line-height:100rpx;text-align:right;font-size:14pt;margin:0 10rpx 0 25rpx;' bindtap='checkManufacturers'>厂家门店</view>
-    <image wx:if="{{manufacturers}}" src='../../../image/yuanHL.png' style='width:40rpx;height:40rpx;' bindtap='checkManufacturers'></image>
-    <image  wx:else src='../../../image/yuan.png' style='width:40rpx;height:40rpx;' bindtap='checkManufacturers'></image>
+    <!-- <view style='line-height:100rpx;text-align:right;font-size:14pt;margin:0 10rpx 0 25rpx;' bindtap='checkManufacturers'>厂家门店</view>
+    <image wx:if="{{manufacturers}}" src='../../../image/yuanHL.png' style='width:40rpx;height:40rpx;' bindtap='checkManufacturers'></image> -->
+    <!-- <image  wx:else src='../../../image/yuan.png' style='width:40rpx;height:40rpx;' bindtap='checkManufacturers'></image> -->
   </view>
 </view>
 <form bindsubmit="formSubmit">
