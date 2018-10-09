@@ -1,6 +1,6 @@
 <!--info.wxml-->
 <view class='info-top'>
-    <image src='{{userInfo.avatar}}'></image>
+    <image src='{{img_url}}{{userInfo.avatar}}'></image>
     <!-- <view class='float-left' wx:if="{{userInfo.type == 1}}">普通会员</view>
     <view wx:elif="{{userInfo.type == 2}}">生产厂家会员（木牛家具厂）</view> -->
     <view class='float-left'>{{userInfo.user_name}}</view>

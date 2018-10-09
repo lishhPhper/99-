@@ -37,7 +37,7 @@
 <view class='clear'></view>
 <view style='margin:20rpx;border-bottom:1rpx solid #ccc;' wx:for="{{articleList}}" wx:for-item="articleItem">
     <view style='height:100rpx;'>
-        <image src='{{articleItem.avatar}}' style='width:100rpx;height:100rpx;float:left;border-radius:50%;'></image>
+        <image src='{{img_url}}{{articleItem.avatar}}' style='width:100rpx;height:100rpx;float:left;border-radius:50%;'></image>
         <view style='float:left;margin-left:20rpx;'>
             <view style='height:70rpx;line-height:70rpx;'>{{articleItem.user_name}}</view>
             <view style='height:30rpx;line-height:30rpx;font-size:8pt;'>{{articleItem.create_time}}</view>
