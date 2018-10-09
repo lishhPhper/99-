@@ -109,6 +109,17 @@ Page({
       content: content,
       success: function (res) {
         if (res.confirm) {
+          if (show_type == 2) {
+            wx.makePhoneCall({
+              phoneNumber: content,
+              success: function () {
+
+              },
+              fail: function () {
+
+              }
+            })
+          }
           console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')
