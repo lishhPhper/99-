@@ -1,6 +1,5 @@
 {
     "pages": [
-
         "pages/index/index",
         "pages/community/index/index",
         "pages/community/add/add",
@@ -62,8 +61,8 @@
             {
                 "pagePath": "pages/shops/index/index",
                 "text": "我门店",
-                "iconPath": "/image/write.png",
-                "selectedIconPath": "/image/writeHL.png"
+                "iconPath": "/image/shop.png",
+                "selectedIconPath": "/image/shopHL.png"
             },
             {
                 "pagePath": "pages/info/info",

@@ -12,6 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      if (app.globalData._music != '') {
+          app.globalData._music.destroy();
+      }
     var that = this;
     var userInfo = wx.getStorageSync('userInfo')
     var store_type = userInfo.user_info.type
@@ -46,7 +49,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+      if (app.globalData._music != '') {
+          app.globalData._music.destroy();
+      }
   },
 
   /**
