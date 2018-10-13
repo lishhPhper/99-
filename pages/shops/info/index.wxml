@@ -46,3 +46,7 @@
   <text class='info-title'>负责人微信二维码</text>
   <image class='info-img' src='{{shop.license_code == "" ? "" : img_url + shop.license_code }}' />
 </view>
+<view class="info">
+  <text class='info-title'>门店创建时间</text>
+   <view class='info-detail'>{{shop.create_time}}</view>
+</view>
